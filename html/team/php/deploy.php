@@ -14,7 +14,7 @@
 		header("Location: /team");
 		exit;
 	}
-	else if ($_SESSION['user'] != "admin") {
+	else if (!isset($_SESSION['admin'])) {
 		header("Location: /team/team.php");
 		exit;
 	}
