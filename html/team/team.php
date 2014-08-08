@@ -18,7 +18,7 @@ $hw4 = 0;
     <!-- Bootstrap core CSS -->
     <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <style>
-#team, #docs, #proj{
+#team, #docs, #proj, #admin{
 display:none;
 }
   #team{
@@ -102,6 +102,10 @@ section.members{
             $(this).parent().addClass('active');">Documentation</a></li>
           <li><a onclick="$('.jumbotron').hide();$('#team').fadeIn(300);$('.nav > li').removeClass('active');
             $(this).parent().addClass('active');">About</a></li>
+          <?php if (isset($_SESSION["admin"])) {
+            echo ('<li><a onclick="$(\'.jumbotron\').hide();$(\'#admin\').fadeIn(300);$(\'.nav > li\').removeClass(\'active\');
+            $(this).parent().addClass(\'active\');">Admin Tools</a></li>');
+          } ?>
         </ul>
       </div>
 
@@ -112,6 +116,10 @@ section.members{
         <p><a class="btn btn-lg btn-success" onclick="$('.jumbotron').hide();$('#team').fadeIn(500);" href="#" role="button">Meet the team!</a></p>
       </div>
 
+      <div id="admin" class="jumbotron">
+        <h2>Administrative Tools</h2>
+        <a href="php/deploy.php">Deploy Git Updates to Server</a>
+      </div>
 <div id="team" class="jumbotron">
   <div id="curly" style="display:none;cursor:pointer;" onclick="$(this).hide();$('#team-container').show();"><img style="width:100%;height:auto;" src="images/curly.gif"></div>
   <div id="team-container">

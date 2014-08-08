@@ -21,6 +21,7 @@ if(isset($_POST['submit'])){
       {
         $_SESSION['user'] = $user;
         $_SESSION['logged'] = TRUE;
+        $_SESSION['admin'] = TRUE;
         header("Location: /team/team.php"); // Modify to go to the page you would like 
         exit; 
       }
