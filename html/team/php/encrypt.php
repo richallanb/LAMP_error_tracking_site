@@ -25,6 +25,7 @@ function passwordToHash ($password) {
 }
 
 function checkPasswordAgainstHash($password, $hash) {
-  return crypt($password, $ohash) == $ohash );
+  return (crypt($password, $hash) == $hash );
 }
+
 ?>

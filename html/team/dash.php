@@ -76,6 +76,7 @@ section.members{
   
 ul.nav{
   background-color:none;
+  margin-top:20px;
 }
 li a.active{
   box-shadow: 0 0px 20px rgba(0,0,0,0.3);
