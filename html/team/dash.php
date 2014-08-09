@@ -63,23 +63,35 @@ section.members{
     border-radius:0px !important;
   }
   .mainj{
-    z-index:90;
-    
+    z-index:70;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
     position: relative;
   }
-  ul.nav > li {
+  ul.nav > li  a {
     cursor:pointer; 
     position: relative;
+    z-index:40;
+    background-color:none;
   }
   
+ul.nav{
+  background-color:none;
+}
+li a.active{
+  box-shadow: 0 0px 20px rgba(0,0,0,0.3);
+  z-index:50;
+  background-color: #eee !important;
+}
+li a{
+  transition: all .4s ease;
+  
+}
+li:hover{
+  position: relative;
+  z-index:10;
+  background-color: #eee !important;
+}
 
-
-  .active{
-    z-index:70;
-    box-shadow: 0 0px 20px rgba(0,0,0,0.3);
-    background-color:#eee !important;
-    
-  }
  
 </style>
   
@@ -105,17 +117,17 @@ section.members{
          
         
         <ul class="nav nav-justified">
-          <li class="active"><a onclick="$('.jumbotron').hide();$('#landing').show();
-            $('.nav > li').removeClass('active');
-            $(this).parent().addClass('active');">Home</a></li>
-          <li><a onclick="$('.jumbotron').hide();$('#proj').show();$('.nav > li').removeClass('active');
-            $(this).parent().addClass('active');">Projects</a></li>
-          <li><a onclick="$('.jumbotron').hide();$('#docs').show();$('.nav > li').removeClass('active');
-            $(this).parent().addClass('active');">Documentation</a></li>
-          <li><a onclick="$('.jumbotron').hide();$('#team').show();$('.nav > li').removeClass('active');
-            $(this).parent().addClass('active');">About</a></li>
+          <li><a class="active" onclick="$('.jumbotron').hide();$('#landing').show();
+            $('.nav > li > a').removeClass('active');
+            $(this).addClass('active');">Home</a></li>
+          <li><a onclick="$('.jumbotron').hide();$('#proj').show();$('.nav > li > a').removeClass('active');
+            $(this).addClass('active');">Projects</a></li>
+          <li><a onclick="$('.jumbotron').hide();$('#docs').show();$('.nav > li > a').removeClass('active');
+            $(this).addClass('active');">Documentation</a></li>
+          <li><a onclick="$('.jumbotron').hide();$('#team').show();$('.nav > li > a').removeClass('active');
+            $(this).addClass('active');">About</a></li>
           <?php if (isset($_SESSION["admin"])) {
-            echo ('<li><a onclick="$(\'.jumbotron\').hide();$(\'#admin\').show();$(\'.nav > li\').removeClass(\'active\');$(this).parent().addClass(\'active\');">Admin Tools</a></li>');
+            echo ('<li><a onclick="$(\'.jumbotron\').hide();$(\'#admin\').show();$(\'.nav > li > a\').removeClass(\'active\');$(this).addClass(\'active\');">Admin Tools</a></li>');
          } ?>
         </ul>
       </div>
