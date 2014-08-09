@@ -64,15 +64,19 @@ section.members{
   }
   .mainj{
     z-index:90;
-    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    
     position: relative;
   }
   ul.nav > li {
     cursor:pointer; 
     position: relative;
   }
+  
+
 
   .active{
+    z-index:70;
+    box-shadow: 0 0px 20px rgba(0,0,0,0.3);
     background-color:#eee !important;
     
   }
@@ -101,17 +105,17 @@ section.members{
          
         
         <ul class="nav nav-justified">
-          <li class="active"><a onclick="$('.jumbotron').hide();$('#landing').fadeIn(300);
+          <li class="active"><a onclick="$('.jumbotron').hide();$('#landing').show();
             $('.nav > li').removeClass('active');
             $(this).parent().addClass('active');">Home</a></li>
-          <li><a onclick="$('.jumbotron').hide();$('#proj').fadeIn(300);$('.nav > li').removeClass('active');
+          <li><a onclick="$('.jumbotron').hide();$('#proj').show();$('.nav > li').removeClass('active');
             $(this).parent().addClass('active');">Projects</a></li>
-          <li><a onclick="$('.jumbotron').hide();$('#docs').fadeIn(300);$('.nav > li').removeClass('active');
+          <li><a onclick="$('.jumbotron').hide();$('#docs').show();$('.nav > li').removeClass('active');
             $(this).parent().addClass('active');">Documentation</a></li>
-          <li><a onclick="$('.jumbotron').hide();$('#team').fadeIn(300);$('.nav > li').removeClass('active');
+          <li><a onclick="$('.jumbotron').hide();$('#team').show();$('.nav > li').removeClass('active');
             $(this).parent().addClass('active');">About</a></li>
           <?php if (isset($_SESSION["admin"])) {
-            echo ('<li><a onclick="$(\'.jumbotron\').hide();$(\'#admin\').fadeIn(300);$(\'.nav > li\').removeClass(\'active\');$(this).parent().addClass(\'active\');">Admin Tools</a></li>');
+            echo ('<li><a onclick="$(\'.jumbotron\').hide();$(\'#admin\').show();$(\'.nav > li\').removeClass(\'active\');$(this).parent().addClass(\'active\');">Admin Tools</a></li>');
          } ?>
         </ul>
       </div>
