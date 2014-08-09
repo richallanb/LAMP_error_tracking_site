@@ -40,7 +40,8 @@ if(isset($_SESSION['logged'])) {
         display:none;
       }
       input {
-        margin-top 5px; margin-bottom:5px;
+        margin-top: 5px; 
+        margin-bottom:5px;
       }
       h2{
         margin-top:0;

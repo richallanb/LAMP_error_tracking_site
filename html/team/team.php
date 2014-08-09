@@ -6,7 +6,7 @@ $hw4 = 0;
   session_start();
   if (!$_SESSION['logged']){
     header("Location: ./");
-  } ?>
+ } ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -103,9 +103,8 @@ section.members{
           <li><a onclick="$('.jumbotron').hide();$('#team').fadeIn(300);$('.nav > li').removeClass('active');
             $(this).parent().addClass('active');">About</a></li>
           <?php if (isset($_SESSION["admin"])) {
-            echo ('<li><a onclick="$(\'.jumbotron\').hide();$(\'#admin\').fadeIn(300);$(\'.nav > li\').removeClass(\'active\');
-            $(this).parent().addClass(\'active\');">Admin Tools</a></li>');
-          } ?>
+            echo ('<li><a onclick="$(\'.jumbotron\').hide();$(\'#admin\').fadeIn(300);$(\'.nav > li\').removeClass(\'active\');$(this).parent().addClass(\'active\');">Admin Tools</a></li>');
+         } ?>
         </ul>
       </div>
 
@@ -122,20 +121,20 @@ section.members{
         <a href="#">Manage Users</a>
       </div>
 <div id="team" class="jumbotron">
-  <div id="curly" style="display:none;cursor:pointer;" onclick="$(this).hide();$('#team-container').show();"><img style="width:100%;height:auto;" src="images/curly.gif"></div>
+  <div id="curly" style="display:none;cursor:pointer;" onclick="$(this).hide();$('#team-container').show();"><img style="width:100%;height:auto;" src="images/curly.gif" alt="Strike 3 Curly.."></div>
   <div id="team-container">
   <h2>About Our Group!</h2><section class="members">
   
   <div class="members"><header class="members"><h3>Jessica</h3></header><article class="members"><img  src="images/jill.jpg" onclick="$('img.members').removeClass('face-selected');$(this).addClass('face-selected');
-    $('.data').hide();$('.jessica-data').fadeIn(300);" class="img-circle members"></article></div>
+    $('.data').hide();$('.jessica-data').fadeIn(300);" class="img-circle members" alt="Jessica"></article></div>
   
-  <div class="members"><header class="members"><h3>Rick</h3></header><article class="members"><img  src="images/jack.jpg" onclick="$('img.members').removeClass('face-selected');$(this).addClass('face-selected');$('.data').hide();$('.rick-data').fadeIn(300);" class="img-circle members"></article></div>
+  <div class="members"><header class="members"><h3>Rick</h3></header><article class="members"><img  src="images/jack.jpg" onclick="$('img.members').removeClass('face-selected');$(this).addClass('face-selected');$('.data').hide();$('.rick-data').fadeIn(300);" class="img-circle members" alt="Rick"></article></div>
   
-  <div class="members"><header class="members"><h3>Rolando</h3></header><article class="members"><img  src="images/jack.jpg" onclick="$('img.members').removeClass('face-selected');$(this).addClass('face-selected');$('.data').hide();$('.rolando-data').fadeIn(300);" class="img-circle members"></article></div>
+  <div class="members"><header class="members"><h3>Rolando</h3></header><article class="members"><img  src="images/jack.jpg" onclick="$('img.members').removeClass('face-selected');$(this).addClass('face-selected');$('.data').hide();$('.rolando-data').fadeIn(300);" class="img-circle members" alt="Rolando"></article></div>
   
-  <div class="members"><header class="members"><h3>Rosheni</h3></header><article class="members"><img src="images/jill.jpg" onclick="$('img.members').removeClass('face-selected');$(this).addClass('face-selected');$('.data').hide();$('.rosheni-data').fadeIn(300);" class="img-circle members"></article></div>
+  <div class="members"><header class="members"><h3>Rosheni</h3></header><article class="members"><img src="images/jill.jpg" onclick="$('img.members').removeClass('face-selected');$(this).addClass('face-selected');$('.data').hide();$('.rosheni-data').fadeIn(300);" class="img-circle members" alt="Rosheni"></article></div>
   
-  <div class="members"><header class="members"><h3>Steve</h3></header><article class="members"><img  src="images/jack.jpg" onclick="$('img.members').removeClass('face-selected');$(this).addClass('face-selected');$('.data').hide();$('.steve-data').fadeIn(300);" class="img-circle members"></article></div></section>
+  <div class="members"><header class="members"><h3>Steve</h3></header><article class="members"><img  src="images/jack.jpg" onclick="$('img.members').removeClass('face-selected');$(this).addClass('face-selected');$('.data').hide();$('.steve-data').fadeIn(300);" class="img-circle members" alt="Steve"></article></div></section>
         
        <div class="row data jessica-data" >
         <div class="col-lg-4">
@@ -277,8 +276,7 @@ section.members{
           <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
           <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
         </div>
-      </div>
--->
+      </div>-->
       <!-- Site footer -->
       <div class="footer">
         <p>&copy; Nine 2014</p>
@@ -304,81 +302,10 @@ section.members{
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
-    </div><!-- /.modal-content -->
-<!--  </div><!-- /.modal-dialog -->
-<!--</div><!-- /.modal -->
+    </div>
+  </div>
+</div>-->
 
-<!-- Jessica Modal -->
-<!--  <div id="jessica" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title">Jessica</h4>
-      </div>
-      <div class="modal-body">
-        <p>Jessica was born in a hospital. Then she went to UCSD. It was good.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div><!-- /.modal-content -->
-<!--  </div><!-- /.modal-dialog -->
-<!--</div><!-- /.modal -->
-
-<!-- Rolando Modal -->
-<!--  <div id="rolando" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title">Rolando</h4>
-      </div>
-      <div class="modal-body">
-        <p>Rolando was born in a hospital. Then he went to UCSD. It was good.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div><!-- /.modal-content -->
-<!--  </div><!-- /.modal-dialog -->
-<!--</div><!-- /.modal -->
-
-<!-- Richard Modal --><!--
-  <div id ="richard" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title">Richard</h4>
-      </div>
-      <div class="modal-body">
-        <p>Richard was born in a hospital. Then he went to UCSD. It was okay.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div><!-- /.modal-content -->
-<!--  </div><!-- /.modal-dialog -->
-<!--</div><!-- /.modal -->
-
-<!-- Steve Modal -->
-<!--  <div id="steve" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title">Steve</h4>
-      </div>
-      <div class="modal-body">
-        <p>Steve was born in a hospital. Then he went to UCSD. It was good.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div><!-- /.modal-content -->
-<!--  </div><!-- /.modal-dialog -->
-<!--</div><!-- /.modal -->
  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="./bootstrap/js/bootstrap.min.js"></script>
     <script>$('html').click(function(){
