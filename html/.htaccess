@@ -1,2 +1,7 @@
-ErrorDocument 404 /errors/error404.php
-ErrorDocument 403 /errors/error403.php
+ErrorDocument 404 /errors/error404
+ErrorDocument 403 /errors/error403
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.*)$ $1.php [NC,L]

@@ -1,7 +1,7 @@
 <?php 
 session_start();
 if(isset($_SESSION['logged'])) {
-  header("Location: /team/team.php");
+  header("Location: /team/dash");
   exit;
 }
 ?>

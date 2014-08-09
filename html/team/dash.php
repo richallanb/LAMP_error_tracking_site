@@ -117,7 +117,7 @@ section.members{
 
       <div id="admin" class="jumbotron">
         <h2>Administrative Tools</h2>
-        <a href="php/deploy.php">Deploy Git Updates to Server</a><br>
+        <a href="/team/php/deploy">Deploy Git Updates to Server</a><br>
         <a href="#">Manage Users</a>
       </div>
 <div id="team" class="jumbotron">
