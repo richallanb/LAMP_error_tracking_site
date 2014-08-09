@@ -1,47 +1,5 @@
 <?php 
 session_start();
-if(isset($_POST['submit'])){
-   
-    $user = $_POST['user']; 
-    $pw = $_POST['password'];
-    
-    /*
-    if($user == "123@123.com" && $pw == "123"){ 
-         //We're logged in
-        
-        $_SESSION['user'] = $user;
-        $_SESSION['logged'] = TRUE;
-        header("Location: /team/team.php"); // Modify to go to the page you would like 
-        exit; 
-    */
-        
-    if($user == "admin")
-    {
-      if($pw == "admin")
-      {
-        $_SESSION['user'] = $user;
-        $_SESSION['logged'] = TRUE;
-        $_SESSION['admin'] = TRUE;
-        header("Location: /team/team.php"); // Modify to go to the page you would like 
-        exit; 
-      }
-      /*
-      elseif($pw == "R" || $pw == "RolandoIsAwesome")
-      {
-        //Someone's tests
-        $_SESSION['user'] = "Best Guy";
-        $_SESSION['logged'] = TRUE;
-        header("Location: /team/debug.php");
-        exit;
-      }
-      */
-    }
-    else{ 
-        header("Location: /team/index.php"); 
-        exit; 
-    } 
-}
-
 if(isset($_SESSION['logged'])) {
   header("Location: /team/team.php");
   exit;
@@ -63,15 +21,51 @@ if(isset($_SESSION['logged'])) {
       max-width: 400px;
       min-width: 200px;
       }
+      html{
+        background: url('/team/images/wp.jpg') no-repeat center center fixed; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        
+      }
+      body{
+        background: none !important;
+      }
+      .container{
+        background-color:rgba(255,255,255,0.85);
+        padding:30px;
+        border-radius: 10px;
+        box-shadow: 0 0 70px black;
+        display:none;
+      }
+      input {
+        margin-top 5px; margin-bottom:5px;
+      }
+      h2{
+        margin-top:0;
+      }
+      .outer {
+          display: table;
+          position: absolute;
+          height: 100%;
+          width: 100%;
+      }
+
+      .middle {
+          display: table-cell;
+          vertical-align: middle;
+      }
     </style>
   
   </head>
 
   <body>
-
+    <div class="outer">
+    <div class="middle">
     <div class="container">
 
-      <form class="form-signin" name="login" role="form" method="post" action="./">
+      <form class="form-signin" name="login" role="form" method="post" action="/team/php/login.php">
         <h2 class="form-signin-heading">Please sign in</h2>
         <input name="user" type="text" class="form-control" placeholder="Username" required autofocus>
         <input name="password" type="password" class="form-control" placeholder="Password" required>
@@ -84,11 +78,18 @@ if(isset($_SESSION['logged'])) {
       </form>
 
     </div> <!-- /container -->
-
+    </div>
+    </div>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        $(".container").fadeIn(800);
+      });
+    </script>
   </body>
 </html>
 
