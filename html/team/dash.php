@@ -62,11 +62,19 @@ section.members{
   .jumbotron{
     border-radius:0px !important;
   }
+  .mainj{
+    z-index:90;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    position: relative;
+  }
   ul.nav > li {
     cursor:pointer; 
+    position: relative;
   }
+
   .active{
     background-color:#eee !important;
+    
   }
  
 </style>
@@ -109,18 +117,18 @@ section.members{
       </div>
 
       <!-- Jumbotron -->
-      <div id="landing" class="jumbotron">
+      <div id="landing" class="jumbotron mainj">
         <h1 onclick="$('#rosheni').modal('show')">We're Team Nine!</h1>
         <p class="lead">We just love what we do, 999999 lines of code managed this week. Making sweet digital dreams come true.</p>
         <p><a class="btn btn-lg btn-success" onclick="$('.jumbotron').hide();$('#team').fadeIn(500);" href="#" role="button">Meet the team!</a></p>
       </div>
 
-      <div id="admin" class="jumbotron">
+      <div id="admin" class="jumbotron mainj">
         <h2>Administrative Tools</h2>
         <a href="/team/php/deploy">Deploy Git Updates to Server</a><br>
         <a href="#">Manage Users</a>
       </div>
-<div id="team" class="jumbotron">
+<div id="team" class="jumbotron mainj">
   <div id="curly" style="display:none;cursor:pointer;" onclick="$(this).hide();$('#team-container').show();"><img style="width:100%;height:auto;" src="images/curly.gif" alt="Strike 3 Curly.."></div>
   <div id="team-container">
   <h2>About Our Group!</h2><section class="members">
@@ -220,14 +228,14 @@ section.members{
   
       </div></div>
       
-      <div id="docs" class="jumbotron">
+      <div id="docs" class="jumbotron mainj">
         <h2>Documentation</h2>
         <p class="lead">There is none. You were foolish to think otherwise.</p>
     
   </div>
 
 
-      <div id="proj" class="jumbotron">
+      <div id="proj" class="jumbotron mainj">
         <h2>Our Project Progress</h2>
         <div style="margin: 20px 20px 0 20px;width:100%;">
           <h4>Homwork 1</h4>
@@ -279,7 +287,7 @@ section.members{
       </div>-->
       <!-- Site footer -->
       <div class="footer">
-        <p>&copy; Nine 2014</p>
+        <p>&copy; Team Nine 2014</p>
       </div>
 
     </div> <!-- /container -->
