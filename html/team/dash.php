@@ -61,6 +61,8 @@ section.members{
   }
   .jumbotron{
     border-radius:0px !important;
+    
+    
   }
   .mainj{
     z-index:70;
@@ -184,8 +186,9 @@ li:hover{
           At the beginning of the Second World War, Richard joined the Royal Canadian Artillery. He was commissioned a lieutenant in the 13th Field Artillery Regiment of the 3rd Canadian Infantry Division. Richard went to England in 1940 for training. His first combat was the invasion of Normandy at Juno Beach on D-Day. Shooting two snipers, Richard led his men to higher ground through a field of anti-tank mines, where they took defensive positions for the night. Crossing between command posts at 11:30 that night, Richard was hit by six rounds fired from a Bren gun by a nervous Canadian sentry: four in his leg, one in the chest, and one through his right middle finger. The bullet to his chest was stopped by a silver cigarette case given to him by his brother. His right middle finger had to be amputated, something he would conceal during his career as an actor.
         </div>
         <div class="col-lg-4">
-          <h4><b>Favorite Quote</b></h4>
-          <a class="ignoreme" style="cursor:pointer;" onclick="$('#team-container').hide();$('#curly').toggle(300);">"Strike 3 Curly"</a>
+          <h4><b>Favorite Quotes</b></h4>
+          1. <a class="ignoreme" style="cursor:pointer;" onclick="$('#team-container').hide();$('#curly').toggle(300);">"Strike 3 Curly"</a>
+          <br><br>2. "Security through obscurity only works if you're absolutely certain everyone is as dumb as you"<br><em>- Me</em>
           
           
        </div>

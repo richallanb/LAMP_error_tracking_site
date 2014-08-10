@@ -1,5 +1,7 @@
 <?php
-//$username = 'Admin';
+//We never store plaintext passwords, only their hashes. Meaning the password is never exposed.
+
+
 function passwordToHash ($password) {
 
   // A higher "cost" is more secure but consumes more processing power
