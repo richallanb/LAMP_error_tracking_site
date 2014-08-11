@@ -103,7 +103,7 @@ section.members{
   
   <div class="members"><header class="members"><h3>Rolando</h3></header><article class="members"><img src="images/jack.jpg" onclick="$('.data').hide();$('#rolando-data').fadeIn(300);" class="img-circle"></article><footer class="members data" id="rolando-data">Something something something, the darkside.</footer></div>
   
-  <div class="members"><header class="members"><h3>Rosheni</h3></header><article class="members"><img src="images/jill.jpg" onclick="$('.data').hide();$('#rosheni-data').fadeIn(300);" class="img-circle"></article><footer class="members data" id="rosheni-data">Something something something, the darkside.</footer></div>
+  <div class="members"><header class="members"><h3>Rosheni</h3></header><article class="members"><img src="images/rosha.jpg" onclick="$('.data').hide();$('#rosheni-data').fadeIn(300);" class="img-circle"></article><footer class="members data" id="rosheni-data">Something something something, the darkside.</footer></div>
   
   <div class="members"><header class="members"><h3>Steve</h3></header><article class="members"><img src="images/jack.jpg" onclick="$('.data').hide();$('#steve-data').fadeIn(300);" class="img-circle"></article><footer class="members data" id="steve-data">Something something something, the darkside.</footer></div></section>
         

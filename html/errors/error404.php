@@ -8,7 +8,7 @@
     <title>404!?</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../team/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/team/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     
     <style>
     </style>
@@ -50,7 +50,7 @@
          
       <!-- Site footer -->
       <div class="footer">
-        <p>&copy; Nine 2014</p>
+        <p>&copy; Team Nine 2014</p>
       </div>
 
     </div> <!-- /container -->

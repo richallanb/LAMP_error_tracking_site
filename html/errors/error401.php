@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8">
  
-    <title>403!</title>
+    <title>401!</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/team/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -39,7 +39,7 @@
       <!-- Jumbotron -->
       <div id="landing" class="jumbotron">
         <h1>
-          Four Hundred and Three
+          Four Hundred and One
         </h1>
         <p class="lead">
           You shall not pass! Please

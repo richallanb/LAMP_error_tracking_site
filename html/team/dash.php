@@ -6,7 +6,33 @@ $hw4 = 0;
   session_start();
   if (!$_SESSION['logged']){
     header("Location: ./");
- } ?>
+ } 
+$cgnum = rand(0,5);
+$cgray = array(
+array('You Farted During "Boyhood" - mw4m',
+'There we were, just enjoying a nice quiet Saturday night at the movies. A slow mover, Linklater\'s "Boyhood." Some popcorn. A few sodas. Nothing really happens in the film, we found. For about 90 minutes or so we stare listlessly at the screen. It\'s a thinking man\'s film, I say. Beautifully shot. It\'s about life, and death and relationships and things of that nature. Just then, at a brief, carefully-timed cinematic pause in dialogue, an enormous fart from somewhere in the back pierces an otherwise silent movie theatre. It had the impact of a baseball bat hitting a leather couch, or George Foreman working the heavy bag. Whack. Loud, deep and masculine.The seat cushion heroically absorbed most of the blow, but not enough that each and every person in the movie theatre instantly burst into nervous laughter. The laughter continued for what felt like a good 5 minutes, until tears streamed down our faces. Even well after the blast, we quietly chuckled to ourselves with a \'remember the time that guy farted in the movie theatre\' gleam in our eyes. And just like that, with a soft chuckle and a deep breath, we were back into the film. Things happened, people drove around Texas, relationships came and went, there was crying, there was hope. It was as if we had all forgotten about the fart that had brought us together that night. As the sun began to set on screen, the teenage boy, no longer a boy, transitions into an adult, before our very eyes, and looks, intently, lustfully into a young girls eyes, as if to lean in for a kiss, and braaaaaaap. Another fart from the back row, like two giant hands clapping together, and the screen goes dark, roll credits. We decided, after laughing our way out of the theatre, and all the way home, that this was the best movie that we had ever seen. I imagine the lone fartist sauntering off into the sunset. His work here done. 
+If only I could say thank you, kind sir. You are truly a master of your craft.'),
+
+array('The men of Craigslist',
+'Thank you to all the men of CL. You have made getting over a ten year relationship breakup so easy. Every time I needed a casual encounter, you were there- and not just there but really willing to do whatever it took to get in my pants. It\'s incredible the amount of hot, intelligent, educated and successful men on here. And what\'s best about you is that you\'re willing to tell me you\'re cheating on your wife, you have a small dick or you have PTSD all within a few minutes of talking with you. Thanks for always complimenting my pictures and asking for more- you really know how to make a woman feel wanted. Thanks for giving me the distraction I needed, the dick I craved and the confidence to start dating again. I love you all and wish you the best.'),
+
+array('Seen u eating cat food - w4m',
+'Seen you eating catfood out of can. You was using a fork. Looks like yous gots some manners. I like that.'),
+
+array('FREE Sexy Romantic Fire Wood!!!!!!!!!',
+'<div class="random-text">I have lots of free scrap wood available. This is mostly wood that breaks off of wooden pallets. This would be great for bonfires and camp fires. Guaranteed to get you laid. This sexy wood will set the romantic atmosphere that your woman has desired for years. Rekindle the flame of love. Also would be great to take the wood and make new pallets and sell them. We are located off of Fulton Industrial Boulevard near Six Flags.
+
+Thanks,
+Casey</div><img src="random/rand3.jpg" class="random" alt="seriously?">'),
+  
+  array('Skilsaw','<div class="random-text">Wife says its gotta go. 7 1/4 blade. Runs great. The good: Pretty much stops at nothing when cutting. The bad: safety guard malfunctions randomly. Probably easy repair.</div>
+  <img src="random/rand4.jpg" class="random" alt="seriously?">'),
+  
+  array('Girl that <3 toast',
+'I\'m looking for that special someone who will share my passion for toast, all kinds of toast -- white toast, whole-wheat toast, rye toast, toasted bagels (and when I\'m feeling wild and crazy, a Pop Tart.) To me, toast is the ultimate turn-on. There is nothing like a man who smells like toast! I picture us sitting on a couch in front of my sixty toasters, getting nice and toasty, sipping brandy from glasses with croutons floating in them, talking endlessly about the splendors of toast. Perhaps one day you will ask me to spread butter and jam on your body. Or cream cheese -- I\'m not particular. Are you that special man?')
+);
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -24,10 +50,20 @@ display:none;
   #team{
     min-height:462px;
   }
+img.random{
+  display:table-cell;
+  margin-left:15px;
+}
+
+.random-text{
+  display:table-cell;
+  vertical-align:top;
+}
 article.members > img{
-  width:175px;
+  max-width:175px;
   height:auto;
   cursor:pointer;
+ 
   transition: all .4s ease;
 }
 article.members > img:hover{
@@ -36,6 +72,7 @@ article.members > img:hover{
 }
   .face-selected{
     box-shadow: 1px 2px 20px rgba(0,0,0,0.5);
+    
   }
 header.members{
   text-align:center;
@@ -94,6 +131,9 @@ li:hover{
   z-index:10;
   background-color: #eee !important;
 }
+div.members{
+  position:relative;
+}
 
  
 </style>
@@ -128,14 +168,14 @@ li:hover{
           <li><a onclick="$('.jumbotron').hide();$('#docs').show();$('.nav > li > a').removeClass('active');
             $(this).addClass('active');">Documentation</a></li>
           <li><a onclick="$('.jumbotron').hide();$('#team').show();$('.nav > li > a').removeClass('active');
-            $(this).addClass('active');">About</a></li>
+            $(this).addClass('active');">About Us</a></li>
           <?php if (isset($_SESSION["admin"]) && $_SESSION["admin"]) {
             echo ('<li><a onclick="$(\'.jumbotron\').hide();$(\'#admin\').show();$(\'.nav > li > a\').removeClass(\'active\');$(this).addClass(\'active\');">Admin Tools</a></li>');
             print ('<div id="admin" class="jumbotron mainj">
         <h2>Administrative Tools</h2>
-        <a href="/team/php/deploy">Deploy Git Updates to Server</a><br>
-        <a href="/awstats/awstats.pl">Log Report</a></br>
-        <a href="#">Manage Users</a>
+        <a href="/team/php/deploy" rel="tooltip" title="This is going to pull any pushed changes from git">Deploy Git Updates to Server</a><br>
+        <a href="/awstats/awstats.pl" rel="tooltip" title="Our apache usage logs">Log Report</a></br>
+        <a href="#" rel="tooltip" title="Doesn\'t do anything yet. Try later">Manage Users</a>
       </div>');
          } ?>
         </ul>
@@ -143,9 +183,12 @@ li:hover{
 
       <!-- Jumbotron -->
       <div id="landing" class="jumbotron mainj">
-        <h1 onclick="$('#rosheni').modal('show')">We're Team Nine!</h1>
-        <p class="lead">We just love what we do, 999999 lines of code managed this week. Making sweet digital dreams come true.</p>
-        <p><a class="btn btn-lg btn-success" onclick="$('.jumbotron').hide();$('#team').fadeIn(500);" href="#" role="button">Meet the team!</a></p>
+        <h1>We're Team Nine!</h1><br>
+        <div style="margin-left:40px;margin-right:40px;">
+        
+        <p class="lead"><?php echo ($cgray[$cgnum][0]); ?></p>
+          <div style="display:table;"><?php echo ($cgray[$cgnum][1]); ?></div></div>
+        <!--<p>We just love what we do, 999999 lines of code managed this week. Making sweet digital dreams come true.<a class="btn btn-lg btn-success" onclick="$('.jumbotron').hide();$('#team').fadeIn(500);" href="#" role="button">Meet the team!</a></p>-->
       </div>
 
       
@@ -154,16 +197,15 @@ li:hover{
   <div id="team-container">
   <h2>About Our Group!</h2><section class="members">
   
-  <div class="members"><header class="members"><h3>Jessica</h3></header><article class="members"><img  src="images/hellokitty.jpg" onclick="$('img.members').removeClass('face-selected');$(this).addClass('face-selected');
-    $('.data').hide();$('.jessica-data').fadeIn(300);" class="img-circle members" alt="Jessica"></article></div>
+  <div class="members" id="div-jessica"><header class="members"><h3>Jessica</h3></header><article class="members"><img  src="images/jessica.jpg" data-click=".jessica-data" class="img-circle members" alt="Jessica"></article></div>
   
-  <div class="members"><header class="members"><h3>Rick</h3></header><article class="members"><img  src="images/jack.jpg" onclick="$('img.members').removeClass('face-selected');$(this).addClass('face-selected');$('.data').hide();$('.rick-data').fadeIn(300);" class="img-circle members" alt="Rick"></article></div>
+  <div class="members" id="div-rick"><header class="members"><h3>Rick</h3></header><article class="members"><img  src="images/rick.gif" data-click=".rick-data" class="img-circle members" alt="Rick"></article></div>
   
-  <div class="members"><header class="members"><h3>Rolando</h3></header><article class="members"><img  src="images/rolan.jpg" onclick="$('img.members').removeClass('face-selected');$(this).addClass('face-selected');$('.data').hide();$('.rolando-data').fadeIn(300);" class="img-circle members" alt="Rolando"></article></div>
+  <div class="members" id="div-rolando"><header class="members"><h3>Rolando</h3></header><article class="members"><img  src="images/rolando.gif" data-click=".rolando-data" class="img-circle members" alt="Rolando"></article></div>
   
-  <div class="members"><header class="members"><h3>Rosheni</h3></header><article class="members"><img src="images/photo12.JPG" onclick="$('img.members').removeClass('face-selected');$(this).addClass('face-selected');$('.data').hide();$('.rosheni-data').fadeIn(300);" class="img-circle members" alt="Rosheni"></article></div>
+  <div class="members" id="div-rosheni"><header class="members"><h3>Rosheni</h3></header><article class="members"><img src="images/rosha.jpg" data-click=".rosheni-data" class="img-circle members" alt="Rosheni"></article></div>
   
-  <div class="members"><header class="members"><h3>Steve</h3></header><article class="members"><img  src="images/stev.jpg" onclick="$('img.members').removeClass('face-selected');$(this).addClass('face-selected');$('.data').hide();$('.steve-data').fadeIn(300);" class="img-circle members" alt="Steve"></article></div></section>
+  <div class="members" id="div-steve"><header class="members"><h3>Steve</h3></header><article class="members"><img  src="images/steve.jpg" data-click=".steve-data" class="img-circle members" alt="Steve"></article></div></section>
         
        <div class="row data jessica-data" >
         <div class="col-lg-4">
@@ -236,11 +278,11 @@ li:hover{
         <div class="col-lg-4">
           <h4><b>Biography</b></h4>
           <p class="text-danger"></p>
-          Steve was born in a hospital. Then he went to UCSD. It was good.
+          Steve was an actor, action choreographer, comedian, director, producer, martial artist, screenwriter, entrepreneur, singer, and stunt performer. In his movies, he was known for his acrobatic fighting style, comic timing, use of improvised weapons, and innovative stunts. He was one of the few actors to have performed all of his film stunts. And now he goes to UCSD.
         </div>
         <div class="col-lg-4">
           <h4><b>Favorite Quote</b></h4>
-          "Computer science is no more about computers than astronomy is about telescopes." -Edsger Dijkstra
+          "Everybody can be a superman, but nobody can be Steve Dai." - Steve Dai
        </div>
         <div class="col-lg-4">
           <h4><b>Contact</b></h4>
@@ -349,7 +391,36 @@ li:hover{
       $('.ignoreme').click(function(event){
     event.stopPropagation();
 });
-    </script>
+  
+  $("img.members")
+    .click(function(){
+    $('img.members').removeClass('face-selected');
+    var otherguys = $('img.members').not($(this)).closest('div.members');
+    otherguys.fadeTo("slow" , 0.5)
+    otherguys.mouseover(function(){
+      $(this).fadeTo("fast" , 1);
+    })
+      .mouseleave(function(){
+      if (!$(this).find("img.members").hasClass("face-selected"))
+        $(this).fadeTo("fast" , 0.5);
+    });
+    //alert($(this).offset().left);
+   // otherguys.animate({ "left": "=" + $(this).position().left + "px"}, "slow" );
+   // otherguys.css("left", $(this).offset().left + "px")
+   // otherguys.css("z-index","70");
+    //otherguys.find("h3").css("visibility", "hidden");
+    
+    $(this).addClass('face-selected');
+    var dField = $(this).attr("data-click");
+    $('.data').not($(dField)).hide();
+    
+    $(dField).show();
+  });
+      
+      $(function () {
+        $("[rel='tooltip']").tooltip();
+    });
+      </script>
   </body>
 </html>
 
