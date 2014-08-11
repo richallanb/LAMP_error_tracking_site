@@ -7,20 +7,17 @@ $hw4 = 0;
   if (!$_SESSION['logged']){
     header("Location: ./");
  } 
-$cgnum = rand(0,5);
+$cgnum = rand(0,4);
 $cgray = array(
 array('You Farted During "Boyhood" - mw4m',
-'There we were, just enjoying a nice quiet Saturday night at the movies. A slow mover, Linklater\'s "Boyhood." Some popcorn. A few sodas. Nothing really happens in the film, we found. For about 90 minutes or so we stare listlessly at the screen. It\'s a thinking man\'s film, I say. Beautifully shot. It\'s about life, and death and relationships and things of that nature. Just then, at a brief, carefully-timed cinematic pause in dialogue, an enormous fart from somewhere in the back pierces an otherwise silent movie theatre. It had the impact of a baseball bat hitting a leather couch, or George Foreman working the heavy bag. Whack. Loud, deep and masculine.The seat cushion heroically absorbed most of the blow, but not enough that each and every person in the movie theatre instantly burst into nervous laughter. The laughter continued for what felt like a good 5 minutes, until tears streamed down our faces. Even well after the blast, we quietly chuckled to ourselves with a \'remember the time that guy farted in the movie theatre\' gleam in our eyes. And just like that, with a soft chuckle and a deep breath, we were back into the film. Things happened, people drove around Texas, relationships came and went, there was crying, there was hope. It was as if we had all forgotten about the fart that had brought us together that night. As the sun began to set on screen, the teenage boy, no longer a boy, transitions into an adult, before our very eyes, and looks, intently, lustfully into a young girls eyes, as if to lean in for a kiss, and braaaaaaap. Another fart from the back row, like two giant hands clapping together, and the screen goes dark, roll credits. We decided, after laughing our way out of the theatre, and all the way home, that this was the best movie that we had ever seen. I imagine the lone fartist sauntering off into the sunset. His work here done. 
+'There we were, just enjoying a nice quiet Saturday night at the movies. A slow mover, Linklater\'s "Boyhood." Some popcorn. A few sodas. Nothing really happens in the film, we found. For about 90 minutes or so we stare listlessly at the screen. It\'s a thinking man\'s film, I say. Beautifully shot. It\'s about life, and death and relationships and things of that nature. Just then, at a brief, carefully-timed cinematic pause in dialogue, an enormous fart from somewhere in the back pierces an otherwise silent movie theatre. It had the impact of a baseball bat hitting a leather couch, or George Foreman working the heavy bag. Whack. Loud, deep and masculine.The seat cushion heroically absorbed most of the blow, but not enough that each and every person in the movie theatre instantly burst into nervous laughter. The laughter continued for what felt like a good 5 minutes, until tears streamed down our faces. Even well after the blast, we quietly chuckled to ourselves with a \'remember the time that guy farted in the movie theatre\' gleam in our eyes. And just like that, with a soft chuckle and a deep breath, we were back into the film. Things happened, people drove around Texas, relationships came and went, there was crying, there was hope. It was as if we had all forgotten about the fart that had brought us together that night. As the sun began to set on screen, the teenage boy, no longer a boy, transitions into an adult, before our very eyes, and looks, intently, into a young girls eyes, as if to lean in for a kiss, and braaaaaaap. Another fart from the back row, like two giant hands clapping together, and the screen goes dark, roll credits. We decided, after laughing our way out of the theatre, and all the way home, that this was the best movie that we had ever seen. I imagine the lone fartist sauntering off into the sunset. His work here done. 
 If only I could say thank you, kind sir. You are truly a master of your craft.'),
-
-array('The men of Craigslist',
-'Thank you to all the men of CL. You have made getting over a ten year relationship breakup so easy. Every time I needed a casual encounter, you were there- and not just there but really willing to do whatever it took to get in my pants. It\'s incredible the amount of hot, intelligent, educated and successful men on here. And what\'s best about you is that you\'re willing to tell me you\'re cheating on your wife, you have a small dick or you have PTSD all within a few minutes of talking with you. Thanks for always complimenting my pictures and asking for more- you really know how to make a woman feel wanted. Thanks for giving me the distraction I needed, the dick I craved and the confidence to start dating again. I love you all and wish you the best.'),
 
 array('Seen u eating cat food - w4m',
 'Seen you eating catfood out of can. You was using a fork. Looks like yous gots some manners. I like that.'),
 
 array('FREE Sexy Romantic Fire Wood!!!!!!!!!',
-'<div class="random-text">I have lots of free scrap wood available. This is mostly wood that breaks off of wooden pallets. This would be great for bonfires and camp fires. Guaranteed to get you laid. This sexy wood will set the romantic atmosphere that your woman has desired for years. Rekindle the flame of love. Also would be great to take the wood and make new pallets and sell them. We are located off of Fulton Industrial Boulevard near Six Flags.
+'<div class="random-text">I have lots of free scrap wood available. This is mostly wood that breaks off of wooden pallets. This would be great for bonfires and camp fires. This sexy wood will set the romantic atmosphere that your woman has desired for years. Rekindle the flame of love. Also would be great to take the wood and make new pallets and sell them. We are located off of Fulton Industrial Boulevard near Six Flags.
 
 Thanks,
 Casey</div><div class="random"><img src="random/rand3.jpg" class="img-rounded" alt="seriously?"></div>'),
@@ -29,7 +26,7 @@ Casey</div><div class="random"><img src="random/rand3.jpg" class="img-rounded" a
   <div class="random"><img src="random/rand4.jpg" class="img-rounded" alt="seriously?"></div>'),
   
   array('Girl that <3 toast',
-'I\'m looking for that special someone who will share my passion for toast, all kinds of toast -- white toast, whole-wheat toast, rye toast, toasted bagels (and when I\'m feeling wild and crazy, a Pop Tart.) To me, toast is the ultimate turn-on. There is nothing like a man who smells like toast! I picture us sitting on a couch in front of my sixty toasters, getting nice and toasty, sipping brandy from glasses with croutons floating in them, talking endlessly about the splendors of toast. Perhaps one day you will ask me to spread butter and jam on your body. Or cream cheese -- I\'m not particular. Are you that special man?')
+'I\'m looking for that special someone who will share my passion for toast, all kinds of toast -- white toast, whole-wheat toast, rye toast, toasted bagels (and when I\'m feeling wild and crazy, a Pop Tart.) To me, toast is the ultimate turn-on. There is nothing like a man who smells like toast! I picture us sitting on a couch in front of my sixty toasters, getting nice and toasty, sipping brandy from glasses with croutons floating in them, talking endlessly about the splendors of toast.')
 );
 
 ?>
@@ -210,7 +207,7 @@ print ('<div id="admin" class="jumbotron mainj">
         
         <div style="padding:10px;border-radius:10px;margin-left:40px;margin-right:40px;min-width:575px;">
         
-        <p class="lead"><?php echo ($cgray[$cgnum][0]); ?></p>
+        <p class="lead"><?php echo ($cgray[$cgnum][0]); ?>-</p>
           <div style="display:block;"><?php echo ($cgray[$cgnum][1]); ?></div></div>
         <!--<p>We just love what we do, 999999 lines of code managed this week. Making sweet digital dreams come true.<a class="btn btn-lg btn-success" onclick="$('.jumbotron').hide();$('#team').fadeIn(500);" href="#" role="button">Meet the team!</a></p>-->
       </div>
@@ -270,7 +267,7 @@ print ('<div id="admin" class="jumbotron mainj">
         <div class="col-lg-4">
           <h4><b>Biography</b></h4>
           <p class="text-danger"></p>
-          Rolando was born in a hospital. Then he went to UCSD. It was good.
+          Chief Executive Officer at Team Nine Inc. that's why he's in the middle.
         </div>
         <div class="col-lg-4">
           <h4><b>Favorite Quote</b></h4>
@@ -286,11 +283,13 @@ print ('<div id="admin" class="jumbotron mainj">
         <div class="col-lg-4">
           <h4><b>Biography</b></h4>
           <p class="text-danger"></p>
-          Rosheni was born in a hospital. Then she went to UCSD. It has been pretty good.
+           Once upon a time, in a far far away land, where buildings were made out of glass, streets out of iced pineapple, cars out of strawberries, the sky out of cotton candy, and air out of oxygen and the fragrance of melon, Rosha was born. She grew up to love macarons, coding, fruits, sports cars, giving pep talks, UCSD, extreme-sports, and tall buildings. She then became a CEO of her own company which produced software for people to learn how to create the most amazing websites using fruits, Olympic althete in swimming, running, skiing by eating fruits, architect of the most awesome buildings in which the worlds' best web site software was developed from fruits, and then created a school that taught how to create the greatest websites, (the school was made of fruit, too). She really loved fruits, watermelon, strawberries, lalalaberries, cutiepatootieoranges, etc. She hopes you enjoyed her biography which is a little biography because she still has more amazing things to do, and more fruits to discover. 
         </div>
         <div class="col-lg-4">
           <h4><b>Favorite Quote</b></h4>
-          "Don't wait for the perfect moment, take the moment and make it perfect." - Anonymous
+          "Don't wait for the perfect moment, take the moment and make it perfect." - Rosheni Malik
+          
+          "There are little pieces of dreams that we dream looking at the stars and then suddenly all those dreams become an even bigger dream and then the collection of all these big dreams becomes a gigantic dream, and then like the big bang, all of the pieces of this huge dream disperse into the world like oxygen and hydrogen, and suddenly, you see little pieces of your dreams in your world, in your life. And that is reality. The big bang is your hard work. And if you're going to be a dreamer, be the best one. That is all." - Anonymous
        </div>
         <div class="col-lg-4">
           <h4><b>Contact</b></h4>
@@ -318,12 +317,15 @@ print ('<div id="admin" class="jumbotron mainj">
       
       <div id="docs" class="jumbotron mainj">
         <h2>Documentation</h2>
-        <p class="lead">Homework 1: Compression Summary</p>
+        <p class="lead"><b>Homework 1:</b> Compression Summary</p>
         <b>Web Page Compressed:</b> Yes<br>
         <b>Compression Type:</b> gzip<br>
         <b>Size, Markup (bytes):</b> 2,312<br>
         <b>Size, Compressed (bytes):</b> 971<br>
-        <b>Compression:</b> 58.0%<br>
+        <b>Compression:</b> 58.0%<br><br>
+        <!--<h4><b>Logging Summary</b></h4>
+        <b>Program:</b> AWStats<br>
+        <b>Note: </b>A cron job was used to run AWStats every 9 minutes to generate a report.-->
     
   </div>
 
@@ -331,25 +333,25 @@ print ('<div id="admin" class="jumbotron mainj">
       <div id="proj" class="jumbotron mainj">
         <h2>Our Project Progress</h2>
         <div style="margin: 20px 20px 0 20px;width:100%;">
-          <h4>Homwork 1</h4>
+          <h4>Homework 1</h4>
           <div class="progress">
   <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $hw1; ?>%">
     <?php echo $hw1; ?>% Complete 
   </div>
 </div>
-          <h4>Homwork 2</h4>
+          <h4>Homework 2</h4>
 <div class="progress">
   <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $hw2; ?>%">
     <?php echo $hw2; ?>% Complete
   </div>
 </div>
-          <h4>Homwork 3</h4>
+          <h4>Homework 3</h4>
 <div class="progress">
   <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $hw3; ?>%">
     <?php echo $hw3; ?>% Complete
   </div>
 </div>
-          <h4>Homwork 4</h4>
+          <h4>Homework 4</h4>
 <div class="progress">
   <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $hw4; ?>%">
     <?php echo $hw4; ?>% Complete
