@@ -78,7 +78,7 @@ article.members > img{
   transition: all .4s ease;
 }
   div.members{
-    opacity: 0.5;
+    
     transition: all .4s ease;
   }
   div.members:hover{
@@ -91,6 +91,9 @@ article.members > img:hover{
   img.face-selected{
     box-shadow: 1px 2px 20px rgba(0,0,0,0.5);
     
+  }
+  div.face-unselected{
+    opacity:0.5;
   }
   div.face-selected{
     opacity:1;
@@ -419,6 +422,7 @@ div.members{
     $('img.members').removeClass('face-selected');
     var otherguys = $('img.members').not($(this)).closest('div.members');
     otherguys.removeClass('face-selected');
+      otherguys.addClass('face-unselected');
     /*otherguys.mouseover(function(){
       $(this).fadeTo("fast" , 1);
     })
