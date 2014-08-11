@@ -271,7 +271,7 @@ print ('<div id="admin" class="jumbotron mainj">
         <div class="col-lg-4">
           <h4><b>Biography</b></h4>
           <p class="text-danger"></p>
-          Rolando was born in a hospital. Then he went to UCSD. It was good.
+          Chief Executive Officer at Team Nine Inc. that's why he's in the middle.
         </div>
         <div class="col-lg-4">
           <h4><b>Favorite Quote</b></h4>
@@ -287,11 +287,11 @@ print ('<div id="admin" class="jumbotron mainj">
         <div class="col-lg-4">
           <h4><b>Biography</b></h4>
           <p class="text-danger"></p>
-          Rosheni was born in a hospital. Then she went to UCSD. It has been pretty good.
+          Once upon a time, in a far far away land, where buildings were made out of glass, streets out of iced pineapple, cars out of strawberries, the sky out of cotton candy, and air out of oxygen and the fragrance of melon, Rosha was born. She grew up to love macarons, coding, fruits, sports cars, giving pep talks, UCSD, extreme-sports, and tall buildings. She then became a CEO of her own company which produced software for people to learn how to create the most amazing websites using fruits, Olympic althete in swimming, running, skiing by eating fruits, architect of the most awesome buildings in which the worlds' best web site software was developed from fruits, and then created a school that taught how to create the greatest websites, (the school was made of fruit, too). She really loved fruits, watermelon, strawberries, lalalaberries, cutiepatootieoranges, etc. She hopes you enjoyed her biography which is a little biography because she still has more amazing things to do, and more fruits to discover. 
         </div>
         <div class="col-lg-4">
           <h4><b>Favorite Quote</b></h4>
-          "Don't wait for the perfect moment, take the moment and make it perfect." - Anonymous
+          "There are little pieces of dreams that we dream looking at the stars and then suddenly all those dreams become an even bigger dream and then the collection of all these big dreams becomes a gigantic dream, and then like the big bang, all of the pieces of this huge dream disperse into the world like oxygen and hydrogen, and suddenly, you see little pieces of your dreams in your world, in your life. And that is reality. The big bang is your hard work. And if you're going to be a dreamer, be the best one. That is all." - Anonymous
        </div>
         <div class="col-lg-4">
           <h4><b>Contact</b></h4>
