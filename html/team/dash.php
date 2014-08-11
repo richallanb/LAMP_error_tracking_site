@@ -172,7 +172,7 @@ div.members{
         <!-- Rolando's Lab-->
         <h3 class="text-muted" style="display:table-cell;width:100%;">Team Nine</h3>
         <h6 style="display:table-cell;min-width:300px;text-align:right;">Welcome,
-          <a href="./php/logout.php">
+          <a href="./php/logout.php" data-rel="tooltip" title="Logout">
             <?php echo ($_SESSION["user"]); ?>
           </a>
         </h6>
