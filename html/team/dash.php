@@ -23,10 +23,10 @@ array('FREE Sexy Romantic Fire Wood!!!!!!!!!',
 '<div class="random-text">I have lots of free scrap wood available. This is mostly wood that breaks off of wooden pallets. This would be great for bonfires and camp fires. Guaranteed to get you laid. This sexy wood will set the romantic atmosphere that your woman has desired for years. Rekindle the flame of love. Also would be great to take the wood and make new pallets and sell them. We are located off of Fulton Industrial Boulevard near Six Flags.
 
 Thanks,
-Casey</div><img src="random/rand3.jpg" class="random" alt="seriously?">'),
+Casey</div><div class="random"><img src="random/rand3.jpg" class="img-rounded" alt="seriously?"></div>'),
   
   array('Skilsaw','<div class="random-text">Wife says its gotta go. 7 1/4 blade. Runs great. The good: Pretty much stops at nothing when cutting. The bad: safety guard malfunctions randomly. Probably easy repair.</div>
-  <img src="random/rand4.jpg" class="random" alt="seriously?">'),
+  <div class="random"><img src="random/rand4.jpg" class="img-rounded" alt="seriously?"></div>'),
   
   array('Girl that <3 toast',
 'I\'m looking for that special someone who will share my passion for toast, all kinds of toast -- white toast, whole-wheat toast, rye toast, toasted bagels (and when I\'m feeling wild and crazy, a Pop Tart.) To me, toast is the ultimate turn-on. There is nothing like a man who smells like toast! I picture us sitting on a couch in front of my sixty toasters, getting nice and toasty, sipping brandy from glasses with croutons floating in them, talking endlessly about the splendors of toast. Perhaps one day you will ask me to spread butter and jam on your body. Or cream cheese -- I\'m not particular. Are you that special man?')
@@ -50,14 +50,25 @@ display:none;
   #team{
     min-height:462px;
   }
-img.random{
+.random{
   display:table-cell;
-  margin-left:15px;
+  min-width:200px;
+  max-width:400px;
+  
+  
 }
+  .random > img{
+    width:100%;
+    max-width:400px;
+    
+    height:auto;
+  }
 
 .random-text{
   display:table-cell;
   vertical-align:top;
+  min-width:350px;
+  width:100%;
 }
 article.members > img{
   max-width:175px;
@@ -98,7 +109,7 @@ section.members{
   }
   .jumbotron{
     border-radius:0px !important;
-    
+    min-width:715px;
     
   }
   .mainj{
@@ -184,10 +195,11 @@ div.members{
       <!-- Jumbotron -->
       <div id="landing" class="jumbotron mainj">
         <h1>We're Team Nine!</h1><br>
-        <div style="margin-left:40px;margin-right:40px;">
+        
+        <div style="padding:10px;border-radius:10px;margin-left:40px;margin-right:40px;min-width:575px;">
         
         <p class="lead"><?php echo ($cgray[$cgnum][0]); ?></p>
-          <div style="display:table;"><?php echo ($cgray[$cgnum][1]); ?></div></div>
+          <div style="display:block;"><?php echo ($cgray[$cgnum][1]); ?></div></div>
         <!--<p>We just love what we do, 999999 lines of code managed this week. Making sweet digital dreams come true.<a class="btn btn-lg btn-success" onclick="$('.jumbotron').hide();$('#team').fadeIn(500);" href="#" role="button">Meet the team!</a></p>-->
       </div>
 
