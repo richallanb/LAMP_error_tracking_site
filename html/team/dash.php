@@ -325,6 +325,45 @@ print ('<div id="admin" class="jumbotron mainj">
         <b>Size, Markup (bytes):</b> 2,312<br>
         <b>Size, Compressed (bytes):</b> 971<br>
         <b>Compression:</b> 58.0%<br>
+        <div class="well well-lg" style="margin-top:40px;">
+        <h3>Security Precautions:</h3>
+
+<ol><h4>MySQL</h4>
+  <li>Root renamed to something else. Password applied.</li>
+  <li>Connections only allowed from localhost for root.</li>
+  <li>Created single user account that only has control over a single database.</li>
+<ol><li>Has remote access allowed, but only during development & testing. This will be changed to localhost only after the project is complete. MySQL will then be permanently binded to localhost allowing no outside connections.
+  Turned off file control from MySQL.</li></ol></ol>
+
+<ol><h4>Database Security</h4>
+  <li>We are using prepared statements (fighting SQL Injection)</li>
+  <ol><li>There’s currently no new entry generation from our site, but we will be sanitizing of all user input to avoid XSS (or cross site scripting).</li></ol>
+  <li>All password entries are stored as Blowfish encrypted hashes. The password is never physically passed outside of the php session. We rely entirely on hashes and the comparison of the user’s entered password.</li>
+  <li>Our user entries have admin rights associated with them (currently the only accounts available are admins)</li>
+  <li>The MySQL connection credentials are stored outside document root and are defined  in PHP - no physical exposure of MySQL credentials.</li>
+  <li>MySQL connections are treated as objects, and the code for it is outside document root. So the MySQL connection routines are not accessible by users.</li>
+  <li>The encryption is also done outside of document root so the salt used is not exposed.</li>
+  <li>Connections closed immediately after use.</li></ol>
+
+
+
+<ol><h4>SSH</h4>
+<li>Root is not allowed remote login & password was changed.</li>
+  <li>Accounts created for each group member, “user” account was subsequently deleted.</li></ol>
+
+<ol><h4>Apache</h4>
+<li>Access denied on everything outside of our viewable documents.</li>
+  <li>Hid verbose Apache headers</li>
+  <li>Used pretty url’s to hide php extensions</li>
+  <li>Using logging and Awstats to display on admin page</li>
+  <li>Put authentication requirements on extremely sensitive php scripts (such as deploy, awstats, phpinfo). The login credentials are the same that are used for accessing the team page.</li>
+  <ol><li>The best solution would be using SSL. We created an SSL cert and enabled the SSL Engine, but our site isn’t “third party verified,” in which case we had to drop the SSL cert.</li></ol>
+</ol>
+<ol><h4>PHP</h4>
+  <li>Hid PHP information in header</li>
+  <li>Turned on error logging</li>
+          </ol></div>
+
     
   </div>
 
