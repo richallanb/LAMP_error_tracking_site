@@ -21,16 +21,22 @@ if(isset($_SESSION['logged'])) {
       max-width: 400px;
       min-width: 200px;
       }
+      
       html{
-        background: url('/team/images/wp.jpg') no-repeat center center fixed; 
+       height:100%;
+       min-height:100%;
+     }
+    body{
+       min-height:100%;
+     }
+
+
+      body{
+       background: url('/team/images/wp.jpg') no-repeat center center fixed; 
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;
         background-size: cover;
-        
-      }
-      body{
-        background: none !important;
       }
       .container{
         background-color:rgba(255,255,255,0.85);
