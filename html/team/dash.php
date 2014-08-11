@@ -77,13 +77,23 @@ article.members > img{
  
   transition: all .4s ease;
 }
+  div.members{
+    opacity: 0.5;
+    transition: all .4s ease;
+  }
+  div.members:hover{
+    opacity: 1;
+  }
 article.members > img:hover{
   box-shadow: 1px 2px 20px rgba(0,0,0,0.5);
   height:auto;
 }
-  .face-selected{
+  img.face-selected{
     box-shadow: 1px 2px 20px rgba(0,0,0,0.5);
     
+  }
+  div.face-selected{
+    opacity:1;
   }
 header.members{
   text-align:center;
@@ -408,14 +418,14 @@ div.members{
     .click(function(){
     $('img.members').removeClass('face-selected');
     var otherguys = $('img.members').not($(this)).closest('div.members');
-    otherguys.fadeTo("slow" , 0.5)
-    otherguys.mouseover(function(){
+    otherguys.removeClass('face-selected');
+    /*otherguys.mouseover(function(){
       $(this).fadeTo("fast" , 1);
     })
       .mouseleave(function(){
       if (!$(this).find("img.members").hasClass("face-selected"))
         $(this).fadeTo("fast" , 0.5);
-    });
+    });*/
     //alert($(this).offset().left);
    // otherguys.animate({ "left": "=" + $(this).position().left + "px"}, "slow" );
    // otherguys.css("left", $(this).offset().left + "px")
@@ -423,6 +433,7 @@ div.members{
     //otherguys.find("h3").css("visibility", "hidden");
     
     $(this).addClass('face-selected');
+    $(this).closest('div.members').addClass('face-selected');
     var dField = $(this).attr("data-click");
     $('.data').not($(dField)).hide();
     
