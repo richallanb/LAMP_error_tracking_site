@@ -134,11 +134,11 @@ section.members{
     cursor:pointer; 
     position: relative;
     z-index:40;
-    background-color:none;
+    background-color:transparent;
   }
   
 ul.nav{
-  background-color:none;
+  background-color:transparent;
   margin-top:20px;
 }
 li a.active{
@@ -165,9 +165,6 @@ div.members{
   </head>
 
   <body>
-<script>
-  
-    </script>
     <div class="container">
 
       <div class="masthead" style="margin-top:20px;">
@@ -195,16 +192,18 @@ div.members{
             $(this).addClass('active');">About Us</a></li>
           <?php if (isset($_SESSION["admin"]) && $_SESSION["admin"]) {
             echo ('<li><a onclick="$(\'.jumbotron\').hide();$(\'#admin\').show();$(\'.nav > li > a\').removeClass(\'active\');$(this).addClass(\'active\');">Admin Tools</a></li>');
-            print ('<div id="admin" class="jumbotron mainj">
-        <h2>Administrative Tools</h2>
-        <a href="/team/php/deploy" rel="tooltip" title="This is going to pull any pushed changes from git">Deploy Git Updates to Server</a><br>
-        <a href="/awstats/awstats.pl" rel="tooltip" title="Our apache usage logs">Log Report</a></br>
-        <a href="#" rel="tooltip" title="Doesn\'t do anything yet. Try later">Manage Users</a>
-      </div>');
          } ?>
         </ul>
+        
       </div>
-
+      <?php if (isset($_SESSION["admin"]) && $_SESSION["admin"]) {
+print ('<div id="admin" class="jumbotron mainj">
+        <h2>Administrative Tools</h2>
+        <a href="/team/php/deploy" data-rel="tooltip" title="This is going to pull any pushed changes from git">Deploy Git Updates to Server</a><br>
+        <a href="/awstats/awstats.pl" data-rel="tooltip" title="Our apache usage logs">Log Report</a><br>
+        <a href="#" data-rel="tooltip" title="Doesn\'t do anything yet. Try later">Manage Users</a>
+      </div>');
+         } ?>
       <!-- Jumbotron -->
       <div id="landing" class="jumbotron mainj">
         <h1>We're Team Nine!</h1><br>
@@ -445,7 +444,7 @@ div.members{
   });
       
       $(function () {
-        $("[rel='tooltip']").tooltip();
+        $("[data-rel='tooltip']").tooltip();
     });
       </script>
   </body>
