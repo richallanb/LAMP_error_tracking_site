@@ -87,7 +87,7 @@ div.members{
 section.members{
   width:100%;
   margin:auto;
-  
+  text-align:center;
 }
   footer.members{
     margin-top:8px;
