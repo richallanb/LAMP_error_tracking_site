@@ -1,7 +1,7 @@
 
 <?php 
-require_once('mysql.php');
-require_once('encrypt.php');
+require_once('../../../protected/mysql.php');
+require_once('../../../protected/encrypt.php');
 session_start();
 if(isset($_POST['submit'])){
   

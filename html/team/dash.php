@@ -288,7 +288,7 @@ print ('<div id="admin" class="jumbotron mainj">
         <div class="col-lg-4">
           <h4><b>Favorite Quote</b></h4>
           "Don't wait for the perfect moment, take the moment and make it perfect." - Rosheni Malik
-          
+          <br />
           "There are little pieces of dreams that we dream looking at the stars and then suddenly all those dreams become an even bigger dream and then the collection of all these big dreams becomes a gigantic dream, and then like the big bang, all of the pieces of this huge dream disperse into the world like oxygen and hydrogen, and suddenly, you see little pieces of your dreams in your world, in your life. And that is reality. The big bang is your hard work. And if you're going to be a dreamer, be the best one. That is all." - Anonymous
        </div>
         <div class="col-lg-4">

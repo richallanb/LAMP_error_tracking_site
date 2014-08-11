@@ -1,7 +1,7 @@
 <?php
 // Mysql credentials stored in php file outside of document root.
 // Aka you assholes don't stand a chance.
-require_once('../../../protected/secure.php');
+require_once('secure.php');
 class mysqliInterface {
   // Protected object inside an external class for more layering & obscurity
   protected $con;
