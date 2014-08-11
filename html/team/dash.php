@@ -209,10 +209,10 @@ print ('<div id="admin" class="jumbotron mainj">
       <div id="landing" class="jumbotron mainj">
         <h1>We're Team Nine!</h1><br>
         
-        <div style="padding:10px;border-radius:10px;margin-left:40px;margin-right:40px;min-width:575px;">
+        <div class="well well-lg"><!--style="padding:10px;border-radius:10px;margin-left:40px;margin-right:40px;min-width:575px;"-->
         
         <p class="lead"><?php echo ($cgray[$cgnum][0]); ?></p>
-          <div style="display:block;"><?php echo ($cgray[$cgnum][1]); ?></div></div>
+          <div style="display:block;margin-left:40px;margin-right:40px;min-width:575px;"><?php echo ($cgray[$cgnum][1]); ?></div></div>
         <!--<p>We just love what we do, 999999 lines of code managed this week. Making sweet digital dreams come true.<a class="btn btn-lg btn-success" onclick="$('.jumbotron').hide();$('#team').fadeIn(500);" href="#" role="button">Meet the team!</a></p>-->
       </div>
 
