@@ -332,8 +332,8 @@ print ('<div id="admin" class="jumbotron mainj">
   <li>Root renamed to something else. Password applied.</li>
   <li>Connections only allowed from localhost for root.</li>
   <li>Created single user account that only has control over a single database.</li>
-<ol><li>Has remote access allowed, but only during development & testing. This will be changed to localhost only after the project is complete. MySQL will then be permanently binded to localhost allowing no outside connections.</li>
-  <li>Turned off file control from MySQL.</li></ol></ol>
+<ol><li>Has remote access allowed, but only during development & testing. This will be changed to localhost only after the project is complete. MySQL will then be permanently binded to localhost allowing no outside connections.</li></ol>
+  <li>Turned off file control from MySQL.</li></ol>
 
 <ol><h4>Database Security</h4>
   <li>We are using prepared statements (fighting SQL Injection)</li>
