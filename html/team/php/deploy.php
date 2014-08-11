@@ -14,8 +14,8 @@
 		header("Location: /team");
 		exit;
 	}
-	else if (!isset($_SESSION['admin'])) {
-		header("Location: /team/team.php");
+	else if (!isset($_SESSION['admin']) || !$_SESSION['admin']) {
+		header("Location: /team/dash");
 		exit;
 	}
 

@@ -9,7 +9,8 @@ if(isset($_POST['submit'])){
     $pw = $_POST['password'];
   
     $myCon = new mysqliInterface;
-    $servHash = $myCon->queryUser($user);
+    list($servHash, $admin) = $myCon->queryUser($user);
+    
     $myCon->close();
    
     
@@ -17,8 +18,8 @@ if(isset($_POST['submit'])){
     if (checkPasswordAgainstHash($pw, $servHash)) {
         $_SESSION['user'] = $user;
         $_SESSION['logged'] = TRUE;
-        //$_SESSION['admin'] = TRUE;
-        
+        $_SESSION['admin'] = $admin;
+       
         header("Location: /team/dash"); // Modify to go to the page you would like 
         exit; 
       

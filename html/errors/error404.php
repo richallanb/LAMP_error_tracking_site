@@ -42,9 +42,9 @@
           Four Hundred and Four
         </h1>
         <p class="lead">
-          You've reached this page as an error or extreme stupidity. You pick. I suggest you go 
+          You've reached this page as an error. I suggest to go 
           <a href="../">back</a> 
-          and rethink your choices.
+          and reroute the path you've taken while discovering this <b>amazing * 9</b> webpage.
         </p>       
       </div>
          

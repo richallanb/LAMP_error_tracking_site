@@ -11,7 +11,7 @@ class mysqliInterface {
   
   function queryUser($user){
     // Mother fucking prepared statements. Suck it SQL injection.
-    if ($stmt = $this->con->prepare("SELECT hash FROM Users WHERE user=?")) {
+    if ($stmt = $this->con->prepare("SELECT hash, admin FROM Users WHERE user=?")) {
 
       /* bind parameters for markers */
       $stmt->bind_param("s", $user);
@@ -20,7 +20,7 @@ class mysqliInterface {
       $stmt->execute();
 
       /* bind result variables */
-      $stmt->bind_result($hash);
+      $stmt->bind_result($hash, $admin);
 
       /* fetch value */
       $stmt->fetch();
@@ -29,7 +29,7 @@ class mysqliInterface {
 
       /* close statement */
       $stmt->close();
-      return $hash;
+      return array ($hash, $admin);
     }
     return 0;
   }

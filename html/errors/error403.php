@@ -43,8 +43,8 @@
         </h1>
         <p class="lead">
           You shall not pass! Please
-          <a href="../">go</a> 
-          away!
+          <a href="../">make a U-turn</a> 
+          the other away!
         </p>       
       </div>
          

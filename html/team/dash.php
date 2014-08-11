@@ -1,5 +1,5 @@
 <?php
-$hw1 = 95;
+$hw1 = 99;
 $hw2 = 0;
 $hw3 = 0;
 $hw4 = 0;
@@ -129,8 +129,14 @@ li:hover{
             $(this).addClass('active');">Documentation</a></li>
           <li><a onclick="$('.jumbotron').hide();$('#team').show();$('.nav > li > a').removeClass('active');
             $(this).addClass('active');">About</a></li>
-          <?php if (isset($_SESSION["admin"])) {
+          <?php if (isset($_SESSION["admin"]) && $_SESSION["admin"]) {
             echo ('<li><a onclick="$(\'.jumbotron\').hide();$(\'#admin\').show();$(\'.nav > li > a\').removeClass(\'active\');$(this).addClass(\'active\');">Admin Tools</a></li>');
+            print ('<div id="admin" class="jumbotron mainj">
+        <h2>Administrative Tools</h2>
+        <a href="/team/php/deploy">Deploy Git Updates to Server</a><br>
+        <a href="/awstats/awstats.pl">Log Report</a></br>
+        <a href="#">Manage Users</a>
+      </div>');
          } ?>
         </ul>
       </div>
@@ -142,36 +148,32 @@ li:hover{
         <p><a class="btn btn-lg btn-success" onclick="$('.jumbotron').hide();$('#team').fadeIn(500);" href="#" role="button">Meet the team!</a></p>
       </div>
 
-      <div id="admin" class="jumbotron mainj">
-        <h2>Administrative Tools</h2>
-        <a href="/team/php/deploy">Deploy Git Updates to Server</a><br>
-        <a href="#">Manage Users</a>
-      </div>
+      
 <div id="team" class="jumbotron mainj">
   <div id="curly" style="display:none;cursor:pointer;" onclick="$(this).hide();$('#team-container').show();"><img style="width:100%;height:auto;" src="images/curly.gif" alt="Strike 3 Curly.."></div>
   <div id="team-container">
   <h2>About Our Group!</h2><section class="members">
   
-  <div class="members"><header class="members"><h3>Jessica</h3></header><article class="members"><img  src="images/jill.jpg" onclick="$('img.members').removeClass('face-selected');$(this).addClass('face-selected');
+  <div class="members"><header class="members"><h3>Jessica</h3></header><article class="members"><img  src="images/hellokitty.jpg" onclick="$('img.members').removeClass('face-selected');$(this).addClass('face-selected');
     $('.data').hide();$('.jessica-data').fadeIn(300);" class="img-circle members" alt="Jessica"></article></div>
   
   <div class="members"><header class="members"><h3>Rick</h3></header><article class="members"><img  src="images/jack.jpg" onclick="$('img.members').removeClass('face-selected');$(this).addClass('face-selected');$('.data').hide();$('.rick-data').fadeIn(300);" class="img-circle members" alt="Rick"></article></div>
   
-  <div class="members"><header class="members"><h3>Rolando</h3></header><article class="members"><img  src="images/jack.jpg" onclick="$('img.members').removeClass('face-selected');$(this).addClass('face-selected');$('.data').hide();$('.rolando-data').fadeIn(300);" class="img-circle members" alt="Rolando"></article></div>
+  <div class="members"><header class="members"><h3>Rolando</h3></header><article class="members"><img  src="images/rolan.jpg" onclick="$('img.members').removeClass('face-selected');$(this).addClass('face-selected');$('.data').hide();$('.rolando-data').fadeIn(300);" class="img-circle members" alt="Rolando"></article></div>
   
-  <div class="members"><header class="members"><h3>Rosheni</h3></header><article class="members"><img src="images/jill.jpg" onclick="$('img.members').removeClass('face-selected');$(this).addClass('face-selected');$('.data').hide();$('.rosheni-data').fadeIn(300);" class="img-circle members" alt="Rosheni"></article></div>
+  <div class="members"><header class="members"><h3>Rosheni</h3></header><article class="members"><img src="images/photo12.JPG" onclick="$('img.members').removeClass('face-selected');$(this).addClass('face-selected');$('.data').hide();$('.rosheni-data').fadeIn(300);" class="img-circle members" alt="Rosheni"></article></div>
   
-  <div class="members"><header class="members"><h3>Steve</h3></header><article class="members"><img  src="images/jack.jpg" onclick="$('img.members').removeClass('face-selected');$(this).addClass('face-selected');$('.data').hide();$('.steve-data').fadeIn(300);" class="img-circle members" alt="Steve"></article></div></section>
+  <div class="members"><header class="members"><h3>Steve</h3></header><article class="members"><img  src="images/stev.jpg" onclick="$('img.members').removeClass('face-selected');$(this).addClass('face-selected');$('.data').hide();$('.steve-data').fadeIn(300);" class="img-circle members" alt="Steve"></article></div></section>
         
        <div class="row data jessica-data" >
         <div class="col-lg-4">
           <h4><b>Biography</b></h4>
           <p class="text-danger"></p>
-          Jessica was born in a hospital. Then she went to UCSD. It was good.
+          Miss Jessica grew up in the swamps of Louisiana, where she was much admired for the wide webbing of her feet. She suffered a gunshot injury during hunting seasons to her left wing, and was thus prevented from partaking in her species annual migratory flight. She spent that winter in hiding, passing the time writing this memoir. 
         </div>
         <div class="col-lg-4">
           <h4><b>Favorite Quote</b></h4>
-          "Intuitive design is how we give the user new superpowers." - Anonymous
+          "Meep." - Anonymous
        </div>
         <div class="col-lg-4">
           <h4><b>Contact</b></h4>
@@ -250,7 +252,12 @@ li:hover{
       
       <div id="docs" class="jumbotron mainj">
         <h2>Documentation</h2>
-        <p class="lead">There is none. You were foolish to think otherwise.</p>
+        <p class="lead">Homework 1: Compression Summary</p>
+        <b>Web Page Compressed:</b> Yes<br>
+        <b>Compression Type:</b> gzip<br>
+        <b>Size, Markup (bytes):</b> 2,312<br>
+        <b>Size, Compressed (bytes):</b> 971<br>
+        <b>Compression:</b> 58.0%<br>
     
   </div>
 
