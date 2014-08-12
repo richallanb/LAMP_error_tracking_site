@@ -54,7 +54,7 @@
         <p class="lead">
           Nice try NSA. You're trying to access a restricted page, 
           <a href="javascript:history.back()">make a U-turn</a> 
-          and go the other away!
+          and go the other way!
         </p>       
       </div>
          
