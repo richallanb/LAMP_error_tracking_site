@@ -76,7 +76,7 @@ if(isset($_SESSION['logged'])) {
         <h2 class="form-signin-heading">Please sign in</h2>
         <input name="user" type="text" class="form-control" placeholder="Username" required autofocus>
         <input name="password" type="password" class="form-control" placeholder="Password" required>
-        <div class="checkbox">
+        <div class="checkbox" style="margin:0;">
           <!--label>
             <input type="checkbox" value="remember-me"> Remember me
           </label-->
