@@ -38,7 +38,7 @@
         <h6 style="display:table-cell;min-width:300px;text-align:right;">
           <?php
             if(isset($_SESSION['logged'])){
-              print ('Welcome ' . '<a href="./php/logout.php">' . $_SESSION["user"] . '</a>');            
+              print ('Welcome, ' . '<a href="/team/php/logout.php">' . $_SESSION["user"] . '</a>');            
             }else{
               print ('<a href="/">Sign in</a>');
             }
