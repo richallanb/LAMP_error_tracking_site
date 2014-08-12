@@ -362,8 +362,12 @@ print ('<div id="admin" class="jumbotron mainj">
 <ol><h4>PHP</h4>
   <li>Hid PHP information in header</li>
   <li>Turned on error logging</li>
+          </ol>
+<ol><h4>Logging</h4>
+  <li>Used AWStats for a log analysis report</li>
+  <li>Access to report denied without proper login information</li>
+  <li>Report run every nine minutes</li>
           </ol></div>
-
     
   </div>
 
