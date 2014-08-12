@@ -49,15 +49,15 @@
       <!-- Jumbotron -->
       <div id="landing" class="jumbotron mainj">
         <h1>
-          Four Hundred and Four
+          Error 404... Thanks Obama!
         </h1>
         <p class="lead">
-          You've reached this page as an error. I suggest to go 
-          <a href="javascript:history.back()">back</a> 
+          By the powers of free enterprise, you're fully to blame for this error.
+          Go <a href="javascript:history.back()">back</a>. 
           <!--
           <a href="../">back</a> 
           -->
-          and reroute the path you've taken while discovering this <b>amazing * 9</b> webpage.
+          
         </p>       
       </div>
          

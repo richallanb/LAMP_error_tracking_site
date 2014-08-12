@@ -49,16 +49,14 @@
       <!-- Jumbotron -->
       <div id="landing" class="jumbotron mainj">
         <h1>
-          Four Hundred and One
+          Error 401... Thanks Obama!
         </h1>
         <p class="lead">
-          Who are you?! We can't find you, please go
-          <a href="javascript:history.back()">back</a> 
+          You shouldn't even be here. Go <a href="javascript:history.back()">back</a>. 
           <!--
           <a href="../">here</a>  
           -->
-          and get authenticated!
-        </p>       
+              </p>
       </div>
          
       <!-- Site footer -->

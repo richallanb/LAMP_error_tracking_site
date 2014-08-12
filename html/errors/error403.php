@@ -49,15 +49,12 @@
       <!-- Jumbotron -->
       <div id="landing" class="jumbotron mainj">
         <h1>
-          Four Hundred and Three
+          Error 403... Thanks Obama!
         </h1>
         <p class="lead">
-          You shall not pass! Please
+          Nice try NSA. You're trying to access a restricted page, 
           <a href="javascript:history.back()">make a U-turn</a> 
-          <!--
-          <a href="../">make a U-turn</a> 
-          -->
-          the other away!
+          and go the other away!
         </p>       
       </div>
          
