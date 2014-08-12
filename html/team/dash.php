@@ -4,7 +4,7 @@ $hw2 = 0;
 $hw3 = 0;
 $hw4 = 0;
   session_start();
-  if (!$_SESSION['logged']){
+  if (!$_SESSION['logged']){ 
     header("Location: ./");
  } 
 $cgnum = rand(0,5);
