@@ -3,7 +3,9 @@ $hw1 = 100;
 $hw2 = 0;
 $hw3 = 0;
 $hw4 = 0;
-  session_start();
+session_name ("b_y6fcPbVeYEmN^NNfW+A*myn8SsXxAuw9!3?LawN8Np^5tDdXe3EzVMFC9k=dwuHTuLeE5CG5@?-KfZLhzF+L+wqqGB*#6LQsFF=uATu_N9P@!JpzFegDE2ZQtndRrT");
+session_start();
+
   if (!$_SESSION['logged']){ 
     header("Location: ./");
  } 
@@ -458,7 +460,7 @@ print ('<div id="admin" class="jumbotron mainj">
   </div>
 </div>-->
 
- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="./bootstrap/js/bootstrap.min.js"></script>
     <script>$('html').click(function(){
               $('#curly').hide();$('#team-container').show();
