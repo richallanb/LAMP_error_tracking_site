@@ -353,7 +353,8 @@ print ('<div id="admin" class="jumbotron mainj">
 <h4>SSH</h4>
 <ol>
 <li>Root is not allowed remote login & password was changed.</li>
-  <li>Accounts created for each group member, “user” account was subsequently deleted.</li></ol>
+  <li>Accounts created for each group member, “user” account was subsequently deleted.</li>
+  <li>SSH Jailing for failing 10 login attempts (30 minute IP ban)</li></ol>
 
           <h4>Apache</h4>
 <ol>
@@ -363,12 +364,16 @@ print ('<div id="admin" class="jumbotron mainj">
   <li>Using logging and Awstats to display on admin page</li>
   <li>Put authentication requirements on extremely sensitive php scripts (such as deploy, awstats, phpinfo). The login credentials are the same that are used for accessing the team page.</li>
   <li value="5" style="list-style:none"><ul><li>The best solution would be using SSL. We created an SSL cert and enabled the SSL Engine, but our site isn’t “third party verified,” in which case we had to drop the SSL cert.</li></ul></li>
+  <li>Using SSL with High Grade 128 AES Encrypted Key (*not third party trusted)<li>
 </ol>
           
           <h4>PHP</h4>
 <ol>
   <li>Hid PHP information in header</li>
   <li>Turned on error logging</li>
+  <li>Session encryption using SHA512</li>
+  <li>Session encryption randomness using /dev/urandom</li>
+  <li>Using randomly generated session ID</li>
           </ol>
           
           <h4>Logging</h4>
