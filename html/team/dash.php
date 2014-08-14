@@ -363,8 +363,8 @@ print ('<div id="admin" class="jumbotron mainj">
   <li>Used pretty url’s to hide php extensions</li>
   <li>Using logging and Awstats to display on admin page</li>
   <li>Put authentication requirements on extremely sensitive php scripts (such as deploy, awstats, phpinfo). The login credentials are the same that are used for accessing the team page.</li>
-  <li value="5" style="list-style:none"><ul><li>The best solution would be using SSL. We created an SSL cert and enabled the SSL Engine, but our site isn’t “third party verified,” in which case we had to drop the SSL cert.</li></ul></li>
-  <li>Using SSL with High Grade 128 AES Encrypted Key (*not third party trusted)<li>
+  <!--li value="5" style="list-style:none"><ul><li>The best solution would be using SSL. We created an SSL cert and enabled the SSL Engine, but our site isn’t “third party verified,” in which case we had to drop the SSL cert.</li></ul></li-->
+  <li>Using SSL with High Grade 128 AES Encrypted Key (*not third party trusted)</li>
 </ol>
           
           <h4>PHP</h4>
