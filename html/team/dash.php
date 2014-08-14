@@ -374,6 +374,7 @@ print ('<div id="admin" class="jumbotron mainj">
   <li>Session encryption using SHA512</li>
   <li>Session encryption randomness using /dev/urandom</li>
   <li>Using randomly generated session ID</li>
+  <li>Using session tokens generated from Server tick count as validation during login attempts</li>
           </ol>
           
           <h4>Logging</h4>
