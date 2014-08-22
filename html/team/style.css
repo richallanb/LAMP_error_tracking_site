@@ -1,0 +1,192 @@
+/* Hides unused jumbotron */
+#team, #docs, #proj, #usrmgt, #dash{
+  display:none;
+}   
+
+/* Formats jumbotron */
+.jumbotron{
+  border: solid 1px rgba(0,0,0,0.3);
+  min-width:715px;
+  background-color:transparent !important;
+  margin: 80px 0px 0px 0px !important;
+}
+
+/* Rids header top margin */
+h1, h2, h3 {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* Align table detail */
+td {
+  vertical-align:middle !important;
+}
+
+/* Formats navbar */
+.navbar {
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+/* Sign in/up dropdown */
+.sign-dd {
+  padding:10px 20px 20px 20px;
+}
+
+/* */
+.marketing{
+  background:url(/team/images/9v4.png) no-repeat center;
+  -webkit-background-size: auto;
+  -moz-background-size: auto;
+  -o-background-size: auto;
+  background-size: 100% auto;
+  
+  position:relative;
+  border-radius: 7px;
+  width:100%;
+  height:650px;
+  
+  margin-bottom: 15px;
+}
+
+/* style="position:relative; background-image:url(/team/images/9v4.jpg); border-radius: 7px; background-size:auto; width:auto; height:650px" */
+
+/*
+.marketing > img{
+  width:100%;
+  height:auto;
+  position: absolute;
+  z-index:0 !important;
+}
+
+.marketing > * {
+  position:relative;
+  z-index:100;
+}
+*/
+
+#team{
+  min-height:462px;
+}
+
+article.members > img{
+  max-width:175px;
+  height:auto;
+  cursor:pointer;
+  transition: all .4s ease;
+}
+div.members{
+  transition: all .4s ease;
+}
+div.members:hover{
+  opacity: 1;
+}
+article.members > img:hover{
+  box-shadow: 1px 2px 20px rgba(0,0,0,0.5);
+  height:auto;
+}
+img.face-selected{
+  box-shadow: 1px 2px 20px rgba(0,0,0,0.5);
+}
+div.face-unselected{
+  opacity:0.5;
+}
+div.face-selected{
+  opacity:1;
+}
+header.members{
+  text-align:center;
+}
+div.members{
+  max-width:175px;
+  min-width:175px;
+  margin:12px;
+  display: inline-block;
+  vertical-align:top;
+}
+section.members{
+  width:100%;
+  margin:auto;
+  text-align:center;
+}
+footer.members{
+  margin-top:8px;
+  text-align:center;
+}
+.data{
+  display:none;
+}
+
+div.members{
+  position:relative;
+}
+
+
+ul.nav li:hover{
+  cursor:pointer;
+  background-color:#444;
+}
+ul.nav li a{
+  transition:none;
+}
+.navbar-brand:hover, .navbar-brand {
+  color:white !important;
+}
+ul.signin li:hover{
+  background-color:transparent !important;
+}
+li a.admin-link{
+  color:#d9534f !important;
+}
+li a.admin-link:hover {
+  color:white !important;
+  background-color: #d9534f !important;
+}
+li.nohover:hover{
+  cursor:auto !important;
+  background-color:transparent !important;
+}
+.label{
+  font-size:14px;
+  margin-left:10px;
+  border-radius:15px;
+}
+.admin-acct, .des-acct, .dev-acct, .user-acct{
+  cursor:pointer;
+}
+.admin-acct{
+  background-color: #d9534f;
+}
+.dev-acct{
+  background-color: #5cb85c;
+}
+.des-acct{
+  background-color: #5bc0de;
+}
+.user-acct{
+  background-color: #428bca;
+}
+.admin-acct:hover, .des-acct:hover, .dev-acct:hover, .user-acct:hover{
+  background-color: #777;
+}
+.highcharts-container{
+  border-radius:15px;
+}
+#adduser-container{
+  display:none;
+}
+#adduser-btn{
+  cursor:pointer;
+}
+.form-adduser{
+  display:table;
+  width:100%;
+  table-layout: fixed;
+}
+
+.form-adduser > div{
+  display:table-cell;
+  vertical-align:top;
+  padding: 0 15px 0 15px;
+
+}
+*/

