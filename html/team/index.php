@@ -10,7 +10,7 @@
 
   // Progress in progress bar showing progress
   $hw1 = 100;
-  $hw2 = 90;
+  $hw2 = 100;
   $hw3 = 0;
   $hw4 = 0;
 
@@ -445,11 +445,10 @@
       $('.dropdown-toggle').dropdown();
       /*
       $('.signin-btn').click(function(){
-        $('#signin-menu').clicked();
-        
+        $("$signin-menu").click('toggle'); // this works
       });
       */
-
+      
       // ADD SLIDEDOWN ANIMATION TO DROPDOWN //
   $('.dropdown').on('show.bs.dropdown', function(e){
     $(this).find('.dropdown-menu').first().stop(true, true).slideDown("fast");

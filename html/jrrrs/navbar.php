@@ -99,9 +99,9 @@ HTML;
           <li class="divider"></li>
           <li role="presentation" class="dropdown-header">Alternate Sign In</li>
           <!-- PERL/CGI LOGIN FORM -->
-          <li><a href="/team/cgi-bin/loginPage.cgi">Perl/CGI</a></li>                  
+          <li><a href="/team/cgi-bin/loginpage.cgi">Perl/CGI</a></li>                  
           <!-- JSP LOGIN FORM -->
-          <li><a href="/team/loginPage.jsp">JSP</a></li>
+          <li><a href="/tomcat/">JSP</a></li>
         </ul>
       </li>
 HTML;
