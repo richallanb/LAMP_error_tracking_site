@@ -2,23 +2,14 @@
   //include('/home/action/workspace/protected/constants.php');
   include('../../protected/constants.php');
 
-  /*define ("ADMIN", 3);
-  define ("DEV", 2);
-  define ("DEVDEV", 1);
-  define ("USER", 0);
-  define ("ANON", -1);*/
-
-  // Progress in progress bar showing progress
-  $hw1 = 100;
-  $hw2 = 100;
-  $hw3 = 0;
-  $hw4 = 0;
-
   session_name ("b_y6fcPbVeYEmN^NNfW+A*myn8SsXxAuw9!3?LawN8Np^5tDdXe3EzVMFC9k=dwuHTuLeE5CG5@?-KfZLhzF+L+wqqGB*#6LQsFF=uATu_N9P@!JpzFegDE2ZQtndRrT");
   session_start();
 
   // Token generator
-  $newToken = generateFormToken('signin');   
+  $newToken = generateFormToken('signin');
+  $fgToken = generateFormToken('forgotpw');
+  $signupToken = generateFormToken('signup');
+
   function generateFormToken($form){
     // generate a token from an unique value
     $token = md5(uniqid(microtime(), true));  
@@ -28,59 +19,16 @@
   }
 
   static $level = -1;
+  /* FOR VALIDATION! DO NOT DELETE!! 
+  $level = 3;
+  $_SESSION['user'] = "testing123";
+  $_SESSION['logged'] = TRUE;
+  */
+  ///*
   if( isset($_SESSION["admin"]) && isset($_SESSION["logged"]) && $_SESSION["logged"] ){
     $level = $_SESSION["admin"];
   }
-
-  function title(){
-    global $level;
-    switch ($level) {
-      case ADMIN:
-      return "Admin";
-      case DEV:
-      return "Developer";
-      case DEVDEV:
-      return "Designer";
-      case USER:
-      return "User";
-      case ANON:
-      return "Error";
-    }
-  }
-
-  function titleByInt($val){
-    switch ($val) {
-      case ADMIN:
-      return "Admin";
-      case DEV:
-      return "Developer";
-      case DEVDEV:
-      return "Designer";
-      case USER:
-      return "User";
-      case ANON:
-      return "Error";
-    }
-  }
-
-  function title_span(){
-    global $level;
-    switch ($level) {
-      case ADMIN:
-      $body = ' <span class="admin-acct label label-default">Admin</span>';
-      break;
-      case DEV:
-      $body= ' <span class="dev-acct label label-default">Developer</span>';
-      break;
-      case DEVDEV:
-      $body = ' <span class="des-acct label label-default">Designer</span>';
-      break;
-      case USER:
-      $body = ' <span class="user-acct label label-default">User</span>';
-      break;
-    }
-    return $body;
-  }
+  //*/
 ?>
 
 <!DOCTYPE html>
@@ -96,29 +44,39 @@
 
   </head>
 
-  <body>    
+  <body>
+  <!-- Needed for logging scripts -->
+  <script>
+    var TeamNineLoggedUser = null;
+  </script>
     <?php // NAVBAR
       include("$_SERVER[DOCUMENT_ROOT]/jrrrs/navbar.php"); 
     ?>
+    <?php 
+      include("$_SERVER[DOCUMENT_ROOT]/jrrrs/modals.php")
+    ?>
     
     <div class="container">
+      <div id="response-container"></div>
       
-      <?php // LOGIN ALERT
-        include("$_SERVER[DOCUMENT_ROOT]/jrrrs/alert.php");
-      ?>
-      
-      <?php // ERROR DETAIL, used in dashboard and site management
-        $errordetail = include("$_SERVER[DOCUMENT_ROOT]/jrrrs/errordetail.php"); 
-      ?>
-      
-      <?php // Jumbotron, DASHBOARD, DEVDEV+
-        include("$_SERVER[DOCUMENT_ROOT]/jrrrs/rengine9.php");
-      ?>
-      
-      <?php // Jumbotron, SITE MANAGEMENT, DEV+
-        include("$_SERVER[DOCUMENT_ROOT]/jrrrs/rengine9pro.php");
-      ?>
+      <?php 
+        // Pulls personal dashboard + user management data
+        if($level != -1) {
+          include('../../protected/pull.php');
+          $personal_profile = getProfile();
+          $projects_list = getProjects();
+          
+          // ERROR DETAIL, used in dashboard and site management
+          $errordetail = include("$_SERVER[DOCUMENT_ROOT]/jrrrs/errordetail.php"); 
+          
+          // Jumbotron, DASHBOARD, DEVDEV+
+          include("$_SERVER[DOCUMENT_ROOT]/jrrrs/rengine9.php");
 
+          // Jumbotron, USER MANAGEMENT, DEV+
+          include("$_SERVER[DOCUMENT_ROOT]/jrrrs/rengine9pro.php");
+        }
+
+      ?>
 
       <div id="home" class="jumbotron">
 
@@ -137,7 +95,7 @@
 
         <div class="row" style="margin-top: 10px">
           <div class="col-md-6"><h3><b>STATE OF THE ART</b> error handling</h3>
-            <p style="font-size:18px">With our completely revamped proprietary <i>JRRRS UI&copy;</i>, we are redefining the future of error handling. Experience the future, experience endless choices, infinite customization. Live on <i>JRRRS UX&copy;</i>.</p>
+            <p style="font-size:18px">With our completely revamped proprietary <strong>JRRRS <span style="color:orange">UI</span></strong>, we are redefining the future of error handling. Experience the future, experience endless choices, infinite customization. Live on <strong>JRRRS <span style="color:brown">UX</span></strong>.</p>
           </div>
           <div class="col-md-6"><h3><b>UNPRECENDENTED</b> performance</h3>
             <p style="font-size:18px">Servers around the globe awake just for you. You matter. Our handcrafted AI built for maximum performance to give you unparallelled access wherever you are, whenever you want.</p>
@@ -321,6 +279,7 @@
           </ol></div>
       </div>
 
+      <!--
       <div id="proj" class="jumbotron">
         <h2>Our Project Progress</h2>
         <div style="margin: 20px 20px 0 20px;width:100%;">
@@ -350,8 +309,10 @@
           </div>
         </div>
       </div>
+      -->
 
       <?php include("$_SERVER[DOCUMENT_ROOT]/jrrrs/footer.html"); ?>
+      
     </div> <!-- /container -->
 
     <!-- Scripts -->
@@ -359,187 +320,47 @@
     <script src="/team/bootstrap/js/bootstrap.min.js"></script>
     <script src="//code.highcharts.com/highcharts.js"></script>
     <script src="//code.highcharts.com/modules/exporting.js"></script>
-   
+    <script src="/team/js/scripts.js"></script>
+    <?php include("$_SERVER[DOCUMENT_ROOT]/jrrrs/javascripts.php"); ?> 
     <script>
-      // Grab file from upload dialog
-      $('#upload-screen').change(function(click) {
-        var file = this.value;
-      });
+           
+
       
-      $('#adduser-btn').click(function(){
-        var span = $(this).find("span");
-        if (span.hasClass("glyphicon-circle-arrow-up")) {
-          span.addClass("glyphicon-circle-arrow-down");
-          span.removeClass("glyphicon-circle-arrow-up");
-          $("#adduser-container").slideUp(300);
-        } else {
-          span.addClass("glyphicon-circle-arrow-up");
-          span.removeClass("glyphicon-circle-arrow-down");
-          $("#adduser-container").slideDown(300);
-        }
-      });
-
-      $(function () {
-        $("[data-rel='tooltip']").tooltip();
-      });
-
-      $(function () {
-        $("[data-toggle='popover']").popover();
-      });
-
-      $('html').click(function(){
-        $('#curly').hide();$('#team-container').show(); });
-
-      $('.ignoreme').click(function(event){
-        event.stopPropagation(); });
       
-      $('#ad-show-users').click(function() {
-        $('.jumbotron').hide();
-        $('#usrmgt').show();});     
-
-      $('#show-errors').click(function () {
-        $('#errors-toggle').slideToggle("fast", function () {
-
-          $('#userGraph').highcharts({
-            title: {
-              text: 'Monthly Error Tracking',
-              x: -20 //center
-            },
-            subtitle: {
-              text: 'Month of August',
-              x: -20
-            },
-            xAxis: {
-              categories: ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25',
-                           '26','27','28','29','30','31']
-            },
-            yAxis: {
-              title: {
-                text: 'Error Occurences'
-              },
-              plotLines: [{
-                value: 0,
-                width: 1,
-                color: '#808080'
-              }]
-            },
-
-            legend: {
-              layout: 'vertical',
-              align: 'right',
-              verticalAlign: 'middle',
-              borderWidth: 0
-            },
-            series: [{
-              name: 'RP (Resistricted Page Attempts)',
-              data: [0,0,0,0,0,0,0,0,0,0,0,0,1]
-            }, {
-              name: 'FL (Failed Login Attempts)',
-              data: [0,0,1,0,0,0,0,0,0,0,0,5,0]
-            }]
-          });
+      
+      /* Doesn't work. Fix.
+      $('#login').submit(function(event) {
+        logIn();
+        event.preventDefault(); // This stops the form from refreshing the page VERY IMPORTANT
+      });
+        
+        function logIn() {
+        // Fill our request with data from our form
+        var formData = {
+          'user' 			: $('input[name=user]').val(),
+          'password' 	: $('input[name=password]').val(),
+        };
+        
+        // Create our ajax request
+        var request = $.ajax({
+          url: "/team/php/login.php",
+          type: "POST", // Simple HTTP protocol
+          data: formData, // Filling in our POSTDATA
+          dataType: "html"
         });
 
-      });
-
-      $('.dropdown-toggle').dropdown();
-      /*
-      $('.signin-btn').click(function(){
-        $("$signin-menu").click('toggle'); // this works
-      });
-      */
-      
-      // ADD SLIDEDOWN ANIMATION TO DROPDOWN //
-  $('.dropdown').on('show.bs.dropdown', function(e){
-    $(this).find('.dropdown-menu').first().stop(true, true).slideDown("fast");
-  });
-
-  // ADD SLIDEUP ANIMATION TO DROPDOWN //
-  $('.dropdown').on('hide.bs.dropdown', function(e){
-    $(this).find('.dropdown-menu').first().stop(true, true).slideUp("fast");
-  });
-      
-      $('#userData').on('shown.bs.modal', function() {
-
-        $(function () {
-
-          $('#alluserGraph').highcharts({
-            title: {
-              text: 'Monthly Error Tracking',
-              x: -20 //center
-            },
-            subtitle: {
-              text: 'Month of August',
-              x: -20
-            },
-            xAxis: {
-              categories: ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25',
-                           '26','27','28','29','30','31']
-            },
-            yAxis: {
-              title: {
-                text: 'Error Occurences'
-              },
-              plotLines: [{
-                value: 0,
-                width: 1,
-                color: '#808080'
-              }]
-            },
-            tooltip: {
-              valueSuffix: '°C'
-            },
-            legend: {
-              layout: 'vertical',
-              align: 'right',
-              verticalAlign: 'middle',
-              borderWidth: 0
-            },
-            series: [{
-              name: 'RP (Resistricted Page Attempts)',
-              data: [0,0,0,0,0,0,0,0,0,0,0,0,1]
-            }, {
-              name: 'FL (Failed Login Attempts)',
-              data: [0,0,1,0,0,0,0,0,0,0,0,5,0]
-            }]
-          });
+        //If we're done & successful we print out any messages the php code echos out
+        request.done(function( msg ) {
+          $( "#response-container" ).html( msg ); 
         });
-      });
 
-      $("img.members")
-      .click(function(){
-        $('img.members').removeClass('face-selected');
-        var otherguys = $('img.members').not($(this)).closest('div.members');
-        otherguys.removeClass('face-selected');
-        otherguys.addClass('face-unselected');
-        /*otherguys.mouseover(function(){
-      $(this).fadeTo("fast" , 1);
-    })
-      .mouseleave(function(){
-      if (!$(this).find("img.members").hasClass("face-selected"))
-        $(this).fadeTo("fast" , 0.5);
-    });*/
-        //alert($(this).offset().left);
-        // otherguys.animate({ "left": "=" + $(this).position().left + "px"}, "slow" );
-        // otherguys.css("left", $(this).offset().left + "px")
-        // otherguys.css("z-index","70");
-        //otherguys.find("h3").css("visibility", "hidden");
-
-        $(this).addClass('face-selected');
-        $(this).closest('div.members').addClass('face-selected');
-        var dField = $(this).attr("data-click");
-        $('.data').not($(dField)).hide();
-
-        $(dField).show();
-      });
-
-
-
-      Highcharts.createElement('link', {
-        href: 'http://fonts.googleapis.com/css?family=Unica+One',
-        rel: 'stylesheet',
-        type: 'text/css'
-      }, null, document.getElementsByTagName('head')[0]);
+        //If there's some sort of drastic problem, throw an error.
+        request.fail(function( jqXHR, textStatus ) {
+          alert( "Request failed: " + textStatus );
+        });
+      }*/
+      
+      
 
     </script>
 
