@@ -123,7 +123,7 @@ class mysqliInterface {
     
       $idHash = $this->checkPasswordRecHash($pwRecHash);
       if ($idHash == null)
-        return -1;
+        return false;
       if ($stmt = $this->con->prepare("DELETE FROM `Recovery` WHERE `recovery_hash`=? AND `idhash`=?;")) { // 1 -- Deletes Recovery hash
         /*   s - string, b - blob, i - int, etc */
         $stmt->bind_param("ss", $pwRecHash, $idHash);
@@ -156,7 +156,7 @@ class mysqliInterface {
           return false;
         } // End 2
       } else{
-        return -1;
+        return false;
       } // End 1
   }
   

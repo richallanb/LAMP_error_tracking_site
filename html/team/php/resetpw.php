@@ -11,7 +11,8 @@
   if (!empty($_GET) && validateGet()) {
     $recHash = $_GET['v'];
     $myCon = new mysqliInterface;
-    if ($myCon->checkPasswordRecHash($recHash) == null) { // Bad hash
+    $idhash = $myCon->checkPasswordRecHash($recHash);
+    if ($idhash == null) { // Bad hash
       header("Location: /");
     }
   } else {
@@ -73,7 +74,7 @@
               <div class="input-group Srepassword" style="margin-bottom: 15px; display:none;">
                 <div class="input-group-addon Srepassword"><span class="glyphicon glyphicon-lock"></span></div><input name="Srepassword" type="password" oninput="pwCompare(this,'input[name=Spassword]');" class="form-control input-large" placeholder="Retype Password" required></div> 
            <input type="hidden" name="token" value=<?php echo $passwordToken; ?>>
-           <input type="hidden" name="idhash" value=<?php echo $recHash; ?>>
+           <input type="hidden" name="rechash" value=<?php echo $recHash; ?>>
            <button class="btn btn-default btn-block btn-large" type="submit">Change Password</button>
           </form>
         

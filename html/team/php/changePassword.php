@@ -4,53 +4,38 @@ session_name ("b_y6fcPbVeYEmN^NNfW+A*myn8SsXxAuw9!3?LawN8Np^5tDdXe3EzVMFC9k=dwuH
 session_start();
 
 if (!empty($_POST)) {
-  $pw = $_POST['Srepassword'];
-  $samepw = $_POST['Spassword'];
-  $idhash = $_POST['idhash'];
+  $pw = $_POST['Spassword'];
+  $samepw = $_POST['Srepassword'];
+  $recHash = $_POST['rechash'];
   
   $myCon = new mysqliInterface;
   
-  $err = printError($pw, $samepw);
-  
-  if (!(strlen($err) > 0) && validatePassword($pw,$samepw) && verifyFormToken("forgotpw") && validateArray()) {
+  if (validatePassword($pw,$samepw) && verifyFormToken("forgotpw") && validatePost()) {
     $pwhash = passwordToHash($pw);
-    
-    if ($myCon->changePassword($pwhash, $idhash)){
+    if ($myCon->changePassword($recHash, $pwhash)){
       header("Location: /team/resp/passwordSuccess");
     }
     else {
-      header("Location: /team/resp/noAccess");
+      header("Location: /errors/error403");
     }
   }
   else
-    echo $err;
+    header("Location: /");
   
   exit;
 }
 
 function validatePost(){
-  return validateArray($_POST, ['Spassword', 'Srepassword']);
+  return validateArray($_POST, ['Spassword', 'Srepassword', 'rechash', 'token']);
 }
 
 function validatePassword ($pw, $samepw) {
   if (($pw != $samepw) && (strlen($pw) > 7)) {
-    return FALSE;
+    return false;
   } else {
-    return TRUE;
+    return true;
   }
 }
-
-function printError ($pw, $samepw) {
-  if ($pw != $samepw) {
-    $body .= <<< HTML
-      <div class="alert alert-warning alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <strong>Passwords do not match!</strong> Both entered passwords must be the same.
-      </div>    
-HTML;
-   }
-  return $body;
-  }
 
   
 

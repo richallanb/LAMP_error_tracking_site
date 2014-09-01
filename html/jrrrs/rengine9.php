@@ -9,9 +9,7 @@
   date_default_timezone_set('US/Pacific');
   $date_created = date('<b>h:i:s A</b> F j, Y', strtotime($personal_profile->getCreateDate()));
   $date_last_login = date('<b>h:i:s A</b> F j, Y', strtotime($personal_profile->getLastLogin()));
-  //$date_last_login = $personal_profile->getLastLogin();
 
-  //$date = date('m/d/Y G:i:s a', time());
   $html = <<< HTML
     <div id="dashboard" class="tab-pane jumbotron">
     <div class="tab-container tab-jumbo"> <ul class="tabbed-list">
@@ -51,9 +49,11 @@
       </table>
       <h4 style="margin-bottom: 4px">Admin Tools</h4>
       <div id="dash-admin-tab" style="margin-bottom:10px">
-        <button type="button" class="btn btn-default btn-default" onclick="$('.jumbotron').hide();$('#proj').show()">
-          Manage Projects
-        </button>
+        <a href="/#projects">
+          <button type="button" class="btn btn-default btn-default">
+            Manage Projects
+          </button>
+        </a>
       </div>
      </div>   
      <div id="error-container" class="pane-toggle" style="display:none;">

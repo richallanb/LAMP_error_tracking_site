@@ -194,7 +194,6 @@ HTML;
     <div class="tab-pane jumbotron" id="projects">
       <div class="tab-container tab-jumbo"> <ul class="tabbed-list">
         <li class="tab activeTab" data-action="nada"><span class="icon glyphicon glyphicon-list-alt"></span>Projects</li>
-        <li class="tab" data-action="nada"><span class="icon glyphicon glyphicon-user"></span>Users</li>
         <li class="tab" data-action="nada" id="show-errors"><span class="icon glyphicon glyphicon-fire"></span>Errors</li>
       </ul></div>
       <h2 style="margin:20px 0px 3px 0px">{$_SESSION['user']} Projects</h2><span></span>
