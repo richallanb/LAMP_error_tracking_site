@@ -1,3 +1,18 @@
+/*$(window).scroll(function() {
+  var that = $("nav.navbar");
+    if (that.offset().top > 45) {
+        that.addClass("top-nav-collapse");
+        that.addClass("navbar-inverse");
+        that.removeClass("navbar-stat");
+      $('.navbar-brand-def').addClass('navbar-brand-white');
+    } else {
+        that.removeClass("top-nav-collapse");
+        that.removeClass("navbar-inverse");
+        that.addClass("navbar-stat");
+      $('.navbar-brand-def').removeClass('navbar-brand-white');
+    }
+});*/
+
 /* Error Reporting Scripts */
 window.onerror = function(msg, url, line, col, error) {
    // Note that col & error are new to the HTML 5 spec and may not be 

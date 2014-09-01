@@ -93,12 +93,12 @@ HTML;
     
   /* MAIN MAIN MAIN MAIN MAIN */
   $body = <<< HTML
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container-fluid">
+    <nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+      <div class="container">
 
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-          <span class="navbar-brand">Team Nine</span>
+          <span class="navbar-brand-def">Team Nine</span>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->

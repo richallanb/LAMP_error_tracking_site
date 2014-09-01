@@ -56,7 +56,7 @@
         include("$_SERVER[DOCUMENT_ROOT]/jrrrs/modals.php")
     ?>
     
-    <div class="container tab-content">
+    <div class="container container-padded tab-content">
       <div id="response-container"></div>
       
       <?php 
