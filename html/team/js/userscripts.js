@@ -2,7 +2,7 @@
       function removeUserFromProject (myId, userId, projId, idToHide){
         if (confirm("Are you sure you want to remove this user from your project?")) {
           if (removeUserFromProjectScript(myId, userId, projId)) {
-            $("#" + idToHide).hide("fast");
+            $("#" + idToHide).fadeOut("fast");
           }
         }
       }
@@ -39,7 +39,7 @@
       function deleteProject (myId, projId, idToHide){
         if (confirm("Are you sure you want to delete this project?")) {
           if (deleteProjectScript(myId, projId)) {
-            $("#" + idToHide).hide("fast");
+            $("#" + idToHide).slideUp("fast");
           }
         }
       }
@@ -74,7 +74,7 @@
   
       function leaveProject (myId, projId, idToHide){
         if (leaveProjectScript(myId, projId)) {
-          $("#" + idToHide).hide("fast");
+          $("#" + idToHide).slideUp("fast");
         }
       }
 
@@ -139,6 +139,76 @@
       }
 
   /*End Projects Scripts*/
+
+/* Referral and Invite Scripts */
+      $('#referal').submit(function(event) {
+        referalSender();
+        event.preventDefault(); // This stops the form from refreshing the page VERY IMPORTANT
+      });
+      
+      function referalSender() {
+        // Fill our request with data from our form
+        var formData = {
+          'RFemail' 	: $('input[name=RFemail]').val(),
+          'token'  : $('input[name=reftoken]').val(),
+          'INV' : null
+        };
+        // Create our ajax request
+        var request = $.ajax({
+          url: "/team/php/referral.php",
+          type: "POST", // Simple HTTP protocol
+          data: formData, // Filling in our POSTDATA
+          dataType: "html"
+        })
+
+        //If we're done & successful we print out any messages the php code echos out
+        .done(function( msg ) {
+          $('input[name=RFemail]').val("");
+          $( "#response-container" ).html( msg );
+        })
+        
+        .fail(function(xhr, status, error) {
+          $( "#response-container" ).html( xhr.responseText );
+        })
+      }
+      
+      
+      // This grabs the submit function from the referral form
+      $('.proj-invite').submit(function(event) {
+        event.preventDefault(); // This stops the form from refreshing the page VERY IMPORTANT
+      });
+      
+      function projSender(formPrefix, projid, myid) {
+        // Fill our request with data from our form
+        var formData = {
+          'RIemail' 	: $('input[name=RIemail-' + formPrefix + ']').val(),
+          'RIprojid' 	: projid,
+          'RImyid' 	: myid,
+          'token'  : $('input[name=reftoken]').val(),
+          'PROJREF' : null
+        };
+        
+        // Create our ajax requests
+        var request = $.ajax({
+          url: "/team/php/referral.php",
+          type: "POST", // Simple HTTP protocol
+          data: formData, // Filling in our POSTDATA
+          dataType: "html"
+        })
+
+        //If we're done & successful we print out any messages the php code echos out
+        .done(function( msg ) {
+          $('input[name=RFemail]').val("");
+          $( "#proj-resp-"+formPrefix ).html( msg );
+        })
+        
+        .fail(function(xhr, status, error){
+          $( "#proj-resp-"+formPrefix ).html( xhr.responseText );
+        });
+      }
+/* End of Referral and Invite Scripts */
+
+
 
 /* Dashboard Graphing */
 $('#show-errors').click(function () {

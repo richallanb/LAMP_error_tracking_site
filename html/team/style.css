@@ -1,4 +1,12 @@
 /* Hides unused jumbotron */
+/*
+#team, #docs, #proj, #dash{
+  display:none;
+} 
+*/
+a{
+  cursor: pointer;
+}
 
 /* Formats container */
 .container{
@@ -72,6 +80,10 @@ td.profile-title {
   height:650px;
   
   margin-bottom: 15px;
+}
+
+#team{
+  min-height:462px;
 }
 
 #about{
@@ -415,4 +427,8 @@ input[name^=S]:valid, input[name^=P]:valid, input[name^=F]:valid{
 }
 .proj-resp {
   max-width:550px;
+}
+.proj-invite {
+ padding-left:15px;
+ padding-right:15px;
 }

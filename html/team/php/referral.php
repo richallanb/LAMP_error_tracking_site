@@ -91,7 +91,7 @@ function addSucceed($email){
       $body .= <<< HTML
       <div class="alert alert-success alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <strong>"$email" was added to the project.</strong><br> Refresh the page and the new user will be listed in the project.
+        <strong>"$email" was added to the project.</strong><br> <b><a onclick="location.reload();">Refresh the page</a></b> and the new user will be listed in the project.
       </div>    
 HTML;
   return $body;

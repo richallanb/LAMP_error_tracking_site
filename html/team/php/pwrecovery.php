@@ -13,7 +13,7 @@ if (!empty($_POST)){
    
       if (strlen($recHash = $myCon->passwordRecoveryGen($user, $email)) > 0) {
 
-        sendEmail($email, $user, $recHash);
+        sendEmail($email, $user, urlencode($recHash));
         echo printSuccess($email);
       } else{
         header('HTTP/1.1 400 Bad Request');
@@ -134,7 +134,7 @@ a:hover{
 <h1 class="heading">Account Recovery Request</h1>
     <p class="link">An account recovery attempt has been created for your account. If you feel this was done in error, <b>Disregard this E-mail</b>.</p>
 
-    In order to recover your account please <b><a href="$site_path/team/php/reset.php?v=$idhash">click here</a></b> to finish the process.<br>
+    In order to recover your account please <b><a href="$site_path/team/php/resetpw.php?v=$idhash">click here</a></b> to finish the process.<br>
     You will be asked to fill in a new password for your account.
   
     <p><b>Note:</b> If you feel this is a malicious attempt to gain access to your account <b>Contact your project manager or a site administrator</b></p>
@@ -142,7 +142,7 @@ a:hover{
 </body>
 </html>
 
-Browse to this URL if you are unable to view HTML: $site_path/team/php/reset.php?v=$idhash
+Browse to this URL if you are unable to view HTML: $site_path/team/php/resetpw.php?v=$idhash
 HTML;
   
 

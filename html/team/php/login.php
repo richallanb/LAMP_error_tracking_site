@@ -18,14 +18,14 @@ if(!empty($_POST)){
       $_SESSION['logged'] = TRUE;
       $_SESSION['admin'] = $admin;
       $myCon->lastLogin($user);
-      //$_SESSION["error"] = FALSE;
-    }else{
-     // $_SESSION["error"] = TRUE;
-      //echoError();     
-    }
       
-    header('Location: ' . $_SERVER['HTTP_REFERER']);
-    exit;
+      header('Location: ' . $_SERVER['HTTP_REFERER'] . "#dashboard");
+      exit;
+      
+    }else{
+      header('Location: ' . $_SERVER['HTTP_REFERER']);
+      exit;
+    }
 }
 
 function validatePost(){

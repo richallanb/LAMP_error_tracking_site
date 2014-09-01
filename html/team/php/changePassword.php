@@ -1,12 +1,11 @@
 <?php
-require_once('../../../protected/mysql.php');
-require_once('../../../protected/encrypt.php');
+include('header.php');
 session_name ("b_y6fcPbVeYEmN^NNfW+A*myn8SsXxAuw9!3?LawN8Np^5tDdXe3EzVMFC9k=dwuHTuLeE5CG5@?-KfZLhzF+L+wqqGB*#6LQsFF=uATu_N9P@!JpzFegDE2ZQtndRrT");
 session_start();
 
 if (!empty($_POST)) {
-  $pw = $_POST['newPassword'];
-  $samepw = $_POST['reNewPassword'];
+  $pw = $_POST['Srepassword'];
+  $samepw = $_POST['Spassword'];
   $idhash = $_POST['idhash'];
   
   $myCon = new mysqliInterface;
@@ -30,7 +29,7 @@ if (!empty($_POST)) {
 }
 
 function validatePost(){
-  return validateArray($_POST, ['newPassword', 'reNewPassword']);
+  return validateArray($_POST, ['Spassword', 'Srepassword']);
 }
 
 function validatePassword ($pw, $samepw) {
@@ -54,5 +53,5 @@ HTML;
   }
 
   
-}
+
 ?>

@@ -42,7 +42,7 @@ HTML;
     // Username
     $left_li = <<< HTML
      <li class="welcome-link">
-       <p class="navbar-text"><a href="#">{$_SESSION['user']}</a>&nbsp; <span class="glyphicon glyphicon-leaf"></span></p>
+       <p class="navbar-text"><a href="/#dashboard">{$_SESSION['user']}</a>&nbsp; <span class="glyphicon glyphicon-leaf"></span></p>
      </li>
 HTML;
     //Logout

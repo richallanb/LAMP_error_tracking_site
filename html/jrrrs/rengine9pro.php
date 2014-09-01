@@ -88,14 +88,12 @@ HTML;
   function manage($project_name, $project_id, $my_id, $ownership, $div_id){
     if($ownership){
       $body = <<< HTML
-        <li role="presentation" class="dropdown-header">Invite Users to $project_name</li>
-        <li>
-          <a>
+        <li role="presentation" class="dropdown-header">Invite Users to "<b>$project_name</b>"</li>
+        <li class="nohover">
             <form method="post" class="proj-invite" onsubmit="projSender('$div_id', '$project_id', '$my_id');">
               <input name="RIemail-$div_id" class="form-control" type="email" style="margin-bottom: 5px" placeholder="Enter Email" required>
               <button class="btn btn-default btn-block" type="submit">Invite Developers</button>
             </form>
-          </a>
         </li>
         <li role="presentation" class="divider"></li>
         <li>

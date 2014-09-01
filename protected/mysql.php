@@ -132,10 +132,10 @@ class mysqliInterface {
           $worked = ($stmt->affected_rows > 0);
           $stmt->close();
           if (!($worked))
-            return -1;
+            return false;
         } else {
           $stmt->close();
-          return -1;
+          return false;
         }
         // Removes recovery handshake
         if ($stmt = $this->con->prepare("UPDATE Users SET `hash`=? WHERE `idhash`=? AND `activated`=1;")) { // 2 -- Updates password
@@ -145,15 +145,15 @@ class mysqliInterface {
             $worked = ($stmt->affected_rows > 0);
             $stmt->close();
             if ($worked)
-              return 0;
+              return true;
             else
-              return -1;
+              return false;
           } else {
             $stmt->close();
-            return -1;
+            return false;
           } 
         } else {
-          return -1;
+          return false;
         } // End 2
       } else{
         return -1;
