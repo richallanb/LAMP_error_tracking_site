@@ -109,6 +109,8 @@ HTML;
             <li><a href="#home" data-toggle="tab">Home</a></li>
             $logged_li
             $standard_li
+          </ul>
+          <ul class="nav navbar-nav navbar-left">
             $site_li
           </ul>
 
