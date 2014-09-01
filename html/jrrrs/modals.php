@@ -51,7 +51,7 @@ $signup = <<< HTML
      </ul><!--button type="button" class="close" style="margin-top:15px;margin-right:15px;float:right;" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button--></div>
     <div id="signup-response"></div>
     <div id="single-signup-container" class="signup-pane">
-    <h4 class="form-heading" id="myModalLabel">Single User Sign-Up</h4><p class="form-msg">Signing up a single user account only takes a few seconds!<br><small>Register an account and check your email to activate.</small></p>
+    <h4 class="form-heading">Single User Sign-Up</h4><p class="form-msg">Signing up a single user account only takes a few seconds!<br><small>Register an account and check your email to activate.</small></p>
     <hr>
     
     <form class="form-signup form" name="register" id="signup" role="form" method="post">
@@ -72,7 +72,7 @@ $signup = <<< HTML
     </form>
     </div>
     <div id="proj-signup-container" class="signup-pane">
-    <h4 class="form-heading" id="myModalLabel">Project User Sign-Up</h4><p class="form-msg">Simply paste in the Refer's ID and Project ID you wish to join.<br><small>And that's it! No activation required!</small></p>
+    <h4 class="form-heading">Project User Sign-Up</h4><p class="form-msg">Simply paste in the Refer's ID and Project ID you wish to join.<br><small>And that's it! No activation required!</small></p>
     <hr>
     
     <form class="form-signup form" name="proj-register" id="proj-signup" role="form" method="post">
