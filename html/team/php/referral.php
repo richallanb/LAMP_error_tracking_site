@@ -2,7 +2,6 @@
 require_once('header.php');
 session_name ("b_y6fcPbVeYEmN^NNfW+A*myn8SsXxAuw9!3?LawN8Np^5tDdXe3EzVMFC9k=dwuHTuLeE5CG5@?-KfZLhzF+L+wqqGB*#6LQsFF=uATu_N9P@!JpzFegDE2ZQtndRrT");
 session_start();
-$site_path = SITE_PATH;
 if(!empty($_POST)){  
   // Invite request
   if (isset($_POST['INV']) && validatePost() && verifyFormToken("referral")){
@@ -114,6 +113,7 @@ HTML;
 
 
 function sendReferralEmail($email,$projectid,$referralid) {
+  $site_path = SITE_PATH;
   $msg = <<< HTML
 <!DOCTYPE html>
 <html>
@@ -189,6 +189,7 @@ $headers .= 'From: Automated TeamNine Response <AutomatedResponse@team.ninth.biz
 
 
 function sendRegisterEmail($email) {
+  $site_path = SITE_PATH;
   $msg = <<< HTML
 <!DOCTYPE html>
 <html>

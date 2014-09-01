@@ -2,7 +2,7 @@
 session_name ("b_y6fcPbVeYEmN^NNfW+A*myn8SsXxAuw9!3?LawN8Np^5tDdXe3EzVMFC9k=dwuHTuLeE5CG5@?-KfZLhzF+L+wqqGB*#6LQsFF=uATu_N9P@!JpzFegDE2ZQtndRrT");
 session_start();
 require_once('header.php');
-$site_path = SITE_PATH;
+
 
 if(!empty($_POST)){  
 //    $user = filter_var($_POST['Suser'], FILTER_SANITIZE_STRING);
@@ -150,6 +150,7 @@ HTML;
 }
 
 function sendEmail($email, $user, $idhash) {
+  $site_path = SITE_PATH;
   $msg = <<< HTML
 <!DOCTYPE html>
 <html>
