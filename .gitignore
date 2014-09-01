@@ -1,3 +1,9 @@
 *.swp
 *.pub
 .ssh
+rolander*.php
+*.zip
+*.*_bak
+*.*_back
+*.cgi
+*.jsp
