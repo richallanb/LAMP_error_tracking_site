@@ -286,10 +286,6 @@ function addError(msg, url, line, severity) {
       $('.ignoreme').click(function(event){
         event.stopPropagation(); });
       
-      $('#ad-show-users').click(function() {
-        $('.jumbotron').hide();
-        $('#usrmgt').show();});     
-
       $('.dropdown-toggle').dropdown();
      
       

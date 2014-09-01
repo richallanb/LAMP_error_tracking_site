@@ -28,6 +28,7 @@
             <li><a href="#one" data-toggle="tab">One</a></li>
             <li><a href="#two" data-toggle="tab">Two</a></li>
             <li><a href="#three" data-toggle="tab">Three</a></li>
+            <!--li><a href="#four" data-toggle="tab">Four</a></li-->
           </ul>
         </div>
       </div>
@@ -46,6 +47,10 @@
         <h2>THREE</h2>
       </div>
       
+      <div id="four" class="tab-pane jumbotron">
+        <h1>FOUR</h1>
+      </div>
+       
       </div>
 
     </div> <!-- /container -->

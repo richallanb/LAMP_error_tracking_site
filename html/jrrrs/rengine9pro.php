@@ -193,7 +193,7 @@ HTML;
 
   // JUMBOTRON, Projects Management
   $html = <<< HTML
-    <div class="jumbotron" id="proj">
+    <div class="tab-pane jumbotron" id="projects">
       <div class="tab-container tab-jumbo"> <ul class="tabbed-list">
         <li class="tab activeTab" data-action="nada"><span class="icon glyphicon glyphicon-list-alt"></span>Projects</li>
         <li class="tab" data-action="nada"><span class="icon glyphicon glyphicon-user"></span>Users</li>

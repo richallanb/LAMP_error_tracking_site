@@ -2,7 +2,7 @@
 require_once('header.php');
 session_name ("b_y6fcPbVeYEmN^NNfW+A*myn8SsXxAuw9!3?LawN8Np^5tDdXe3EzVMFC9k=dwuHTuLeE5CG5@?-KfZLhzF+L+wqqGB*#6LQsFF=uATu_N9P@!JpzFegDE2ZQtndRrT");
 session_start();
-
+$site_path = SITE_PATH;
 if(!empty($_POST)){  
   // Invite request
   if (isset($_POST['INV']) && validatePost() && verifyFormToken("referral")){
@@ -92,7 +92,7 @@ function addSucceed($email){
       $body .= <<< HTML
       <div class="alert alert-success alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <strong>"$email" was successfully added to the project.</strong><br> Refresh the page and the new user will be listed in the project.
+        <strong>"$email" was added to the project.</strong><br> Refresh the page and the new user will be listed in the project.
       </div>    
 HTML;
   return $body;
@@ -159,7 +159,7 @@ a:hover{
 <div class="container">
 <h1 class="heading">Come join Team Nine!</h1>
 <h2>Your friend wants to invite you to join!</h2>
-    <p class="link">To set up an account please <b><a href="http://team-9-khal-drogo-134214.usw1.nitrousbox.com/">click here</a></b> to sign up and register with Refer ID and Project ID.</p><br>
+    <p class="link">To set up an account please <b><a href="$site_path">click here</a></b> to sign up and register with Refer ID and Project ID.</p><br>
   
     <p>Your Refer ID is: $referralid</p><br>
     <p>Your Project ID is: $projectid</p>
@@ -169,7 +169,7 @@ a:hover{
 </body>
 </html>
 
-Browse to this URL if you are unable to view HTML: http://team-9-khal-drogo-134214.usw1.nitrousbox.com/
+Browse to this URL if you are unable to view HTML: $site_path
 HTML;
 
 // subject
@@ -234,14 +234,14 @@ a:hover{
 <div class="container">
 <h1 class="heading">Come join Team Nine!</h1>
 <h2>Your friend wants to invite you to join!</h2>
-    <p class="link">To set up an account please <b><a href="http://team-9-khal-drogo-134214.usw1.nitrousbox.com">click here</a></b> to sign up.</p>
+    <p class="link">To set up an account please <b><a href="$site_path">click here</a></b> to sign up.</p>
 
     <p><b>Note:</b> If you feel you received this email in error, please delete it and disregard its contents.</p>
     </div>
 </body>
 </html>
 
-Browse to this URL if you are unable to view HTML: http://team-9-khal-drogo-134214.usw1.nitrousbox.com/ 
+Browse to this URL if you are unable to view HTML: $site_path
 HTML;
 
 // subject

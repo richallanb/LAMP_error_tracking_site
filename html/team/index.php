@@ -53,10 +53,10 @@
       include("$_SERVER[DOCUMENT_ROOT]/jrrrs/navbar.php"); 
     ?>
     <?php 
-      include("$_SERVER[DOCUMENT_ROOT]/jrrrs/modals.php")
+        include("$_SERVER[DOCUMENT_ROOT]/jrrrs/modals.php")
     ?>
     
-    <div class="container">
+    <div class="container tab-content">
       <div id="response-container"></div>
       
       <?php 
@@ -77,8 +77,8 @@
         }
 
       ?>
-
-      <div id="home" class="jumbotron">
+      
+      <div id="home" class="tab-pane active jumbotron">
 
         <!-- Marketing picture -->
         <div class="marketing"></div>
@@ -118,7 +118,7 @@
 
       </div> <!-- END HOME -->
 
-      <div id="team" class="jumbotron">
+      <div id="about" class="tab-pane jumbotron">
         <div id="curly" style="display:none;cursor:pointer;" onclick="$(this).hide();$('#team-container').show();"><img style="width:100%;height:auto;" src="/team/images/curly.gif" alt="Strike 3 Curly.."></div>
         <div id="team-container">
           <h2>Meet Team Nine</h2>
@@ -214,7 +214,7 @@
 
         </div></div>
 
-      <div id="docs" class="jumbotron">
+      <div id="documentation" class="tab-pane jumbotron">
         <h2>Documentation</h2>
         <p class="lead">Homework 1: Compression Summary</p>
         <b>Web Page Compressed:</b> Yes<br>
@@ -278,7 +278,7 @@
             <li>Report run every nine minutes</li>
           </ol></div>
       </div>
-
+        
       <!--
       <div id="proj" class="jumbotron">
         <h2>Our Project Progress</h2>
@@ -360,7 +360,39 @@
         });
       }*/
       
-      
+    // Tabbing script
+    $(document).ready(function () {
+
+      // cache the id
+      var navbox = $('#the-navbar');
+
+      // activate tab on click
+      navbox.on('click', 'a', function (e) {
+        var $this = $(this);
+        // prevent the Default behavior
+        e.preventDefault();
+        // send the hash to the address bar
+        window.location.hash = $this.attr('href');
+        // activate the clicked tab
+
+        $this.tab('show');
+      });
+
+      // will show tab based on hash
+      function refreshHash() {
+        navbox.find('a[href="'+window.location.hash+'"]').tab('show');
+      }
+
+      // show tab if hash changes in address bar
+      $(window).bind('hashchange', refreshHash);
+
+      // read has from address bar and show it
+      if(window.location.hash) {
+        // show tab on load
+        refreshHash();
+      }
+    
+    });
 
     </script>
 

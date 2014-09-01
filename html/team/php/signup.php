@@ -2,7 +2,7 @@
 session_name ("b_y6fcPbVeYEmN^NNfW+A*myn8SsXxAuw9!3?LawN8Np^5tDdXe3EzVMFC9k=dwuHTuLeE5CG5@?-KfZLhzF+L+wqqGB*#6LQsFF=uATu_N9P@!JpzFegDE2ZQtndRrT");
 session_start();
 require_once('header.php');
-
+$site_path = SITE_PATH;
 
 if(!empty($_POST)){  
 //    $user = filter_var($_POST['Suser'], FILTER_SANITIZE_STRING);
@@ -195,14 +195,14 @@ a:hover{
 <div class="container">
 <h1 class="heading">Welcome to Team Nine!</h1>
 <h2>You're almost up and running</h2>
-    <p class="link">In order to finish setting up your account with us you must <b><a href="http://team-9-khal-drogo-134214.usw1.nitrousbox.com/team/php/activate.php?hash=$idhash">click here</a></b> to activate.</p>
+    <p class="link">In order to finish setting up your account with us you must <b><a href="$site_path/team/php/activate.php?hash=$idhash">click here</a></b> to activate.</p>
 
     <p><b>Note:</b> If you feel you've received this email in error, please delete it and disregard its contents.</p>
     </div>
 </body>
 </html>
 
-Browse to this URL if you are unable to view HTML: http://team-9-khal-drogo-134214.usw1.nitrousbox.com/team/php/activate.php?hash=$idhash
+      Browse to this URL if you are unable to view HTML: $site_path/team/php/activate.php?hash=$idhash
 HTML;
   
 

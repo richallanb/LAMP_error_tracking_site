@@ -5,15 +5,15 @@
   // Show dashboard, USER+
 
   $standard_li = <<< HTML
-    <li><a href="#documentation" data-toggle="tab">Documentation</a></li>
-    <li><a href="#about" data-toggle="tab">About Us</a></li>
+    <li><a onclick="$('.jumbotron').hide();$('#docs').show()">Documentation</a></li>
+    <li><a onclick="$('.jumbotron').hide();$('#team').show()">About Us</a></li>
 HTML;
 
   $logged_li = "";
   if($level != -1){
     $logged_li = <<< HTML
-      <li><a href="#dashboard" data-toggle="tab">Dashboard</a></li>
-      <li><a href="#projects" data-toggle="tab">Projects</a></li>
+      <li><a onclick="$('.jumbotron').hide();$('#dash').show()">Dashboard</a></li>
+      <li><a onclick="$('.jumbotron').hide();$('#proj').show()">Projects</a></li>
 HTML;
   }
 
@@ -92,6 +92,7 @@ HTML;
 HTML;
   }
     
+
   /* MAIN MAIN MAIN MAIN MAIN */
   $body = <<< HTML
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -106,8 +107,8 @@ HTML;
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">       
 
           <!-- LEFTSIDE MENU NAVIGATION -->        
-          <ul id="the-navbar" class="nav navbar-nav navbar-left">
-            <li><a href="#home" data-toggle="tab">Home</a></li>
+          <ul class="nav navbar-nav navbar-left">
+            <li><a onclick="$('.jumbotron').hide();$('#home').show()">Home</a></li>
             $logged_li
             $standard_li
             $site_li

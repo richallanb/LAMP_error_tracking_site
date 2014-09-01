@@ -24,7 +24,7 @@ if(!empty($_POST)){
       //echoError();     
     }
       
-    header("Location: /");
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
     exit;
 }
 

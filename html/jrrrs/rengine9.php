@@ -13,7 +13,7 @@
 
   //$date = date('m/d/Y G:i:s a', time());
   $html = <<< HTML
-    <div id="dash" class="jumbotron">
+    <div id="dashboard" class="tab-pane jumbotron">
     <div class="tab-container tab-jumbo"> <ul class="tabbed-list">
      <li class="tab activeTab" data-action="profile-container"><span class="icon glyphicon glyphicon-th-large"></span>Profile</li>
      <li class="tab" data-action="error-container" id="show-errors"><span class="icon glyphicon glyphicon-fire"></span>Errors</li>

@@ -11,4 +11,5 @@
   define ('PASS_REGEX', $pw_reg);
   define ('USER_REGEX', $user_reg);
   define ('NAME_REGEX', $name_reg);
+  define ('SITE_PATH', 'https://team.ninth.biz');
 ?>

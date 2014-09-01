@@ -396,7 +396,7 @@ class mysqliInterface {
       if ($projId == null) {
         $stmt->bind_param("ss", $caller, $caller);
       } else {
-        $stmt->bind_param("sss", $caller, $projId, $caller);
+        $stmt->bind_param("sss", $projId, $caller, $caller);
       }
       $stmt->execute();
       $stmt->bind_result($name, $email, $id, $created, $last_login, $proj_name, $proj_idhash, $proj_owner);

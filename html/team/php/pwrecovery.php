@@ -2,7 +2,7 @@
 session_name ("b_y6fcPbVeYEmN^NNfW+A*myn8SsXxAuw9!3?LawN8Np^5tDdXe3EzVMFC9k=dwuHTuLeE5CG5@?-KfZLhzF+L+wqqGB*#6LQsFF=uATu_N9P@!JpzFegDE2ZQtndRrT");
 session_start();
 require_once('header.php');
-
+$site_path = SITE_PATH;
 if (!empty($_POST)){
   $user = $_POST['Fuser']; 
   $email = $_POST['Femail'];
@@ -134,7 +134,7 @@ a:hover{
 <h1 class="heading">Account Recovery Request</h1>
     <p class="link">An account recovery attempt has been created for your account. If you feel this was done in error, <b>Disregard this E-mail</b>.</p>
 
-    In order to recover your account please <b><a href="http://team-9-khal-drogo-134214.usw1.nitrousbox.com/team/php/reset.php?v=$idhash">click here</a></b> to finish the process.<br>
+    In order to recover your account please <b><a href="$site_path/team/php/reset.php?v=$idhash">click here</a></b> to finish the process.<br>
     You will be asked to fill in a new password for your account.
   
     <p><b>Note:</b> If you feel this is a malicious attempt to gain access to your account <b>Contact your project manager or a site administrator</b></p>
@@ -142,7 +142,7 @@ a:hover{
 </body>
 </html>
 
-Browse to this URL if you are unable to view HTML: http://team-9-khal-drogo-134214.usw1.nitrousbox.com/team/php/reset.php?v=$idhash
+Browse to this URL if you are unable to view HTML: $site_path/team/php/reset.php?v=$idhash
 HTML;
   
 
