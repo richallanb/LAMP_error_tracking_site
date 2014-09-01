@@ -21,8 +21,7 @@ HTML;
   $site_li = "";
   if($level == 3) {
     $site_li = <<< HTML
-      <!--li><a class="admin-link" onclick="$('.jumbotron').hide();$('#admin').show()">Site Management</a></li-->
-      <li class="dropdown"><a href="#" class="dropdown-toggle admin-link" data-toggle="dropdown">Site Management <span class="caret"></span></a>
+      <li class="dropdown"><a href="" class="dropdown-toggle admin-link" data-toggle="dropdown">Site Management <span class="caret"></span></a>
         <ul class="dropdown-menu" role="menu">
           <li><a href="/team/php/phpinfo">PHP Info</a></li>
           <li><a href="/awstats/awstats.pl" data-rel="tooltip" data-placement="right" title="Our apache usage logs">Log Report</a></li>

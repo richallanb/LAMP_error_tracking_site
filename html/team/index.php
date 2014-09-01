@@ -215,7 +215,70 @@
         </div></div>
 
       <div id="documentation" class="tab-pane jumbotron">
-        <h2>Documentation</h2>
+        <h2>Documentation</h2><br>
+        <p class="lead">Homework 3</p>
+        <button type="button" onclick="alert('Press OK and check the developer Console. That error was logged into our database'); abcdefg();"class="btn btn-danger">Trigger a JS Error</button>
+        <div class="well well-lg" style="margin-top:40px;">
+          <h3>Input Security:</h3>
+
+          <h4>Javascript</h4>
+          <ol>
+            <li>All user input validated in Javascript using known Regex.</li>
+            <li>When applicable we communicate with PHP using AJAX to validate input (when determining if the entry is unique).</li>
+            <li>Accompanied by CSS to give visual representation of valid (green & glowing) vs. non-valid (red glow) input.</li>
+          </ol>
+          
+          <h4>PHP</h4>
+          <ol>
+            <li>Instituted layered abstraction when servicing requests.</li>
+            <li value="1" style="list-style:none"><ul><li>All PHP actions divided into 3 parts. Displays, Actors, and Database Interface.</li></ul></li>
+            <li value="1" style="list-style:none"><ul><li>Security instituted at all levels.</li></ul></li>
+            <li>All user input validated in PHP using a known Regex.</li>
+            <li value="2" style="list-style:none"><ul><li>This validation is ran at all levels of abstraction for redundancy.</li></ul></li>
+            <li>All actors check against site generated tokens.</li>
+            <li>All fields validated and checked against expected input per request by actors.</li>
+            <li>When applicable fields checked against database for uniqueness.</li>
+            <li>Secure hashing used for practically all actions & database access.</li></ol>
+          
+          <h4>MySQL</h4>
+          <ol>
+            <li>Foreign Key and Database Integrity instituted at database level.</li>
+            <li>All queries that alter data guarantee valid input through foreign key use, and intermediate queries checking the validity of input.</li>
+            <li>All database modification done through unique ID Hashing.</li>
+            <li>Guaranteed fail-safes against false-positives.</li>
+          </ol>
+          <br>
+          <h3>Features:</h3>
+          <h4>User Accounts</h4>
+          <ol>
+            <li>Basic user Sign Up.</li>
+            <li value="1" style="list-style:none"><ul><li>User accounts validated & activated through E-Mail. CHECK YOUR SPAM FOLDER!</li></ul></li>
+            <li>Project user Sign Up.</li>
+            <li value="2" style="list-style:none"><ul><li>Refered to a project you are capable of signing up with a valid Referral ID and Project ID. When this is done the activation is waived and you are automatically added to the project you were referred to.</li></ul></li>
+            <li>Account recovery through E-Mail.</li>
+            <li value="3" style="list-style:none"><ul><li>This is done through secure hash handshakes.</li></ul></li>
+            <li>Basic user Login.</li></ol>
+          <h4>Projects</h4>
+          <ol>
+            <li>Creating Projects</li>
+            <li value="1" style="list-style:none"><ul><li>You can create and name a project. You can share errors with other users within that project.</li></ul></li>
+            <li>Add users to your Projects</li>
+            <li value="2" style="list-style:none"><ul><li>You can add users to your project if their account exists, or you can refer them using their email address.</li></ul></li>
+            <li>Leaving a Project</li>
+            <li value="3" style="list-style:none"><ul><li>Suppose you're tired of the people in your project. Then just leave!</li></ul></li>
+            <li>Remove users from your Project</li>
+            <li value="3" style="list-style:none"><ul><li>If you made the project, you are capable of removing any account (other than your own).</li></ul></li>
+            <li>Disband a Project</li>
+            <li value="5" style="list-style:none"><ul><li>Disband a project and remove all users from the project.</li></ul></li></ol>
+           <h4>Errors</h4>
+          <ol>
+            <li>All Javascript errors are caught and submitted to our database.</li>
+            <li value="1" style="list-style:none"><ul><li>These errors include items such as source file, line number, error type, and severity.</li></ul></li>
+            <li>When logged in, these errors belong to your account and are no longer anonymous.</li>
+            <li value="2" style="list-style:none"><ul><li>These errors can be shared with all projects they may belong to at the current moment.</li></ul></li>
+            <li>Considerations made for logging other types of errors such as privileged MySQL or PHP error collection when dealing with fraudulent requests/attempts.</li></ol>
+            
+        </div>
         <p class="lead">Homework 1: Compression Summary</p>
         <b>Web Page Compressed:</b> Yes<br>
         <b>Compression Type:</b> gzip<br>
