@@ -22,7 +22,7 @@
         <div class="navbar-header">
           <span class="navbar-brand">Team Nine</span>
         </div>
-
+          
         <div class="collapse navbar-collapse">       
           <ul id="the-navbar" class="nav navbar-nav navbar-left">
             <li><a href="#one" data-toggle="tab">One</a></li>
@@ -34,19 +34,16 @@
     </nav>
         
      <div class="tab-content">               
-      <div id="one" class="tab-pane jumbotron">
+      <div id="one" class="tab-pane active jumbotron">
         <h1>ONE</h1>
       </div>
       
       <div id="two" class="tab-pane jumbotron">
-        <h1>ONE</h1>
-        <h1>TWO</h1>
+        <h2>TWO</h2>
       </div>
       
       <div id="three" class="tab-pane jumbotron">
-        <h1>ONE</h1>
-        <h1>TWO</h1>
-        <h1>THREE</h1>
+        <h2>THREE</h2>
       </div>
       
       </div>

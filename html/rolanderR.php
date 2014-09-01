@@ -10,9 +10,6 @@
     <link href="/team/style.css" rel="stylesheet">
 
     <style>
-      #two, #three{
-        display:none;
-      }   
     </style>
     
   </head>
@@ -31,8 +28,8 @@
 
         <div class="collapse navbar-collapse">       
           <ul id="the-navbar" class="nav navbar-nav navbar-left">
-            <li id="oneli" ><a id="onea" href="#one" role="tab" data-toggle="tab">One</a></li>
-            <li id="twoli" class="active"><a id="twoa" href="#two" role="tab" data-toggle="tab">Two</a></li>
+            <li id="oneli" class="active" ><a id="onea" href="#one" role="tab" data-toggle="tab">One</a></li>
+            <li id="twoli"><a id="twoa" href="#two" role="tab" data-toggle="tab">Two</a></li>
             <li id="threeli" ><a id="threea" href="#three" role="tab" data-toggle="tab">Three</a></li>
           </ul>
         </div>
@@ -95,10 +92,10 @@
       var navbox = $('#the-navbar');
 
       // activate tab on click
-      navbox.on('click', 'li', function (e) {
+      navbox.on('click', 'a', function (e) {
         var $this = $(this);
         // prevent the Default behavior
-        e.preventDefault();
+        //e.preventDefault();
         // send the hash to the address bar
         window.location.hash = $this.attr('href');
         // activate the clicked tab
@@ -106,9 +103,7 @@
         //$('.jumbotron').hide();
         //$('#one-tab').show();
         
-        alert(this.attr('href'));
-        
-        $('.jumbotron').hide();
+        //$('.jumbotron').hide();
         //$(this.id).show();
         
         //$this.tab('show');

@@ -200,13 +200,13 @@ class mysqliInterface {
   /* Check if email is already used
    * Returns:    False / True
    */
-  function checkEmail($email, $active=0){
-    if ($stmt = $this->con->prepare("SELECT user_id FROM Users WHERE email=? AND activated=?;")) {
+  function checkEmail($email){
+    if ($stmt = $this->con->prepare("SELECT user_id FROM Users WHERE email=?;")) {
 
       /* bind parameters for markers */
       /* Bind parameters
          s - string, b - blob, i - int, etc */
-      $stmt->bind_param("si", $email, $activated);
+      $stmt->bind_param("s", $email);
       $stmt->execute();
       $stmt->bind_result($exists);
       $stmt->fetch();
@@ -218,13 +218,13 @@ class mysqliInterface {
   
   // Checks whether an ID Hash exists.
   // Returns:    False / True
-  function checkIdHash($idHash, $active=0){
-    if ($stmt = $this->con->prepare("SELECT user_id FROM Users WHERE idhash=? AND activated=?;")) {
+  function checkIdHash($idHash){
+    if ($stmt = $this->con->prepare("SELECT user_id FROM Users WHERE idhash=? AND activated=1;")) {
 
       /* bind parameters for markers */
       /* Bind parameters
          s - string, b - blob, i - int, etc */
-      $stmt->bind_param("si", $idHash, $active);
+      $stmt->bind_param("s", $idHash);
       $stmt->execute();
       $stmt->bind_result($exists);
       $stmt->fetch();
@@ -543,7 +543,7 @@ class mysqliInterface {
     if (!preg_match(NAME_REGEX, $name)){
       return -2;
     }
-    if (!($this->checkIdHash($idHash, 1))) {
+    if (!($this->checkIdHash($idHash))) {
       return -2;
     }
     if ($stmt = $this->con->prepare("INSERT INTO Projects (`project_idhash`, `owner`, `owner_idhash`, `name`) VALUES (?, ?, ?, ?);")) { // 0 -- Create project
