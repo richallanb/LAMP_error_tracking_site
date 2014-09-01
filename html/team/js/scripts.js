@@ -6,6 +6,7 @@ window.onerror = function(msg, url, line, col, error) {
    extra += !error ? '' : '\nerror: ' + error;
    var severity = 0;
   // Get error type to judge severity
+  if (error) {
    switch (error.name) {
   	 case 'SyntaxError':
   		 severity = 0;
@@ -26,6 +27,7 @@ window.onerror = function(msg, url, line, col, error) {
   			severity = 0;
   			break;
   	}
+  }
    // You can view the information in an alert to see things working like this:
   console.log("Error: " + msg + "\nurl: " + url + "\nline: " + line + "\nseverity: " + severity + extra);
    //alert("Error: " + msg + "\nurl: " + url + "\nline: " + line + extra);

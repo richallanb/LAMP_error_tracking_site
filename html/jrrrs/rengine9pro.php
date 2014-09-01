@@ -37,7 +37,7 @@ HTML;
             </button>
             <ul class="dropdown-menu" role="menu">
               <li>
-               <a style="cursor:pointer" onclick="removeUserFromProject('$my_id', '$user_id', '$project_id', '$row_id');">Remove User</a>
+               <a style="cursor:pointer" onclick="removeUserFromProject('$my_id', '$user_id', '$project_id', '$row_id');"><span style="margin-top:2px;margin-right:10px;" class="glyphicon glyphicon-minus-sign pull-left"></span> Remove User</a>
               </li>
             </ul>
           </div>
@@ -91,19 +91,21 @@ HTML;
         <li role="presentation" class="dropdown-header">Invite Users to "<b>$project_name</b>"</li>
         <li class="nohover">
             <form method="post" class="proj-invite" onsubmit="projSender('$div_id', '$project_id', '$my_id');">
-              <input name="RIemail-$div_id" class="form-control" type="email" style="margin-bottom: 5px" placeholder="Enter Email" required>
-              <button class="btn btn-default btn-block" type="submit">Invite Developers</button>
+              <div class="input-group" style="margin-bottom: 5px;">
+                <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
+              <input name="RIemail-$div_id" class="form-control" type="email" placeholder="Enter Email" required></div>
+              <button class="btn btn-default btn-block" style="text-align:left;" type="submit"><span style="margin-top:2px;margin-right:10px;" class="glyphicon glyphicon-plus-sign pull-left"></span> Invite Developers</button>
             </form>
         </li>
         <li role="presentation" class="divider"></li>
         <li>
-          <a style="cursor:pointer" onclick="deleteProject('$my_id', '$project_id', '$div_id');">Delete Project</a>
+          <a style="cursor:pointer" onclick="deleteProject('$my_id', '$project_id', '$div_id');"><span style="margin-top:2px;margin-right:10px;margin-left:8px;" class="glyphicon glyphicon-remove-sign pull-left"></span> Delete Project</a>
         </li>
 HTML;
     }else{
       $body = <<< HTML
         <li>
-          <a style="cursor:pointer" onclick="leaveProject('$my_id', '$project_id', '$div_id');">Leave Project</a>
+          <a style="cursor:pointer" onclick="leaveProject('$my_id', '$project_id', '$div_id');"><span style="margin-top:2px;margin-right:10px;margin-left:8px;" class="glyphicon glyphicon-minus-sign pull-left"></span> Leave Project</a>
         </li>
 HTML;
     }
@@ -204,10 +206,11 @@ HTML;
           <h4>Start a Project</h4>
           <form method="post" role="form" action="/team/php/pj_createProject.php">
             <div class="input-group" style="margin-bottom: 5px; width:100%">
-              <input class="form-control" name="CPFprojectname" placeholder="Project Name" required></input>
-              <input type="hidden" name="CPFmyname" value="{$_SESSION['user']}"></input>
-              <input type="hidden" name="CPFmyid" value="{$personal_profile->getIdHash()}"></input>
-            </div>
+              <div class="input-group-addon"><span class="glyphicon glyphicon-leaf"></span></div>
+              <input class="form-control" name="CPFprojectname" placeholder="Project Name" required></div>
+              <input type="hidden" name="CPFmyname" value="{$_SESSION['user']}">
+              <input type="hidden" name="CPFmyid" value="{$personal_profile->getIdHash()}">
+            
             <div style="vertical-align:middle !important">
               Create a project with <strong>REngine <span style="color:lightseagreen">9</span> PRO</strong>
               <button class="btn btn-default btn-block" style="max-width:200px;float:right;" type="submit">Create</button>
@@ -220,7 +223,7 @@ HTML;
           <form method="post" role="form" id="referal">
             <div class="input-group" style="margin-bottom: 5px;">
               <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
-              <input class="form-control" name="RFemail" placeholder="Enter email" required></input>
+              <input class="form-control" name="RFemail" placeholder="Enter email" required>
             </div>
             <div style="vertical-align:middle !important">
               Refer your friends to <strong>REngine <span style="color:lightseagreen">9</span></strong>
