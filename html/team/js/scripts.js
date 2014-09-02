@@ -75,9 +75,6 @@ function addError(msg, url, line, severity) {
 /* End of Error Reporting Scripts */
 
 /*Sign Up Scripts */
-    window.onload = function() {
-      clearSignUpInputs();
-    }
       function clearSignUpInputs() {
         $('input[name=Srepassword]').val("");
         $('input[name=Spassword]').val("");
