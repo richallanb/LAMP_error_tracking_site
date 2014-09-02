@@ -40,6 +40,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="/team/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/team/bootstrap/css/carousel.css" rel="stylesheet">
     <link href="/team/style.css" rel="stylesheet">
 
   </head>
@@ -81,7 +82,63 @@
       <div id="home" class="tab-pane active jumbotron">
 
         <!-- Marketing picture -->
-        <div class="marketing"></div>
+        <!--div class="marketing"></div-->
+        
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1" class=""></li>
+        <li data-target="#myCarousel" data-slide-to="2" class=""></li>
+        <li data-target="#myCarousel" data-slide-to="3" class=""></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="item active">
+          <img src="/team/carousel/9v4.jpg" alt="First slide">
+          <div class="container">
+            <div class="carousel-caption">
+              
+              <h1 class="text-left">REngine <span style="color:lightseagreen">9</span></h1>
+              <p class="text-left" style="color:grey">Unparalleled error tracking</p>
+              <?php if ($level < USER) {
+                echo '<p class="text-left"><a class="btn btn-lg btn-default" href="#" role="button"  data-toggle="modal" data-target="#modal-signup">Sign up today</a></p>';
+                }
+              ?>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img src="/team/carousel/nobugs.jpg" alt="Second slide">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1 class="text-left">Error Tracking? Easy!</h1>
+              <p class="text-left">Manage, resolve, comment, and rate your errors. We won't let Javascript make a fool of you.</p>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img src="/team/carousel/vault.jpg" alt="Third slide">
+          <div class="container">
+            <div class="carousel-caption" data-dynamite-selected="true">
+              <h1 class="text-left">We take security seriously!</h1>
+              <p class="text-left">Be rest assured that all your work is stored securely with high level encryption.</p>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img src="/team/carousel/projects.jpg" alt="Third slide">
+          <div class="container">
+            <div class="carousel-caption" data-dynamite-selected="true">
+              <h1 class="text-left">We've got projects.</h1>
+              <p class="text-left">Use our system to create, organize, and coordinate projects and groups the way you want to.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a-->
+    </div>
+        
         <div>
           <h2>Meet the <b>NEW</b> generation of error tracking</h2>
           <p style="font-size:18px">Here at <i>Team Nine</i> we understand the need for speed, accuracy and precision. Our company started with a single goal in mind, providing the best possible solution to our clients. In July 2013, we at <i>Team Nine</i> brought you 39 <i>UCSD&copy;</i> awards winning <strong>REngine <span style="color:red">8</span></strong>. This year we are proud to present the next iteration of unchallenged <b>Performance + Efficiency</b>. Introducing the all new 2014 <i>Team Nine</i> <strong>REngine <span style="color:lightseagreen">9</span></strong>. The new generation of error tracking.</p>
