@@ -20,8 +20,8 @@
     
     $Errors = array();
     $Errors[] = new Error('9', 'Some Error', $sample_date, '3', '123', "www.teamnine.com", 'GET', 'This is a test');
-    $Errors[] = new Error('18', 'Second Error', $sample_date, '3', '9', "www.teamnine.com/admin", 'GET', 'This is another test');
-    $Errors[] = new Error('19', 'One more Error', $sample_date, '3', '1076', "www.teamnine.com/admin/access", 'POST');
+    $Errors[] = new Error('18', 'Second Error', $sample_date, '2', '9', "www.teamnine.com/admin", 'GET', 'This is another test');
+    $Errors[] = new Error('19', 'One more Error', $sample_date, '1', '1076', "www.teamnine.com/admin/access", 'POST');
     
     $errors_headers = error_table_header();
     $errors_details = NULL;

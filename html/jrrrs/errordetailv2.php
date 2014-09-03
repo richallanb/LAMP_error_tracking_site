@@ -69,16 +69,44 @@ HTML;
 HTML;
     }
     
+    // Selects option
+    $options = NULL;
+    for($i = 0; $i < 4; ++$i){
+      $string = severity_string($i);
+      if( $severity == $i ){
+        $options .= <<< HTML
+          <option value="$i" selected>$string</option>
+HTML;
+      }else{
+        $options .= <<< HTML
+          <option value="$i">$string</option>
+HTML;
+      }
+    }
+    
     $body = <<< HTML
       <div>
         <select class="btn-sm">
           $default_option
-          <option value="0">User</option>
-          <option value="1">Designer</option>
+          $options
         </select>
       </div>
 HTML;
     return $body;
+  }
+
+  // Converts severity level to string
+  function severity_string($level){
+    switch($level){
+      case "1":
+        return "Warning";
+      case "2":
+        return "Error";
+      case "3": 
+        return "Severe";
+      default:
+        return "Info";
+    }
   }
 
   // Creates error management action
