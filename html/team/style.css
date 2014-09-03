@@ -37,6 +37,10 @@ td {
   vertical-align:middle !important;
 }
 
+.table td {
+  padding: 5px !important;
+}
+
 /* For dashboard's profile */
 td.profile-title {
   text-transform: uppercase;
@@ -426,9 +430,6 @@ input[name^=S]:valid, input[name^=P]:valid, input[name^=F]:valid{
   margin-top:20px;
 }
 
-.table td {
-  padding: 6px !important;
-}
 .project-title{
   width:100%;
   padding: 2px 5px 2px 5px;

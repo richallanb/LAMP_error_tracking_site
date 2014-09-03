@@ -657,6 +657,10 @@ class mysqliInterface {
     return -1;
   }
   
+  function resolveError($errorIdHash, $caller, $comment = ""){
+    //Make sure to resolve all errors with the same error text, source, and line
+  }
+  
   
   function queryUser($user){
     // Mother fucking prepared statements. Suck it SQL injection.

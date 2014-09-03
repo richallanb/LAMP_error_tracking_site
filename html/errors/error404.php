@@ -20,10 +20,10 @@
     
     <?php include("$_SERVER[DOCUMENT_ROOT]/jrrrs/navbar_light.html"); ?>
     
-    <div class="container">
+    <div class="container container-padded">
    
       <!-- Jumbotron -->
-      <div id="landing" class="jumbotron">
+      <div class="jumbotron">
         <h1>
           Error 404... Thanks Obama!
         </h1>

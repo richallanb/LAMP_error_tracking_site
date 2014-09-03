@@ -45,6 +45,7 @@ HTML;
 HTML;
     }
     
+    date_default_timezone_set('US/Pacific');
     $date_created = format_date($User->getCreateDate());
     $date_last_login = format_date($User->getLastLogin());
 
@@ -94,7 +95,8 @@ HTML;
               <div class="input-group" style="margin-bottom: 5px;">
                 <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
               <input name="RIemail-$div_id" class="form-control" type="email" placeholder="Enter Email" required></div>
-              <button class="btn btn-default btn-block" style="text-align:left;" type="submit"><span style="margin-top:2px;margin-right:10px;" class="glyphicon glyphicon-plus-sign pull-left"></span> Invite Developers</button>
+              <button class="btn btn-default btn-block" style="text-align:left;" type="submit"><span style="margin-top:2px;margin-right:10px;" class="glyphicon glyphicon-plus-sign pull-left"></span>                     Invite Developers
+              </button>
             </form>
         </li>
         <li role="presentation" class="divider"></li>
