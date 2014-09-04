@@ -24,7 +24,7 @@
           <th class="project-error-header" style="width:16%">Source</th> 
           <th class="project-error-header" style="width:5%">Line</th>
           <th class="project-error-header" style="10%">User</th>
-          <th class="project-error-header" style="width:7%">Modify</th> 
+          <th class="project-error-header text-center" style="width:7%">Comment</th> 
           <th class="project-error-header text-center" style="width:8%">More Info</th>
         </tr>
 HTML;
@@ -36,7 +36,7 @@ HTML;
           <th class="project-error-header" style="width:10%">Level</th>
           <th class="project-error-header" style="width:27%">Source</th> 
           <th class="project-error-header" style="width:5%">Line</th>
-          <th class="project-error-header" style="width:7%">Modify</th> 
+          <th class="project-error-header text-center" style="width:7%">Comment</th> 
           <th class="project-error-header text-center" style="width:8%">More Info</th>
         </tr>
 HTML;
@@ -47,27 +47,74 @@ HTML;
   //Fills error undertable with additional info
   function more_info($Error, $User, $view_id){
     $comment = $Error->getComment();
-    $count = $Error->getCount();
-    if( $comment ){
-      $title = "\"$comment\"";
-    }else{
-      $title = "No comment";
-    }
-    $details = <<< HTML
-      <tr><td><b>Full Error</b>: {$Error->getName()} : Line {$Error->getLine()}</td><td><b>$count</b> Occurrences</td></tr>
-      <tr><td><b>Source</b>: {$Error->getSource()}</td><td>&nbsp;</td></tr>
-      <tr><td><b>Comment</b>: $title</td><td>&nbsp;</td></tr>
+    if( $comment == NULL ){
+      $comment = <<< HTML
+        <span style="color:lightgray; font-size:80%; font-weight:bold">NONE</span>   
 HTML;
-
-    $body = <<< HTML
-          <tr>
-          <td style="display:none" id="more-info-$view_id" colspan=7>
-            <table class="table" style="width=100%">
-              <thead><tr><th style="width:85%;margin:0;padding:0;border:none;"></th><th style="width:15%;margin:0;padding:0;border:none;"></th></tr></thead>
-              <tbody>$details</tbody>
-            </table>
-          </td>
+    }
+    
+    $count = $Error->getCount();
+    
+    $line = <<< HTML
+      <span style="font-size:80%; font-weight:bold; color:firebrick">AT LINE {$Error->getLine()}, &nbsp;$count TIME(S)</span> 
+HTML;
+    
+    $resolved_tr = NULL;
+    if( $Error->isResolved() ){
+      $date = strtotime($Error->getResolvedDate());
+      if( date('Y') == date('Y', $date) ){
+        $mdy = date('M d', $date);
+      }else{
+        $mdy = date('M d Y', $date);
+      }
+      $hms = date(' H:i:s', $date);
+    
+      $resolved_date = <<< HTML
+        <span style="font-weight:bold; text-transform:uppercase; font-size:85%">$mdy</span> $hms
+HTML;
+      
+      $resolved_tr = <<< HTML
+        <tr>
+          <td class="details-title">RESOLVED BY</td>
+          <td>{$Error->getResolvedUser()} $resolved_date</td>
         </tr>
+        <tr>
+          <td class="details-title">MESSAGE</td>
+          <td>{$Error->getResolvedComment()}</td>
+        </tr>
+HTML;
+    }
+
+    $details= <<< HTML
+      <table style="width:100%">
+        <thead>
+          <th style="width:10%"></th>
+          <th style="width:90%"></th>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="details-title">Full Error</td>
+            <td>{$Error->getName()} $line</td>
+          </tr>
+          <tr>
+            <td class="details-title">Source</td>
+            <td>{$Error->getSource()}</td>
+          </tr>
+          <tr>
+            <td class="details-title">Comment</td>
+            <td>$comment</td>
+          </tr>
+          $resolved_tr
+        </tbody>
+      </table> 
+HTML;
+    
+    $body = <<< HTML
+      <tr>
+        <td style="display:none" id="more-info-$view_id" colspan=8>
+          $details
+        </td>
+      </tr>
 HTML;
     return $body; 
 }
@@ -121,6 +168,8 @@ HTML;
   // Create severity dropdown + handles
   function severity_box($Error, $type){
     $severity = $Error->getSeverity();
+    
+    // <span style="font-weight:bold; text-transform:uppercase; font-size:85%">
     
     // Selects option
     $options = NULL;
@@ -198,15 +247,26 @@ HTML;
     $form_id = "$type-$error_id";
     $text_id = "Mcomment-$form_id";
     
+    $comment = $Error->getComment();
+    if( $comment != NULL ){
+      $dropdown_message = <<< HTML
+        <span style="font-size:80%; font-weight:bold">COMMENTED</span>
+HTML;
+    }else{
+      $dropdown_message = <<< HTML
+        <span class="glyphicon glyphicon-pencil"></span></a>
+HTML;
+    }
+    
     $body = <<< HTML
-      <td class="dropdown">
-        <a class="dropdown-toggle longtext" data-toggle="dropdown"><span class="glyphicon glyphicon-pencil"></span> Modify</a>
+      <td class="dropdown text-center">
+        <a class="dropdown-toggle longtext" data-toggle="dropdown">$dropdown_message
         <ul class="dropdown-menu" role="menu" style="width: 350px">
           <li role="presentation" class="dropdown-header">Drop a Comment</li>
           <li role="presentation" class="nohover">
             <div style="padding: 0 20px 0 20px">
               <form method="post" onsubmit="modifyErrorComment('$form_id', '$error_idHash', '$my_id', event)">
-                <textarea name="$text_id" class="form-control comment-box" rows="5" placeholder="Leave a Comment" required>{$Error->getComment()}</textarea>
+                <textarea name="$text_id" class="form-control comment-box" rows="5" placeholder="Leave a Comment" required>$comment</textarea>
                 <button class="btn btn-default btn-block" style="text-align:left;" type="submit"><span style="margin-top:2px;margin-right:10px;" class="glyphicon glyphicon-pencil pull-left"></span>                       Comment
                 </button>
               </form>

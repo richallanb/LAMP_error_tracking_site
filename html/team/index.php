@@ -278,7 +278,7 @@
       <div id="documentation" class="tab-pane jumbotron">
         <h2>Documentation</h2><br>
         <p class="lead">Homework 3</p>
-        <button type="button" onclick="alert('Press OK and check the developer Console. That error was logged into our database'); abcdefg();" class="btn btn-danger">Trigger a JS Error</button>
+        <!--button type="button" onclick="alert('Press OK and check the developer Console. That error was logged into our database'); abcdefg();" class="btn btn-danger">Trigger a JS Error</button-->
         <div class="well well-lg" style="margin-top:40px;">
           <h3>Input Security:</h3>
 

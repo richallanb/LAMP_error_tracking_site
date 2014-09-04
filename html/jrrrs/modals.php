@@ -110,7 +110,7 @@ $scriptt = <<< HTML
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <div class="modal-body" style="padding: 0">
-          <h4 class="modal-title" id="myModalLabel">Your Deployable Code</h4>
+          <h4 class="modal-title">Your Deployable Code</h4>
           Copy the code beneath into the page of your choice and you are good to go!
         </div>
       </div>

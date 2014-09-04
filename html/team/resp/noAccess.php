@@ -15,7 +15,7 @@
       include("$_SERVER[DOCUMENT_ROOT]/jrrrs/navbar_light.html"); 
     ?>
     
-    <div class="container">
+    <div class="container container-padded">
       <div class="jumbotron">
         <h2>Error</h2>
         <br>&nbsp;&nbsp;&nbsp;&nbsp;Looks like you're trying to accessing something that doesn't exist!

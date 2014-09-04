@@ -13,7 +13,7 @@
     }
 });*/
 
-/* Error Reporting Scripts */
+/* Error Reporting Scripts 
 window.onerror = function(msg, url, line, col, error) {
    // Note that col & error are new to the HTML 5 spec and may not be 
    // supported in every browser.  It worked for me in Chrome.
@@ -55,7 +55,7 @@ window.onerror = function(msg, url, line, col, error) {
    // Internet Explorer) will be suppressed.
    return suppressErrorAlert;
 };
-
+*/
 function addError(msg, url, line, severity) {
         // Fill our request with data from our form
   var formData = {'Aerr' : msg, 'Aline' : line, 'Asrc' : url, 'Asever' : severity, 'Ameth' : null, 

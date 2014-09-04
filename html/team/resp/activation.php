@@ -13,7 +13,7 @@
     <?php // NAVBAR
       include("$_SERVER[DOCUMENT_ROOT]/jrrrs/navbar_light.html"); 
     ?>
-    <div class="container">
+    <div class="container container-padded">
       <div class="jumbotron">
         <h2>Congratulations!</h2>
         <br>&nbsp;&nbsp;&nbsp;&nbsp;Your account has now been activated! Please go to the home page to log into your account.

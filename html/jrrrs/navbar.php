@@ -63,7 +63,7 @@ HTML;
                 <div class="input-group-addon">@</div>
                 <input class="form-control" type="email" name="Semail" placeholder="Enter email" required>
               </div>
-              <input name="Spassword" type="password" oninvalid="setCustomValidity('Passwords must be atleast 8 characters long');" onchange="try{setCustomValidity('')}catch(e){}" pattern=".{7,}"  class="form-control" placeholder="Password" required style="margin-bottom: 5px">     
+              <input name="Spassword" type="password" oninvalid="setCustomValidity('Passwords must be atleast 8 characters long');" onchange="try{setCustomValidity('')}catch(e){}" pattern=".{8,}"  class="form-control" placeholder="Password" required style="margin-bottom: 5px">     
               <input name="Srepassword" type="password" oninput="pwCompare(this,'input[name=Spassword]');" class="form-control" placeholder="Retype Password" required style="margin-bottom: 10px">               
               <input type="hidden" name="Stoken" value=$signupToken>
               <button class="btn btn-default btn-block" name="Ssubmit" type="submit">Sign Up</button>
@@ -81,7 +81,7 @@ HTML;
             <div id="signin-response"></div>
             <form class="form-signin" name="login" id="signin" role="form">
               <input name="user" type="text" class="form-control" placeholder="Username" oninvalid="setCustomValidity('Username must begin with alphanumeric character. It can only contain alphanumeric characters or \'_\' and between 6 and 21 characters long');" onchange="try{setCustomValidity('')}catch(e){}" pattern="^[a-zA-Z](([a-zA-Z0-9]+)|_([a-zA-Z0-9]+)){5,21}$" required autofocus style="margin-bottom: 5px">
-              <input name="password" type="password" class="form-control" oninvalid="setCustomValidity('Passwords must be atleast 8 characters long');" onchange="try{setCustomValidity('')}catch(e){}" pattern=".{7,}" placeholder="Password" required style="margin-bottom: 10px">
+              <input name="password" type="password" class="form-control" oninvalid="setCustomValidity('Passwords must be atleast 8 characters long');" onchange="try{setCustomValidity('')}catch(e){}" pattern=".{8,}" placeholder="Password" required style="margin-bottom: 10px">
               <input type="hidden" name="token" value=$newToken>
               <button class="btn btn-default btn-block" name="submit" type="submit">Sign in</button>
             </form>

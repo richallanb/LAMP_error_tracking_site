@@ -7,7 +7,7 @@ if ($level >= USER){
       TeamNineLoggedUserId = "$userIdHash"; 
     </script>
 HTML;
-  echo '<script src="/team/js/userscripts.js"></script>';
+  echo '<script src="/team/js/userscripts.min.js"></script>';
   echo $vars;
 }
 ?>

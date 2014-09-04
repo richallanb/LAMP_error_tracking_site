@@ -625,23 +625,38 @@ class mysqliInterface {
           $stmt->close();
           return -1;
         }
-        // Delete project
-        if($stmt = $this->con->prepare("DELETE p.*  FROM Projects p WHERE p.owner_idhash=? AND p.project_idhash=?;")){
-          $stmt->bind_param("ss", $caller_id, $project_id);
-          if ($stmt->execute()) {
-            $worked = ($stmt->affected_rows > 0);
-            $stmt->close();
-            if ($worked)
-              return 0;
-            else
-              return -1;
-          } else {
-            $stmt->close();
+      // Delete errors
+      if($stmt = $this->con->prepare("DELETE err.* FROM Errors err INNER JOIN Projects p ON p.project_idhash=err.project_idhash WHERE p.owner_idhash=? AND err.project_idhash=?;")){
+        $stmt->bind_param("ss", $caller_id, $project_id);
+        if ($stmt->execute()) {
+          $worked = ($stmt->affected_rows > 0);
+          $stmt->close();
+          if (!$worked)
             return -1;
-          }
         } else {
+          $stmt->close();
           return -1;
         }
+          // Delete project
+          if($stmt = $this->con->prepare("DELETE p.*  FROM Projects p WHERE p.owner_idhash=? AND p.project_idhash=?;")){
+            $stmt->bind_param("ss", $caller_id, $project_id);
+            if ($stmt->execute()) {
+              $worked = ($stmt->affected_rows > 0);
+              $stmt->close();
+              if ($worked)
+                return 0;
+              else
+                return -1;
+            } else {
+              $stmt->close();
+              return -1;
+            }
+          } else {
+            return -1;
+          }
+      }else {
+        return -1;
+      }
     } else {
     return -1;
     }

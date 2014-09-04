@@ -6232,7 +6232,14 @@ td.profile-title {
   text-transform: uppercase;
   font-weight: bold;
   font-size: 80%;
-  vertical-align: bottom !important;
+  padding-left: 5%;
+}
+
+td.details-title {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 80%;
+  vertical-align: middle !important;
   padding-left: 5%;
 }
 
