@@ -58,7 +58,7 @@
     </head>
     <body>
     <?php include("$_SERVER[DOCUMENT_ROOT]/jrrrs/navbar_light.html"); ?>
-    <div class="container" style="width:600px;">
+    <div class="container container-padded" style="width:600px;">
       <!-- Jumbotron -->
       <div id="landing" class="jumbotron">
         <h2>Account Recovery</h2>
