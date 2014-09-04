@@ -23,7 +23,6 @@ function resolveError(formPrefix, errorid, caller) {
         })
         
         .fail(function(xhr, status, error){
-          
         });
 }
 

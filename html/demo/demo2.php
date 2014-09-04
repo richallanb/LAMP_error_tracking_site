@@ -5,7 +5,7 @@
     <title>REngine9 Demo</title>
     
     <link href="/team/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/team/style.css" rel="stylesheet">
+    <link href="/team/bootstrap/css/style.min.css" rel="stylesheet">
     
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     
@@ -20,6 +20,14 @@
         
           <script>
              adddlert("Hallo");
+            
+            foo;
+            
+            eval(3+ten);
+            
+            
+            
+            eval("3+5);
           </script>
         
       </div>

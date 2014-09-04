@@ -29,7 +29,7 @@
     
     
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script src="/team/bootstrap/js/bootstrap.min.js"></script>
+    <link href="/team/bootstrap/css/style.min.css" rel="stylesheet">
 <script>
 window.onerror = function(msg, url, line, col, error) {
 var extra = !col ? '' : "\ncolumn: " + col;

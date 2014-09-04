@@ -41,8 +41,7 @@
     <title>Team Nine</title>
 
     <!-- Bootstrap/TeamNine core CSS -->
-    <link href="/team/style.min.css" rel="stylesheet">
-
+    <link href="/team/bootstrap/css/style.min.css" rel="stylesheet">
   </head>
 
   <body>
