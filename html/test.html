@@ -1,0 +1,46 @@
+<html>
+  <body>
+    <p></p>
+    <a onclick="abcd();">Testing</a>
+    
+ <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script>
+window.onerror = function(msg, url, line, col, error) {
+var extra = !col ? '' : "\ncolumn: " + col;
+extra += !error ? '' : "\nerror: " + error;
+var severity = 0;
+if (error) {
+switch (error.name) {
+case 'EvalError':
+case 'RangeError':
+case 'TypeError':
+severity = 1;
+break;
+case 'ReferenceError':
+case 'SyntaxError':
+default:
+severity = 0;
+break;
+}
+}
+console.log('Error: ' + msg + "\nurl: " + url + "\nline: " + line + "\nseverity: " + severity + extra);
+addError(msg, url,line, severity);
+var suppressErrorAlert = true;
+return suppressErrorAlert;
+}
+function addError(msg, url, line, severity) {
+var formData = {'Aerr' : msg, 'Aline' : line, 'Asrc' : url, 'Asever' : severity, 'Ameth' : null, 
+'Ausr' : null, 'Ausrid' : 'Uo1h2uOPUIkew','Aprj' : 'TzY0y7rO0aOuY', 'ADD' : null};
+$.ajax({
+url: 'https://team.ninth.biz/team/php/logerror.php',
+type: 'POST', 
+data: formData,
+dataType: 'html'
+})
+.done(function( msg ) { 
+//Anything you might want to do after success
+})
+}
+</script>
+  </body>
+</html>

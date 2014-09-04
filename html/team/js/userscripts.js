@@ -1,4 +1,110 @@
 /*Projects Scripts */
+function resolveError(formPrefix, errorid, caller) {
+        // Fill our request with data from our form
+        var formData = {
+          'Rrescmnt' 	: $('textarea[name=Rcomment-' + formPrefix + ']').val(),
+          'Rresusr' 	: caller,
+          'Rid' 	: errorid,
+          'token'  : $('input[name=restoken]').val(),
+          'RES' : null
+        };
+        
+        // Create our ajax requests
+        var request = $.ajax({
+          url: "/team/php/moderror.php",
+          type: "POST", // Simple HTTP protocol
+          data: formData, // Filling in our POSTDATA
+          dataType: "html"
+        })
+
+        //If we're done & successful we print out any messages the php code echos out
+        .done(function( msg ) {
+           window.location.reload(true);
+        })
+        
+        .fail(function(xhr, status, error){
+          
+        });
+}
+
+//['Mid','Msever', 'Musrid', 'Mcmnt', 'token', 'MOD'])
+function modifyError(formPrefix, errorid, severity, myid) {
+        // Fill our request with data from our form
+        var formData = {
+          'Mcmnt' 	: $('textarea[name=Mcomment-' + formPrefix + ']').val(),
+          'Musrid' 	: myid,
+          'Mid' 	: errorid,
+          'Msever' : severity,
+          'token'  : $('input[name=modtoken]').val(),
+          'MOD' : null
+        };
+        
+        // Create our ajax requests
+        var request = $.ajax({
+          url: "/team/php/moderror.php",
+          type: "POST", // Simple HTTP protocol
+          data: formData, // Filling in our POSTDATA
+          dataType: "html"
+        })
+
+        //If we're done & successful we print out any messages the php code echos out
+        .done(function( msg ) {
+           window.location.reload(true);
+        })
+        
+        .fail(function(xhr, status, error){
+          
+        });
+}
+
+function deployableScript(myId, projId){
+  var user = null;
+  var listener = "\
+   window.onerror = function(msg, url, line, col, error) {<br>\
+   var extra = !col ? '' : \"\\ncolumn: \" + col;<br>\
+   extra += !error ? '' : \"\\nerror: \" + error;<br>\
+   var severity = 0;<br>\
+    if (error) {<br>\
+     switch (error.name) {<br>\
+       case 'EvalError':<br>\
+       case 'RangeError':<br>\
+       case 'TypeError':<br>\
+         severity = 1;<br>\
+         break;<br>\
+       case 'ReferenceError':<br>\
+       case 'SyntaxError':<br>\
+       default:<br>\
+         severity = 0;<br>\
+         break;<br>\
+      }<br>\
+    }<br>\
+   console.log('Error: ' + msg + \"\\nurl: \" + url + \"\\nline: \" + line + \"\\nseverity: \" + severity + extra);<br>\
+   addError(msg, url,line, severity);<br>\
+   var suppressErrorAlert = true;<br>\
+   return suppressErrorAlert;<br>\
+}<br>";
+var actor = "function addError(msg, url, line, severity) {<br>\
+  var formData = {'Aerr' : msg, 'Aline' : line, 'Asrc' : url, 'Asever' : severity, 'Ameth' : null, <br>\
+                  'Ausr' : null, 'Ausrid' : '" + myId +"','Aprj' : '" + projId + "', 'ADD' : null};<br>\
+         $.ajax({<br>\
+          url: 'https://team.ninth.biz/team/php/logerror.php',<br>\
+          type: 'POST', <br>\
+          data: formData,<br>\
+          dataType: 'html'<br>\
+        })<br>\
+        .done(function( msg ) { <br>\
+          //Anything you might want to do after success<br>\
+        })<br>\
+      }";
+  return listener + actor;
+}
+function displayScript (userid, projid) {
+  var script = "&lt;script src=\"//code.jquery.com/jquery-1.11.1.min.js\"&gt&lt;/script&gt;<br>&lt;script&gt;<br>" + deployableScript(userid, projid) + "<br>&lt;/script&gt;";
+  $('#script-body').html(script);
+  $('#script-modal').modal('show');
+}
+
+
       function removeUserFromProject (myId, userId, projId, idToHide){
         if (confirm("Are you sure you want to remove this user from your project?")) {
           if (removeUserFromProjectScript(myId, userId, projId)) {

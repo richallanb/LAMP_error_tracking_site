@@ -78,7 +78,8 @@ HTML;
       <li class="dropdown"><a href="#" id="signin-menu" class="dropdown-toggle" data-toggle="dropdown">Sign In <span class="caret"></span></a>
         <ul class="dropdown-menu signin sign-dd" role="menu" style="width: 265px">
           <li><h4>Sign In</h4>
-            <form class="form-signin" name="login" id="signin" role="form" method="post" action="/team/php/login.php">
+            <div id="signin-response"></div>
+            <form class="form-signin" name="login" id="signin" role="form">
               <input name="user" type="text" class="form-control" placeholder="Username" oninvalid="setCustomValidity('Username must begin with alphanumeric character. It can only contain alphanumeric characters or \'_\' and between 6 and 21 characters long');" onchange="try{setCustomValidity('')}catch(e){}" pattern="^[a-zA-Z](([a-zA-Z0-9]+)|_([a-zA-Z0-9]+)){5,21}$" required autofocus style="margin-bottom: 5px">
               <input name="password" type="password" class="form-control" oninvalid="setCustomValidity('Passwords must be atleast 8 characters long');" onchange="try{setCustomValidity('')}catch(e){}" pattern=".{7,}" placeholder="Password" required style="margin-bottom: 10px">
               <input type="hidden" name="token" value=$newToken>

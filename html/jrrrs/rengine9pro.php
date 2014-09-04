@@ -2,19 +2,27 @@
   // REQUIRES echo to show
 
   // List not made, not logged in
-  if(!$personal_profile || $level == -1){
+  if(!$Myself || $level == -1){
     return;
   }
 
   // Form security
   $refToken = generateFormToken('referral');
+  $modToken = generateFormToken('modify-err');
+  $resToken = generateFormToken('resolve-err');
+  echo "<input type=\"hidden\" name=\"restoken\" value=$resToken>";
+  echo "<input type=\"hidden\" name=\"modtoken\" value=$modToken>"; 
   echo "<input type=\"hidden\" name=\"reftoken\" value=$refToken>";
   // Put up here for easier maintenance 
   function table_header(){
     $body = <<< HTML
       <tr>
         <th class="project-user-header" style="width:23%">Username</th>
+      
+        <!--
         <th class="project-user-header" style="width:15%">Errors</th>
+        -->
+      
         <th class="project-user-header" style="width:23%">Created on</th>
         <th class="project-user-header" style="width:23%">Last Login</th>
         <th class="project-user-header" style="width:15%">Manage</th>     
@@ -24,10 +32,11 @@ HTML;
   }
 
   // Creates table rows
-  function table_row($User, $my_id, $project_id, $ownership, $row_id) {    
+  function table_row($User, $project_id, $ownership, $row_id) {    
+    global $Myself;
+    $my_id = $Myself->getIdHash();  
     $user_id = $User->getIdHash();
     
-    $management_td = "<td></td>";
     if( $ownership && ($user_id != $my_id) ){
       $management_td = <<< HTML
         <td>
@@ -43,6 +52,14 @@ HTML;
           </div>
         </td>
 HTML;
+    }else if($user_id == $my_id){
+      $management_td = <<< HTML
+        <td class="project-header-like">YOU ({$User->getName()})</td>
+HTML;
+    }else{
+      $management_td = <<< HTML
+        <td class="project-header-like">MANAGER ONLY</td>
+HTML;
     }
     
     date_default_timezone_set('US/Pacific');
@@ -52,7 +69,6 @@ HTML;
     $body = <<< HTML
       <tr id="$row_id">
         <td title="{$User->getEmail()}">{$User->getName()}</td>
-        <td><button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#userData"><span class="glyphicon glyphicon-chevron-down"></span>&nbsp;View</button></td>
         <td>$date_created</td>
         <td>$date_last_login</td>
         $management_td
@@ -86,10 +102,13 @@ HTML;
   }
 
   // Creates project management actions
-  function manage($project_name, $project_id, $my_id, $ownership, $div_id){
+  function manage($project_name, $project_id, $ownership, $div_id){
+    global $Myself;
+    $my_id = $Myself->getIdHash();
+    
     if($ownership){
       $body = <<< HTML
-        <li role="presentation" class="dropdown-header">Invite Users to "<b>$project_name</b>"</li>
+        <li role="presentation" class="dropdown-header">Ask Users to Join</li>
         <li class="nohover">
             <form method="post" class="proj-invite" onsubmit="projSender('$div_id', '$project_id', '$my_id');">
               <div class="input-group" style="margin-bottom: 5px;">
@@ -99,6 +118,12 @@ HTML;
               </button>
             </form>
         </li>
+        <li role="presentation" class="dropdown-header">Track errors</li>
+        <li>
+          <a style="cursor:pointer;" onclick="displayScript('$my_id', '$project_id');">
+            <span style="margin-right:10px;margin-left:8px;" class="glyphicon glyphicon-cloud-download"></span>Generate Deployable Script
+          </a>
+        </li>
         <li role="presentation" class="divider"></li>
         <li>
           <a style="cursor:pointer" onclick="deleteProject('$my_id', '$project_id', '$div_id');"><span style="margin-top:2px;margin-right:10px;margin-left:8px;" class="glyphicon glyphicon-remove-sign pull-left"></span> Delete Project</a>
@@ -106,6 +131,13 @@ HTML;
 HTML;
     }else{
       $body = <<< HTML
+        <li role="presentation" class="dropdown-header">Track errors</li>
+        <li>
+          <a style="cursor:pointer" onclick="displayScript('$my_id', '$project_id');">
+            <span style="margin-right:10px;margin-left:8px;" class="glyphicon glyphicon-cloud-download"></span>Generate Deployable Script
+          </a>
+        </li>
+        <li role="presentation" class="divider"></li>
         <li>
           <a style="cursor:pointer" onclick="leaveProject('$my_id', '$project_id', '$div_id');"><span style="margin-top:2px;margin-right:10px;margin-left:8px;" class="glyphicon glyphicon-minus-sign pull-left"></span> Leave Project</a>
         </li>
@@ -116,15 +148,15 @@ HTML;
 
   // Creates table body from array list, skips first element
   function table_body($Project, $ownership, $div_id){
+    
     $body = "";
-    $my_id = $Project->getUsers()[MYSELF]->getIdHash();
     
     $user_number = 1;
     foreach($Project->getUsers() as $User){
       $row_id = $div_id . "USER" . $user_number;
       $user_number++;
       
-      $body .= table_row($User, $my_id, $Project->getIdHash(), $ownership, $row_id);
+      $body .= table_row($User, $Project->getIdHash(), $ownership, $row_id);
     }
     return $body;
   }
@@ -151,10 +183,9 @@ HTML;
       // Project info
       $project_name = $Project->getName();
       $project_owner = $Project->getOwner()->getName();
-      $project_manage = manage(
+      $project_manage_li = manage(
         $project_name, 
         $Project->getIdHash(), 
-        $Project->getUsers()[MYSELF]->getIdHash(), 
         $ownership, 
         $div_id
       );
@@ -166,11 +197,11 @@ HTML;
           <div class="project-title">
             <div class="dropdown" title="Manage $project_name">
               <h4>
-                <a class="dropdown-toggle" data-toggle="dropdown" style="font-weight:bold">$project_name <span class="caret"></span></a>
+                <a class="dropdown-toggle" data-toggle="dropdown">$project_name <span class="caret"></span></a>
                 <small>by $project_owner</small>
               </h4>
               <ul class="dropdown-menu" role="menu" style="width:300px">
-                $project_manage
+                $project_manage_li
               </ul>
             </div>    
           </div>
@@ -191,50 +222,66 @@ HTML;
   }
 
   // MAIN
-  $users_table = table($projects_list);
+  $users_table = table($Projects_list);
+  $errors_table = projects_error_table($Projects_list);
 
   // JUMBOTRON, Projects Management
   $html = <<< HTML
     <div class="tab-pane jumbotron" id="projects">
-      <div class="tab-container tab-jumbo"> <ul class="tabbed-list">
-        <li class="tab activeTab" data-action="nada"><span class="icon glyphicon glyphicon-list-alt"></span>Projects</li>
-        <li class="tab" data-action="nada" id="show-errors"><span class="icon glyphicon glyphicon-fire"></span>Errors</li>
-      </ul></div>
-      <h2 style="margin:20px 0px 3px 0px">{$_SESSION['user']} Projects</h2><span></span>
-      <span>powered by <strong>REngine <span style="color:lightseagreen">9</span> PRO</strong></span>
+      <div class="tab-container tab-jumbo"> 
+        <ul class="tabbed-list">
+          <li class="tab activeTab" data-action="project-container"><span class="icon glyphicon glyphicon-list-alt"></span>Projects</li>
+          <li class="tab" data-action="project-error-container" id="show-project-errors"><span class="icon glyphicon glyphicon-fire"></span>Errors</li>
+        </ul>
+      </div>
+     
+      <div id="project-container" class="pane-toggle">
+        <h2 style="margin:20px 0px 3px 0px">{$_SESSION['user']} Projects</h2><span></span>
+        <span>powered by <strong>JRRRS <span style="color:brown">UX</span></strong></span>
 
-      <div class="row" style="margin: 20px 0 20px 0">
-        <div class="col-md-6">
-          <h4>Start a Project</h4>
-          <form method="post" role="form" action="/team/php/pj_createProject.php">
-            <div class="input-group" style="margin-bottom: 5px; width:100%">
-              <div class="input-group-addon"><span class="glyphicon glyphicon-leaf"></span></div>
-              <input class="form-control" name="CPFprojectname" placeholder="Project Name" required></div>
-              <input type="hidden" name="CPFmyname" value="{$_SESSION['user']}">
-              <input type="hidden" name="CPFmyid" value="{$personal_profile->getIdHash()}">
-            
-            <div style="vertical-align:middle !important">
-              Create a project with <strong>REngine <span style="color:lightseagreen">9</span> PRO</strong>
-              <button class="btn btn-default btn-block" style="max-width:200px;float:right;" type="submit">Create</button>
-            </div>
-          </form>
+        <div class="row" style="margin: 20px 0 20px 0">
+          <div class="col-md-6">
+            <h4>Start a Project</h4>
+            <form method="post" role="form" action="/team/php/pj_createProject.php">
+              <div class="input-group" style="margin-bottom: 5px; width:100%">
+                <div class="input-group-addon"><span class="glyphicon glyphicon-leaf"></span></div>
+                <input class="form-control" name="CPFprojectname" placeholder="Project Name" required></div>
+                <input type="hidden" name="CPFmyname" value="{$_SESSION['user']}">
+                <input type="hidden" name="CPFmyid" value="{$Myself->getIdHash()}">
+
+              <div style="vertical-align:middle !important">
+                Create a project with <strong>REngine <span style="color:lightseagreen">9</span> PRO</strong>
+                <button class="btn btn-default btn-block" style="max-width:200px;float:right;" type="submit">Create</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="col-md-6">
+            <h4>Invite a Friend</h4>
+            <form method="post" role="form" id="referal">
+              <div class="input-group" style="margin-bottom: 5px;">
+                <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
+                <input class="form-control" name="RFemail" placeholder="Enter email" required>
+              </div>
+              <div style="vertical-align:middle !important">
+                Refer your friends to <strong>REngine <span style="color:lightseagreen">9</span></strong>
+                <button class="btn btn-default btn-block" style="max-width:200px;float:right;" type="submit">Invite</button>
+              </div>
+            </form>
+          </div>
         </div>
+        $users_table
+      </div>
     
-        <div class="col-md-6">
-          <h4>Invite a Friend</h4>
-          <form method="post" role="form" id="referal">
-            <div class="input-group" style="margin-bottom: 5px;">
-              <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
-              <input class="form-control" name="RFemail" placeholder="Enter email" required>
-            </div>
-            <div style="vertical-align:middle !important">
-              Refer your friends to <strong>REngine <span style="color:lightseagreen">9</span></strong>
-              <button class="btn btn-default btn-block" style="max-width:200px;float:right;" type="submit">Invite</button>
-            </div>
-          </form>
+      <div id="project-error-container" class="pane-toggle" style="display:none">
+        <h2 style="margin:20px 0px 3px 0px">Project Errors</h2><span></span>
+        <span>powered by <strong>REngine <span style="color:lightseagreen">9</span> PRO</strong></span>
+        <div style="margin-top: 20px">
+          $errors_table
         </div>
       </div>
-        
+    </div>
+    
       <!--
         <div class="panel panel-default">
           <div class="panel-heading"  style="display:inline-block; width:100%" id="adduser-btn">
@@ -264,38 +311,14 @@ HTML;
           <div><button class="btn btn-default btn-block" name="Ssubmit" type="submit">Add User</button></div>
         </form>
       </div>
-    -->
 
-      $users_table
+      
       <ul class="pager">
         <li><a href="#">Previous</a></li>
         <li><a href="#">Next</a></li>
       </ul>
     </div>
-HTML;
-  echo $html;
-
-  // MODAL
-  $html = <<< HTML
-    <div class="modal fade" id="userData" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">
-              <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-            </button>
-            <h4 class="modal-title" id="myModalLabel">Error Log</h4>
-          </div>
-          <div class="modal-body" style="display:block;">
-            <div id="alluserGraph" style="width:100%;"></div>
-            $errordetail
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
+    -->
 HTML;
   echo $html;
 ?>

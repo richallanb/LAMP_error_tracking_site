@@ -2,7 +2,9 @@
   // Pulls user projects data
 
   // Includes
+  require_once('objects.php');
   require_once('mysql.php');
+  require_once('encrypt.php');
 
   // Must be logged to pull data
   if( !isset($_SESSION["admin"]) || !isset($_SESSION["logged"]) || !$_SESSION["logged"]){

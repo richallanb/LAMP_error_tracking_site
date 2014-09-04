@@ -20,7 +20,7 @@
     }
     
     public function addError($e){
-      $this->Errors[] = $e;
+      $this->Errors[$e->getId()] = $e;
     }
     
     public function getName(){
@@ -69,7 +69,7 @@
     }
     
     public function addUser($u){
-      $this->Users[] = $u;
+      $this->Users[$u->getIdHash()] = $u;
     }
     
     public function addOwner($o){
@@ -93,7 +93,6 @@
   }
 
   class Error{
-    
     // For ajax identification
     private $id;
     
@@ -105,23 +104,28 @@
     // Detail variables
     private $line;
     private $source;
-    private $method;
     private $comment;
     
     // Resolution variables
+    private $resolved;
     private $resolved_comment;
     private $resolved_date;
     private $resolved_user;
     
-    public function __construct($i, $n, $cd, $sl, $l, $s, $m, $c = NULL, $rc = NULL, $rd = NULL, $ru = NULL){
+    private $occurrence;
+    
+    public function __construct($i, $o, $n, $cd, $sl, $l, $s, $c = NULL, $r = FALSE, $rc = NULL, $rd = NULL, $ru = NULL){
       $this->id = $i;
+      $this->occurrence = $o;
       $this->name = $n;
       $this->create_date = $cd;
       $this->severity = $sl;
       $this->line = $l;
       $this->source = $s;
-      $this->method = $m;
+      
+      // Nullable entries
       $this->comment = $c;
+      $this->resolved = $r;
       $this->resolved_comment = $rc;
       $this->resolved_date = $rd;
       $this->resolved_user = $ru;
@@ -150,13 +154,13 @@
     public function getSource(){
       return $this->source;
     }
-    
-    public function getMethod(){
-      return $this->method;
-    }
-    
+        
     public function getComment(){
       return $this->comment;
+    }
+    
+    public function isResolved(){
+      return $this->resolved;
     }
     
     public function getResolvedComment(){
@@ -171,6 +175,9 @@
       return $this->resolved_user;
     }
     
+    public function getCount(){
+      return $this->occurrence;
+    }
   }
 
 ?>

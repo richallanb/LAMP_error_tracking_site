@@ -123,10 +123,14 @@
 }
 .carousel-indicators > li{
   border: 0px solid #fff;
+  margin-left:10px;
+  margin-right:10px;
   background-color: #fff;
   box-shadow: 0 0 5px rgba(255,255,255,0.5);
 }
 .carousel-indicators > li.active{
+  margin-left:10px;
+  margin-right:10px;
   background-color: #28BED6;
   box-shadow: 0 0 10px rgba(72,222,246,1);
 }

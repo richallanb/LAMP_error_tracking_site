@@ -3,7 +3,8 @@ require_once('../../protected/constants.php');
 if ($level >= USER){
   $vars = <<< HTML
     <script>
-      TeamNineLoggedUser = "{$_SESSION['user']}"; 
+      
+      TeamNineLoggedUserId = "$userIdHash"; 
     </script>
 HTML;
   echo '<script src="/team/js/userscripts.js"></script>';

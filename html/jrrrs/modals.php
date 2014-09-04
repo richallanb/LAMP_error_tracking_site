@@ -99,5 +99,33 @@ $signup = <<< HTML
 </div>
 HTML;
 echo $signup;
+//End of signup
+?>
+<?php
+//Script generator
+$scriptt = <<< HTML
+<div class="modal fade" id="script-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <div class="modal-body" style="padding: 0">
+          <h4 class="modal-title" id="myModalLabel">Your Deployable Code</h4>
+          Copy the code beneath into the page of your choice and you are good to go!
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="well" style="max-height:600px;overflow:auto;">
+          <code id="script-body" style="color:black;"></code>
+        </div>
+      </div>
+      <!--div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div-->
+    </div>
+  </div>
+</div>
+HTML;
+echo $scriptt;
 ?>
 

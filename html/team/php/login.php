@@ -5,42 +5,53 @@ session_start();
 
 if(!empty($_POST)){  
     $user = filter_var($_POST['user'], FILTER_SANITIZE_STRING);
-  
-    //$user = $_POST['user']; 
     $pw = $_POST['password'];
 
-    $myCon = new mysqliInterface;
-    list($servHash, $admin) = $myCon->queryUser($user);
+    
     
    
-    if (checkPasswordAgainstHash($pw, $servHash) && verifyFormToken("signin") && validatePost()) {
-      $_SESSION['user'] = $user;
-      $_SESSION['logged'] = TRUE;
-      $_SESSION['admin'] = $admin;
-      $myCon->lastLogin($user);
-      
-      header('Location: ' . $_SERVER['HTTP_REFERER'] . "#dashboard");
-      exit;
-      
+    if (verifyFormToken("signin") && validatePost() && validateInput($user, $pw)) {
+      $myCon = new mysqliInterface;
+      list($servHash, $admin, $idhash) = $myCon->queryUser($user);
+      if (checkPasswordAgainstHash($pw, $servHash)) {
+        $_SESSION['user'] = $user;
+        $_SESSION['logged'] = TRUE;
+        $_SESSION['admin'] = $admin;
+        $_SESSION['idhash'] = $idhash;
+        $myCon->lastLogin($user);
+
+        echo "OK";
+        exit;
+      } else {
+        echo loginError();
+        header('HTTP/1.1 400 Bad Request');
+        exit();
+      }
     }else{
-      header('Location: ' . $_SERVER['HTTP_REFERER']);
+      header('HTTP/1.1 400 Bad Request');
       exit;
     }
 }
 
 function validatePost(){
-  return validateArray($_POST, ['user', 'submit', 'password', 'token']);
+  return validateArray($_POST, ['user', 'password', 'token']);
 }
-/*
-function echoError(){
+
+function validateInput($user, $pw) {
+  if (!preg_match(USER_REGEX, $user) ||
+      !preg_match(PASS_REGEX, $pw)
+     ) {
+    return false;
+  }
+  return true;
+}
+
+function loginError(){
   $body = '';
   $body .= <<< HTML
-    <div class="alert alert-warning alert-dismissible" role="alert">
-      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-      <strong>Bad username OR password !</strong> Try Again Bro!
-    </div>    
+        <span style="margin: 5px 0 5px 0; color:red;">Bad username or password!</span>
 HTML;
-  echo $body;
-}*/
+  return $body;
+}
   
 ?>

@@ -19,6 +19,7 @@
   }
 
   static $level = -1;
+  static $userIdHash = null;
   /* FOR VALIDATION! DO NOT DELETE!! 
   $level = 3;
   $_SESSION['user'] = "testing123";
@@ -27,6 +28,7 @@
   ///*
   if( isset($_SESSION["admin"]) && isset($_SESSION["logged"]) && $_SESSION["logged"] ){
     $level = $_SESSION["admin"];
+    $userIdHash = $_SESSION["idhash"];
   }
   //*/
 ?>
@@ -38,10 +40,8 @@
 
     <title>Team Nine</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="/team/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/team/bootstrap/css/carousel.css" rel="stylesheet">
-    <link href="/team/style.css" rel="stylesheet">
+    <!-- Bootstrap/TeamNine core CSS -->
+    <link href="/team/style.min.css" rel="stylesheet">
 
   </head>
 
@@ -49,6 +49,7 @@
   <!-- Needed for logging scripts -->
   <script>
     var TeamNineLoggedUser = null;
+    var TeamNineLoggedUserId = null;
   </script>
     <?php // NAVBAR
       include("$_SERVER[DOCUMENT_ROOT]/jrrrs/navbar.php"); 
@@ -64,11 +65,14 @@
         // Pulls personal dashboard + user management data
         if($level != -1) {
           include('../../protected/pull.php');
-          $personal_profile = getProfile();
-          $projects_list = getProjects();
+          $Myself = getProfile();
+          $Projects_list = getProjects();
           
           // ERROR DETAIL, used in dashboard and site management
           $errordetail = include("$_SERVER[DOCUMENT_ROOT]/jrrrs/errordetail.php"); 
+          
+          // ERROR DETAIL function library
+          include("$_SERVER[DOCUMENT_ROOT]/jrrrs/errordetailv2.php"); 
           
           // Jumbotron, DASHBOARD, DEVDEV+
           include("$_SERVER[DOCUMENT_ROOT]/jrrrs/rengine9.php");
@@ -176,14 +180,14 @@
       </div> <!-- END HOME -->
 
       <div id="about" class="tab-pane jumbotron">
-        <div id="curly" style="display:none;cursor:pointer;" onclick="$(this).hide();$('#team-container').show();"><img style="width:100%;height:auto;" src="/team/images/curly.gif" alt="Strike 3 Curly.."></div>
+        <!--div id="curly" style="display:none;cursor:pointer;" onclick="$(this).hide();$('#team-container').show();"><img style="width:100%;height:auto;" src="/team/images/curly.gif" alt="Strike 3 Curly.."></div-->
         <div id="team-container">
           <h2>Meet Team Nine</h2>
           <span style="text-align:left; margin:0">Click to know more.</span>
           <section class="members"> 
           <div class="members" id="div-jessica"><header class="members"><h3>Jessica</h3></header><article class="members"><img  src="/team/images/jessica.jpg" data-click=".jessica-data" class="img-circle members" alt="Jessica"></article></div>
           <div class="members" id="div-rick"><header class="members"><h3>Rick</h3></header><article class="members"><img  src="/team/images/rick.gif" data-click=".rick-data" class="img-circle members" alt="Rick"></article></div>
-          <div class="members" id="div-rolando"><header class="members"><h3>Rolando</h3></header><article class="members"><img  src="/team/images/rolando.gif" data-click=".rolando-data" class="img-circle members" alt="Rolando"></article></div>
+          <div class="members" id="div-rolando"><header class="members"><h3>Rolando</h3></header><article class="members"><img  src="/team/images/ceo.gif" data-click=".rolando-data" class="img-circle members" alt="Rolando"></article></div>
           <div class="members" id="div-rosheni"><header class="members"><h3>Rosheni</h3></header><article class="members"><img src="/team/images/rosha.jpg" data-click=".rosheni-data" class="img-circle members" alt="Rosheni"></article></div>
           <div class="members" id="div-steve"><header class="members"><h3>Steve</h3></header><article class="members"><img  src="/team/images/steve.jpg" data-click=".steve-data" class="img-circle members" alt="Steve"></article></div></section>
 
@@ -211,8 +215,8 @@
             </div>
             <div class="col-lg-4">
               <h4><b>Favorite Quotes</b></h4>
-              1. <a class="ignoreme" style="cursor:pointer;" onclick="$('#team-container').hide();$('#curly').toggle(300);">"Strike 3 Curly"</a>
-              <br><br>2. "Security through obscurity only works if you're absolutely certain everyone is as dumb as you"<br><em>- Me</em>
+              <!--1. <a class="ignoreme" style="cursor:pointer;" onclick="$('#team-container').hide();$('#curly').toggle(300);">"Strike 3 Curly"</a>
+              <br><br-->1. "Security through obscurity only works if you're absolutely certain everyone is as dumb as you"<br><em>- Me</em>
 
             </div>
             <div class="col-lg-4">
@@ -399,38 +403,6 @@
           </ol></div>
       </div>
         
-      <!--
-      <div id="proj" class="jumbotron">
-        <h2>Our Project Progress</h2>
-        <div style="margin: 20px 20px 0 20px;width:100%;">
-          <h4>Homework 1</h4>
-          <div class="progress">
-            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $hw1; ?>%">
-              <?php echo $hw1; ?>% Complete 
-            </div>
-          </div>
-          <h4>Homework 2</h4>
-          <div class="progress">
-            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $hw2; ?>%">
-              <?php echo $hw2; ?>% Complete
-            </div>
-          </div>
-          <h4>Homework 3</h4>
-          <div class="progress">
-            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $hw3; ?>%">
-              <?php echo $hw3; ?>% Complete
-            </div>
-          </div>
-          <h4>Homework 4</h4>
-          <div class="progress">
-            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $hw4; ?>%">
-              <?php echo $hw4; ?>% Complete
-            </div>
-          </div>
-        </div>
-      </div>
-      -->
-
       <?php include("$_SERVER[DOCUMENT_ROOT]/jrrrs/footer.html"); ?>
       
     </div> <!-- /container -->
@@ -440,7 +412,7 @@
     <script src="/team/bootstrap/js/bootstrap.min.js"></script>
     <script src="//code.highcharts.com/highcharts.js"></script>
     <script src="//code.highcharts.com/modules/exporting.js"></script>
-    <script src="/team/js/scripts.js"></script>
+    <script src="/team/js/scripts.min.js"></script>
     <?php include("$_SERVER[DOCUMENT_ROOT]/jrrrs/javascripts.php"); ?> 
     <script>
            

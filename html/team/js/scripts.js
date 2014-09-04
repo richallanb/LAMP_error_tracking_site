@@ -59,7 +59,7 @@ window.onerror = function(msg, url, line, col, error) {
 function addError(msg, url, line, severity) {
         // Fill our request with data from our form
   var formData = {'Aerr' : msg, 'Aline' : line, 'Asrc' : url, 'Asever' : severity, 'Ameth' : null, 
-                  'Ausr' : TeamNineLoggedUser, 'Aprj' : null, 'ADD' : null};
+                  'Ausr' : null, 'Ausrid' : TeamNineLoggedUserId, 'Aprj' : null, 'ADD' : null};
         // Create our ajax request
          $.ajax({
           url: "/team/php/logerror.php",
@@ -73,6 +73,46 @@ function addError(msg, url, line, severity) {
         
       }
 /* End of Error Reporting Scripts */
+
+/* Sign-In Scripts */
+$('#signin').submit(function(event) {
+        signIn();
+        event.preventDefault(); // This stops the form from refreshing the page VERY IMPORTANT
+      });
+      
+      function clearSignInInputs() {
+        $('input[name=password]').val("");
+        $('input[name=user]').val("");
+      }
+      function signIn() {
+        // Fill our request with data from our form
+        var formData = {
+          'user' 			: $('input[name=user]').val(),
+          'password' 	: $('input[name=password]').val(),
+          'token'      : $('input[name=token]').val()
+
+        }; 
+        // Create our ajax request
+         $.ajax({
+          url: "/team/php/login.php",
+          type: "POST", // Simple HTTP protocol
+          data: formData, // Filling in our POSTDATA
+          dataType: "html"
+        })
+        //If we're done & successful we print out any messages the php code echos out
+        .done(function( msg ) {
+         window.location.href = "/#dashboard";
+         window.location.reload(true);
+        })
+         // Failed request 400 Bad Request is likely
+        .fail(function(xhr, status, error) {
+          $('input[name=user]').val("");
+          $('input[name=password]').val("");
+          $( "#signin-response" ).html( xhr.responseText );
+        });
+      }
+    
+/* End of Sign-In Scripts */
 
 /*Sign Up Scripts */
       function clearSignUpInputs() {
