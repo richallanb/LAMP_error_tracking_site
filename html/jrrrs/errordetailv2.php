@@ -260,7 +260,7 @@ HTML;
     
     $body = <<< HTML
       <td class="dropdown text-center">
-        <a class="dropdown-toggle longtext" data-toggle="dropdown">$dropdown_message
+        <a class="dropdown-toggle longtext" data-toggle="dropdown">$dropdown_message</a>
         <ul class="dropdown-menu" role="menu" style="width: 350px">
           <li role="presentation" class="dropdown-header">Drop a Comment</li>
           <li role="presentation" class="nohover">
