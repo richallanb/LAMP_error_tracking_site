@@ -679,10 +679,10 @@ class mysqliInterface {
     }
     return -1;
   }
-  function modifyError($errorIdHash, $caller, $comment, $severity){
+  function modifyError($errorIdHash, $callerIdHash, $comment, $severity){
     $comment = filter_var($comment, FILTER_SANITIZE_STRING);
-    if($stmt = $this->con->prepare("UPDATE `Errors` err0 INNER JOIN `Errors` err1 ON err1.idhash = ? AND err1.user = ? SET err0.`comment` = ?, err0.`severity` = ? WHERE err0.`error` = err1.`error` AND err0.`line` = err1.`line` AND err0.`source` = err1.`source`;")){
-          $stmt->bind_param("sssi", $errorIdHash, $caller, $comment, $severity);
+    if($stmt = $this->con->prepare("UPDATE `Errors` err0 INNER JOIN `Errors` err1 ON err1.idhash = ? AND err1.user_idhash = ? SET err0.`comment` = ?, err0.`severity` = ? WHERE err0.`error` = err1.`error` AND err0.`line` = err1.`line` AND err0.`source` = err1.`source`;")){
+          $stmt->bind_param("sssi", $errorIdHash, $callerIdHash, $comment, $severity);
           if ($stmt->execute()) {
             $worked = ($stmt->affected_rows > 0);
             $stmt->close();
