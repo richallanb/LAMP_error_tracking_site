@@ -1,6 +1,5 @@
 <?php
-session_name ("b_y6fcPbVeYEmN^NNfW+A*myn8SsXxAuw9!3?LawN8Np^5tDdXe3EzVMFC9k=dwuHTuLeE5CG5@?-KfZLhzF+L+wqqGB*#6LQsFF=uATu_N9P@!JpzFegDE2ZQtndRrT");
-session_start();
+header('Access-Control-Allow-Origin: *');
 require_once('header.php');
 
 if (!empty($_POST)){
@@ -13,8 +12,9 @@ if (!empty($_POST)){
     $method = filter_var($_POST['Ameth'], FILTER_SANITIZE_STRING);
     $user = filter_var($_POST['Ausr'], FILTER_SANITIZE_STRING);
     $proj = filter_var($_POST['Aprj'], FILTER_SANITIZE_STRING);
+    $userId = filter_var($_POST['Ausrid'], FILTER_SANITIZE_STRING);
     $myCon = new mysqliInterface;
-    $myCon->addError($error, $line, $source, $method, $user, $proj, $severity);
+    $myCon->addError($error, $line, $source, $method, $user, $userId, $proj, $severity);
   } else if (isset($_POST['RES']) && validateResPost()) {
     // Sanitize input
     $error_id = filter_var($_POST['Rid'], FILTER_SANITIZE_STRING);
@@ -34,7 +34,7 @@ if (!empty($_POST)){
 }
 
 function validateAddPost(){
-  return validateArray($_POST, ['Aerr', 'Aline', 'Asrc', 'Asever', 'Ameth', 'Ausr', 'Aprj', 'ADD']);
+  return validateArray($_POST, ['Aerr', 'Aline', 'Asrc', 'Asever', 'Ameth', 'Ausr', 'Ausrid' ,'Aprj', 'ADD']);
 }
 function validateResPost(){
   return validateArray($_POST, ['Rid','Rres', 'Rrescmnt', 'Rresdate', 'Rresusr', 'RES']);
