@@ -76,7 +76,7 @@ HTML;
       $resolved_tr = <<< HTML
         <tr>
           <td class="details-title">RESOLVED BY</td>
-          <td>{$Error->getResolvedUser()} $resolved_date</td>
+          <td>{$Error->getResolvedUser()} <span style="margin-right:10px;">&nbsp;</span>$resolved_date</td>
         </tr>
         <tr>
           <td class="details-title">MESSAGE</td>
@@ -191,9 +191,10 @@ HTML;
     $error_idHash = $Error->getIdHash();
     $error_id = $Error->getId();
     $form_id = "$type-$error_id";
+    $disabled = $Error->isResolved()?"disabled":"";
     $body = <<< HTML
       <td>
-        <select class="form-control" style="padding: 0 0 0 3px" onchange="modifySeverity('$form_id', '$error_idHash', $(this).val(), '$my_id', event)">
+        <select class="form-control" style="padding: 0 0 0 3px;cursor:default;" onchange="modifySeverity('$form_id', '$error_idHash', $(this).val(), '$my_id', event)" $disabled>
           $options
         </select>
       </td>
@@ -328,11 +329,10 @@ HTML;
 
     $body = <<< HTML
       <td class="dropdown" title="$name">
-        <a class="dropdown-toggle" data-toggle="dropdown">
+        
           <p class="longtext" style="font-size: inherit; margin:0">
-            <span class="badge">{$Error->getCount()}</span> $name
+            <span class="badge">{$Error->getCount()}</span> <a class="dropdown-toggle" data-toggle="dropdown">$name</a>
           </p>
-        </a>
         <ul class="dropdown-menu" role="menu" style="width: 350px">
           $resolution_li
           <li role="presentation" class="divider"></li>
