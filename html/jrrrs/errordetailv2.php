@@ -45,7 +45,7 @@ HTML;
   }
 
   //Fills error undertable with additional info
-  function more_info($Error, $User){
+  function more_info($Error, $User, $view_id){
     $comment = $Error->getComment();
     $count = $Error->getCount();
     if( $comment ){
@@ -53,23 +53,23 @@ HTML;
     }else{
       $title = "No comment";
     }
-    $body = <<< HTML
+    $details = <<< HTML
       <tr><td><b>Full Error</b>: {$Error->getName()} : Line {$Error->getLine()}</td><td><b>$count</b> Occurrences</td></tr>
       <tr><td><b>Source</b>: {$Error->getSource()}</td><td>&nbsp;</td></tr>
       <tr><td><b>Comment</b>: $title</td><td>&nbsp;</td></tr>
-  HTML;
+HTML;
 
-    $body = <<< HTML;
+    $body = <<< HTML
           <tr>
           <td style="display:none" id="more-info-$view_id" colspan=7>
             <table class="table" style="width=100%">
               <thead><tr><th style="width:85%;margin:0;padding:0;border:none;"></th><th style="width:15%;margin:0;padding:0;border:none;"></th></tr></thead>
-              <tbody>$more_info</tbody>
+              <tbody>$details</tbody>
             </table>
           </td>
         </tr>
 HTML;
-     return $body; 
+    return $body; 
 }
 
   // Creates error table row
@@ -89,7 +89,7 @@ HTML;
     
     // Comment + upload
     $feedback_td = error_modify($Error, $type);
-    $more_info_tr = more_info($Error, $User);
+    $more_info_tr = more_info($Error, $User, $view_id);
     
     $source = $Error->getSource(); 
     
