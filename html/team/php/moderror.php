@@ -13,7 +13,7 @@ if (isset($_POST['RES']) && validateResPost() && verifyFormToken("resolve-err"))
   } else if (isset($_POST['MOD']) && validateModPost() && verifyFormToken("modify-err")) {
     // Sanitize input
     $error_id = $_POST['Mid'];
-    $user_id = $_POST['Musrid'];
+    $user_id = $_SESSION['idhash'];
     $severity = filter_var($_POST['Msever'], FILTER_SANITIZE_STRING);
     $comment = filter_var($_POST['Mcmnt'], FILTER_SANITIZE_STRING);
     $myCon = new mysqliInterface;
@@ -21,7 +21,7 @@ if (isset($_POST['RES']) && validateResPost() && verifyFormToken("resolve-err"))
   } else if (isset($_POST['DIS']) && validateDisPost() && verifyFormToken("modify-err")) {
     // Sanitize input
     $error_id = $_POST['Did'];
-    $user_id = $_POST['Dusrid'];
+    $user_id = $_SESSION['idhash'];
     $myCon = new mysqliInterface;
      if ($myCon->dismissError($error_id, $user_id) != 0) {
        header('HTTP/1.1 400 Bad Request');

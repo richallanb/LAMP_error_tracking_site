@@ -30,7 +30,7 @@
     // CPF - Create Project Form
     $project = $_POST['CPFprojectname'];
     $caller = $_POST['CPFmyname'];
-    $caller_id = $_POST['CPFmyid'];
+    $caller_id = $_SESSION['idhash'];
       
     // One last check!
     if( ($session_id == $caller_id) ){

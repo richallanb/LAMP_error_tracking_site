@@ -28,7 +28,7 @@
   function action($session_id, $connection){
     
     // LPF - Leave Project Form
-    $caller_id = $_POST['LPFmyid'];
+    $caller_id = $_SESSION['idhash'];
     $project_id = $_POST['LPFprojectid'];
       
     // One last check!

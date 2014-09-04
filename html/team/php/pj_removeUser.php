@@ -32,7 +32,7 @@
   function action($session_id, $connection){
  
     // RPUF - Remove Project User Form
-    $caller_id = $_POST['RPUFmyid'];
+    $caller_id = $_SESSION['idhash'];
     $target_id = $_POST['RPUFuserid'];
     $project_id = $_POST['RPUFprojectid'];
       

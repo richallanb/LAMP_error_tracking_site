@@ -28,7 +28,7 @@
   function action($session_id, $connection){
     
     // DPF - Delete Project Form
-    $caller_id = $_POST['DPFmyid'];
+    $caller_id = $_SESSION['idhash'];
     $project_id = $_POST['DPFprojectid'];
       
     // One last check!
