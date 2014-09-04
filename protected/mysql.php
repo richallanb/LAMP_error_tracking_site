@@ -392,7 +392,10 @@ class mysqliInterface {
     if ($projId != null){
       $query = "SELECT uu.user, uu.email, uu.idhash, uu.created, uu.lastlogin, p.name, p.project_idhash, p.owner=uu.user FROM Projects p INNER JOIN Project_Users u ON u.project_idhash = p.project_idhash INNER JOIN Users uu ON uu.user=u.user WHERE p.project_idhash = ? AND ? IN (SELECT user FROM Project_Users WHERE project_idhash=p.project_idhash) ORDER BY uu.user=? DESC;";
     }
-    if ($stmt = $this->con->prepare($query)){
+    
+    $errQuery = "SELECT err.id, err.idhash, err.created, err.error, err.line, err.source, pu.user, err.user_idhash, err.project_idhash, err.severity, err.comment, err.resolved, err.resolved_comment, err.resolved_date, err.resolved_user, COUNT(*) FROM `Errors` err INNER JOIN Project_Users pu ON pu.user_idhash = err.user_idhash WHERE pu.project_idhash = err.project_idhash AND ? IN (SELECT user FROM Project_Users WHERE project_idhash=pu.project_idhash) GROUP BY err.line, err.error, err.source, err.user ORDER BY err.user=? DESC, err.created DESC;";
+      
+    if ($stmt = $this->con->prepare($query)){ // Project Users query
       if ($projId == null) {
         $stmt->bind_param("ss", $caller, $caller);
       } else {
@@ -407,16 +410,35 @@ class mysqliInterface {
         if(!array_key_exists($proj_idhash, $results)){
           $results[$proj_idhash] = new Project($proj_name, $proj_idhash);
         }
-        
+
         $user_object = new User($name, $email, $id, $created, $last_login);
         $results[$proj_idhash]->addUser($user_object);
         if ($proj_owner){
           $results[$proj_idhash]->addOwner($user_object);
         }
       }
-      
       $stmt->close();
-      return $results;
+    
+      // This should be inside that if statement right
+      if($stmt1 = $this->con->prepare($errQuery)){ // Error query
+        $stmt1->bind_param("ss", $caller, $caller);
+        $stmt1->execute();
+        $stmt1->bind_result($errId, $errIdHash, $errCreated, $errName, $errLine, $errSource, $errUser, $errUserIdHash, $errProjIdHash,
+                              $errSeverity, $errComment, $errResolved, $errResolvedComment, $errResolvedDate, $errResolvedUser, $errCount);
+        while($stmt1->fetch()){
+          // public function __construct($i, $count, $n, $cd, $sl, $l, $s, $c = NULL, $rc = NULL, $rd = NULL, $ru = NULL){
+          $error_object = new Error($errId, $errCount, $errName, $errCreated, $errSeverity, $errLine, $errSource, $errComment,
+                                    $errResolved, $errResolvedComment, $errResolvedDate, $errResolvedUser); 
+          //echo "$errUser\n";
+          if(!array_key_exists($errUserIdHash, $results[$errProjIdHash]->getUsers())){ // Method is always going to be GET since it's JS
+            // TODO reminder: delete
+            echo "DEBUG Something seriously wrong";
+            return 0;
+          }
+          $results[$errProjIdHash]->getUsers()[$errUserIdHash]->addError($error_object);
+        }
+        return $results;
+      }
     }
     return 0;
   }
@@ -627,7 +649,7 @@ class mysqliInterface {
   
   // Adds errors to database
   // BE MINDFULL OF NULL VALUES!!
-  function addError($error, $line, $source, $method="", $user="", $proj="", $severity=0){
+  function addError($error, $line, $source, $method="", $user="", $userIdHash="", $proj="", $severity=0){
     $error = filter_var($error, FILTER_SANITIZE_STRING);
     $line = filter_var($line, FILTER_SANITIZE_STRING);
     $source = filter_var($source, FILTER_SANITIZE_STRING);
@@ -637,10 +659,11 @@ class mysqliInterface {
     $severity = (int) $severity;
     $errorHash = projHash($error.$line.$src.$user.$proj);
     $methodN= strlen($method)>0?$method:NULL;
-    $userN= strlen($user)>0?$user:NULL;
+    $userN= NULL;
+    $userIdN= strlen($userIdHash)>0?$userIdHash:NULL;
     $projN= strlen($proj)>0?$proj:NULL;
-     if($stmt = $this->con->prepare("INSERT INTO Errors (`idhash`,`error`,`line`,`source`,`method`,`user`,`project_idhash`, `severity`) VALUES (?, ?, ?, ?, ?, ?, ?, ?);")){
-      $stmt->bind_param("ssissssi", $errorHash, $error, $line, $source, $methodN, $userN, $projN, $severity);
+     if($stmt = $this->con->prepare("INSERT INTO Errors (`idhash`,`error`,`line`,`source`,`method`,`user`, `user_idhash`, `project_idhash`, `severity`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);")){
+      $stmt->bind_param("ssisssssi", $errorHash, $error, $line, $source, $methodN, $userN, $userIdN, $projN, $severity);
       if ($stmt->execute()) {
             $worked = ($stmt->affected_rows > 0);
             $stmt->close();
@@ -656,16 +679,68 @@ class mysqliInterface {
     }
     return -1;
   }
-  
-  function resolveError($errorIdHash, $caller, $comment = ""){
-    //Make sure to resolve all errors with the same error text, source, and line
+  function modifyError($errorIdHash, $caller, $comment, $severity){
+    $comment = filter_var($comment, FILTER_SANITIZE_STRING);
+    if($stmt = $this->con->prepare("UPDATE `Errors` err0 INNER JOIN `Errors` err1 ON err1.idhash = ? AND err1.user = ? SET err0.`comment` = ?, err0.`severity` = ? WHERE err0.`error` = err1.`error` AND err0.`line` = err1.`line` AND err0.`source` = err1.`source`;")){
+          $stmt->bind_param("sssi", $errorIdHash, $caller, $comment, $severity);
+          if ($stmt->execute()) {
+            $worked = ($stmt->affected_rows > 0);
+            $stmt->close();
+            if ($worked)
+              return 0;
+            else
+              return -1;
+          } else {
+            $stmt->close();
+            return -1;
+          }
+        } else {
+          return -1;
+        }
+    
   }
   
+  function resolveError($errorIdHash, $caller, $comment = ""){
+    
+    // Don't forget to add date.
+    $comment = filter_var($comment, FILTER_SANITIZE_STRING);
+    date_default_timezone_set('US/Pacific');
+    $currtime = date("Y-m-d H:i:s");
+    if($stmt = $this->con->prepare("UPDATE `Errors` err0 INNER JOIN `Errors` err1 ON err1.idhash = ? SET err0.`resolved` = 1, err0.`resolved_comment` = ?, err0.`resolved_user` = ?, err0.`resolved_date` = ? WHERE err0.`error` = err1.`error` AND err0.`line` = err1.`line` AND err0.`source` = err1.`source` AND err0.`resolved` <> 1;")){
+          $stmt->bind_param("ssss", $errorIdHash, $comment, $caller, $currtime);
+          if ($stmt->execute()) {
+            $worked = ($stmt->affected_rows > 0);
+            $stmt->close();
+            if ($worked)
+              return 0;
+            else
+              return -1;
+          } else {
+            $stmt->close();
+            return -1;
+          }
+        } else {
+          return -1;
+        }
+    //UPDATE `Errors` err0 INNER JOIN `Errors` err1 ON err1.idhash = 'BfB9qYsPdmm.A' SET err0.`resolved` = 1, err0.`resolved_comment` = 'Testing Resolve', err0.`resolved_user` = 'theFuzz'  WHERE err0.`error` = err1.`error` AND err0.`line` = err1.`line` AND err0.`source` = err1.`source` AND err0.`resolved` <> 1;
+  }
+  
+  function getProjectErrors($caller, $project = NULL) {
+    // Get errors related to a project if the user belongs to the project.
+    // Errors returned sorted with caller as first entries, and errors of the same type are grouped & counted. Errors sorted by time.
+    
+  }
+  
+  function getUserErrors($caller) {
+    // Gets all errors belonging to a user (regardless of project). Errors of the same time are grouped (if they belong to the same project)
+    // Sorted by time
+    //SELECT err.*, COUNT(*) FROM `Errors` err WHERE err.user='theFuzz' GROUP BY err.line, err.error, err.source, err.project_idhash ORDER BY err.created DESC;
+  }
   
   function queryUser($user){
     // Mother fucking prepared statements. Suck it SQL injection.
     //SELECT hash, admin FROM Users WHERE user=? and activated=1;
-    if ($stmt = $this->con->prepare("SELECT u.hash, u.admin, CASE WHEN p.user = ? THEN 1 ELSE 0 END AS proj_member FROM Users u INNER JOIN Project_Users p WHERE u.user = ? AND activated=1 ORDER BY proj_member DESC LIMIT 1;")) {
+    if ($stmt = $this->con->prepare("SELECT u.hash, u.admin, u.idhash, CASE WHEN p.user = ? THEN 1 ELSE 0 END AS proj_member FROM Users u INNER JOIN Project_Users p WHERE u.user = ? AND activated=1 ORDER BY proj_member DESC LIMIT 1;")) {
 
       /* bind parameters for markers */
       /* Bind parameters
@@ -676,7 +751,7 @@ class mysqliInterface {
       $stmt->execute();
 
       /* bind result variables */
-      $stmt->bind_result($hash, $admin, $proj_member);
+      $stmt->bind_result($hash, $admin, $idhash, $proj_member);
 
       /* fetch value */
       $stmt->fetch();
@@ -685,7 +760,7 @@ class mysqliInterface {
 
       /* close statement */
       $stmt->close();
-      return array ($hash, $admin);
+      return array ($hash, $admin, $idhash);
     }
     return 0;
   }
