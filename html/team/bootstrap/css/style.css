@@ -1,615 +1,3 @@
-/* Hides unused jumbotron */
-/*
-#team, #docs, #proj, #dash{
-  display:none;
-} 
-*/
-a{
-  cursor: pointer;
-}
-.navbar-inverse .navbar-nav>li>a:hover,
-.navbar-inverse .navbar-nav>li>a:focus,
-.navbar-inverse .navbar-nav>li>a.active {
-    outline: 0;
-    background-color: rgba(255,255,255,.1);
-}
-/* Formats container */
-.container-padded{
-  margin-top: 100px;
-}
-
-/* Formats jumbotron */
-.jumbotron{
-  border: solid 1px rgba(0,0,0,0.3);
-  min-width:715px;
-  background-color:transparent !important;
-  margin: 0 !important;
-}
-
-/* Rids header top margin */
-h1, h2, h3 {
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
-}
-
-/* Align table detail */
-td {
-  vertical-align:middle !important;
-}
-
-.table td {
-  padding: 5px !important;
-}
-
-/* For dashboard's profile */
-td.profile-title {
-  text-transform: uppercase;
-  font-weight: bold;
-  font-size: 80%;
-  vertical-align: bottom !important;
-  padding-left: 5%;
-}
-
-/* For word wrapping */
-.longtext {
-  white-space: nowrap !important; 
-  overflow: hidden !important; 
-  text-overflow: ellipsis !important;
-}
-
-/* For comment boxes */
-.comment-box {
-  resize: vertical; 
-  width: 100% !important; 
-  padding-left: 3px; 
-  padding-right: 3px; 
-  margin-bottom:5px
-}
-
-/* For project's user table header */
-.project-user-header {
-  text-transform: uppercase !important;
-  font-weight: bold !important;
-  font-size: 85% !important;
-  padding: 9px !important;
-}
-
-.project-header-like {
-  font-weight: bold !important;
-  font-size: 85% !important;
-  color: lightgray;
-}
-
-/* For project's error table header */
-.project-error-header {
-  text-transform: uppercase !important;
-  font-weight: bold !important;
-  font-size: 85% !important;
-  padding: 9px !important;
-}
-
-/* Formats navbar */
-.navbar {
-  box-shadow: 0 0 20px rgba(0,0,0,0.5);
-}
-
-/* Sign in/up dropdown */
-.sign-dd {
-  padding:10px 20px 20px 20px;
-}
-
-.marketing{
-  background:url(/team/images/9v4.png) no-repeat center;
-  -webkit-background-size: auto;
-  -moz-background-size: auto;
-  -o-background-size: auto;
-  background-size: 100% auto;
-  
-  position:relative;
-  border-radius: 7px;
-  width:100%;
-  height:650px;
-  
-  margin-bottom: 15px;
-}
-
-#team{
-  min-height:462px;
-}
-
-#about{
-  min-height:462px;
-}
-
-article.members > img{
-  max-width:175px;
-  height:auto;
-  cursor:pointer;
-  transition: all .4s ease;
-}
-div.members{
-  transition: all .4s ease;
-}
-div.members:hover{
-  opacity: 1;
-}
-article.members > img:hover{
-  box-shadow: 1px 2px 20px rgba(0,0,0,0.5);
-  height:auto;
-}
-img.face-selected{
-  box-shadow: 1px 2px 20px rgba(0,0,0,0.5);
-}
-div.face-unselected{
-  opacity:0.5;
-}
-div.face-selected{
-  opacity:1;
-}
-header.members{
-  text-align:center;
-}
-div.members{
-  max-width:175px;
-  min-width:175px;
-  margin:12px;
-  display: inline-block;
-  vertical-align:top;
-}
-section.members{
-  width:100%;
-  margin:auto;
-  text-align:center;
-}
-footer.members{
-  margin-top:8px;
-  text-align:center;
-}
-.data{
-  display:none;
-}
-
-div.members{
-  position:relative;
-}
-
-ul.nav li:hover{
-  cursor:pointer;
-  /*background-color:#444;*/
-}
-ul.nav li a{
-  transition:none;
-}
-.navbar-brand-def {
-  cursor:default;
-  float: left;
-  padding: 15px 15px 15px 0;
-  font-size: 18px;
-  line-height: 20px;
-  height: 50px;
-  color:white;
-}
-.navbar-brand-white{
-  color:white;
-}
-
-ul.signin li:hover{
-  background-color:transparent !important;
-}
-li a.admin-link{
-  color:#d9534f !important;
-}
-li a.admin-link:hover {
-  color:white !important;
-  background-color: #d9534f !important;
-}
-.welcome-link *{
-  color:white !important;
-}
-li a.signup-link, li.welcome-link{
-  color:white !important;
-  background-color: #28BED6 !important;
-}
-li a.signup-link:hover, li.welcome-link:hover {
-  background-color: #48DEF6 !important;
-}
-li.nohover:hover{
-  cursor:auto !important;
-  background-color:transparent !important;
-}
-.label{
-  font-size:14px;
-  margin-left:10px;
-  border-radius:15px;
-}
-.admin-acct, .des-acct, .dev-acct, .user-acct{
-  cursor:pointer;
-}
-.admin-acct{
-  background-color: #d9534f;
-}
-.dev-acct{
-  background-color: #5cb85c;
-}
-.des-acct{
-  background-color: #5bc0de;
-}
-.user-acct{
-  background-color: #428bca;
-}
-.admin-acct:hover, .des-acct:hover, .dev-acct:hover, .user-acct:hover{
-  background-color: #777;
-}
-.highcharts-container{
-  border-radius:15px;
-}
-#adduser-container{
-  display:none;
-}
-#adduser-btn{
-  cursor:pointer;
-}
-.form-adduser{
-  display:table;
-  width:100%;
-  table-layout: fixed;
-}
-
-.form-adduser > div{
-  display:table-cell;
-  vertical-align:top;
-  padding: 0 15px 0 15px;
-
-}
-
-div.alert > strong{
-  font-size: 15px;
-  margin-left:-3px;
-  margin-right:20px;
-}
-
-input[name^=S]:invalid:focus, input[name^=F]:invalid:focus, input[name^=P]:invalid:focus, input.invalid {
-   box-shadow: 0 0 10px rgba(242,0,0, 0.4) !important;
-  color:#A94442 !important;}
-input[name^=S]:valid, input[name^=P]:valid, input[name^=F]:valid{
-  box-shadow: 0 0 10px rgba(0,240,0, 0.4) !important;
-  background: rgba(223,240,216, 0.4) url('/team/images/valid.png') no-repeat right 10px center;
-  color:black/*#3C763D*/;
-}
-
-.module{
-  position:relative;
-  top:15%;    
-  display:block;
-  width:450px;
-  margin-left:auto;
-  margin-right:auto;
-  border-radius:6px;
-  border: 1px solid rgba(0,0,0,.2);
-  background:RGBA(255,255,255,1);
-    
-  -webkit-box-shadow: 0 5px 15px rgba(0,0,0,.5);       
-  box-shadow: 0 5px 15px rgba(0,0,0,.5);
-  
-}
-
-.module ul, ul.tabbed-list{
-  list-style-type:none;
-  margin:0;
-  padding:0;
-  table-layout: fixed;
-  display:table;
-  width:100%;
-  float:left;
-}
-.tab-container{
-  background-color:#e8e8e8;
-  width:100%;
-  height:56px;
-  display:inline-block;
-}
-.tab-jumbo{
-  margin:0 -60px 0 -60px;background-color:transparent;
-}
-.tab-jumbo ul{
-  margin: -48px 0 0;
-  width: calc(100% + 120px) ;
- 
-}
-.tab-jumbo ul li.activeTab > .icon{
-  color:#28BED6;
-  text-shadow: 0 0 8px rgba(40,190,214,0.4);
-}
-.tab-jumbo ul li.activeTab {
-  color:#28BED6;
-  text-shadow: 0 0 8px rgba(40,190,214,0.4);
-}
-.tab{
-  display:table-cell;
-  height:56px;
-  font-size:24px;
-  color: rgba(0,0,0,0.3);
-  padding-top:13px;
-  vertical-align:top;
-  box-sizing:border-box;
-  background:#d8d8d8;  
-  text-align:center;
-  cursor:pointer;
-  transition:background .4s;
-}
-.activeTab > .icon{
-  text-shadow: 0 0 8px rgba(40,190,214,0.4);
-}
-
-.tab:first-child{  
-  -webkit-border-radius: 5px 0px 0px 0px;
-  border-radius: 5px 0px 0px 0px;
-  
-}
-
-.tab:last-child{  
-  -webkit-border-radius: 0px 5px 0px 0px;
-  border-radius: 0px 5px 0px 0px;
-}
-
-.tab:hover{  
-  background-color:rgba(40,190,214,0.1);
-}
-
-.activeTab{
-  background:#fff;
-  color: black;
-}
-    
-.activeTab .icon{
-  opacity:1;
-  color:#28BED6;
-}
-
-.icon{
-  font-size:24px;
-  margin-top:2px;
-  margin-right:10px;
-  margin-left:10px;
-  color:black;
-  opacity:.2;
-}
-
-.form{
-  height:86%;
-  width:100%;
-  box-sizing:border-box;
-  padding:2px 40px 40px 40px;
-}
-
-.textbox{
-  height:50px;
-  width:100%;
-  border-radius:3px;
-  border:rgba(0,0,0,.3) 2px solid;
-  box-sizing:border-box;
-  padding:10px;
-  margin-bottom:30px;
-}
-
-.textbox:focus{
-  outline:none;
-  border:rgba(24,149,215,1) 2px solid;
-  color:rgba(24,149,215,1);
-}
-
-.btn-valid{
-  box-shadow: 0 0 12px rgba(40,190,214,0.4) !important;
-  background: #28BED6 !important;
-  color:#FFF !important;
-  font-weight:bold !important;
-  transition:background .4s !important;
-  cursor:pointer !important;
-}
-
-.btn-valid:hover{
-  background: #48DEF6 !important;
-}
-.input-large {
-  height:40px !important;
-}
-.btn-large{
-  height:45px !important;
-}
-.Srepassword, .Prepassword {
-  background-color: rgba(91,192,222, 0.1);
-  box-shadow:  0 0 10px rgba(91,192,222, 0.5);
-}
-.form-heading{
-  margin:7px;
-  text-align:center;
-}
-.form-msg{
-  margin: 0 7px 0 7px;
-  text-align:center;
-}
-#proj-signup-container{
-  display:none;
-}
-#signup-response{
-  margin: 5px 40px 5px 40px;
-}
-
-.modal-body{
-  margin-left:40px;
-  margin-right:40px;
-}
-.modal-footer{
-  padding-left:40px;
-  padding-bottom:20px;
-  padding-right:40px;
-}
-
-.dropdown-toggle{
-  cursor:pointer;
-}
-.footer{
-  margin-top:20px;
-}
-
-.project-title{
-  width:100%;
-  padding: 2px 5px 2px 5px;
-  margin: 3px 0 3px 0;
-  /* border-top: 1px solid rgba(0,0,0,0.2); */
-  border-bottom: 1px solid rgba(0,0,0,0.2);
-  background-color: rgba(0,0,0, 0.05);
-}
-.project-title a:hover {
-  text-decoration:none;
-}
-.proj-resp {
-  max-width:550px;
-}
-.proj-invite {
- padding-left:15px;
- padding-right:15px;
-}
-
-
-/* GLOBAL STYLES
--------------------------------------------------- */
-/* Padding below the footer and lighter body text */
-
-
-/* CUSTOMIZE THE NAVBAR
--------------------------------------------------- */
-
-
-/* CUSTOMIZE THE CAROUSEL
--------------------------------------------------- */
-
-/* Carousel base class */
-.carousel {
-  height: 600px;
-  margin-bottom: 60px;
-  
-}
-/* Since positioning the image, we need to help out the caption */
-.carousel-caption {
-  z-index: 10;
-  
-  background-color: rgba(0,0,0,0.5);
-  left:0;
-  height:223px;
-  margin-bottom:-20px;
-  padding-top:35px;
-  width:100%;
-  padding-left:100px;
-}
-.carousel-inner{
-  border-radius:7px;
-}
-/* Declare heights because of positioning of img element */
-.carousel .item {
-  height: 600px;
-  background-color: #777;
-  
-}
-.carousel-inner > .item > img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  min-width: 100%;
-  height: auto;
-  
-}
-
-
-
-/* MARKETING CONTENT
--------------------------------------------------- */
-
-/* Center align the text within the three columns below the carousel */
-.marketing .col-lg-4 {
-  margin-bottom: 20px;
-  text-align: center;
-}
-.marketing h2 {
-  font-weight: normal;
-}
-.marketing .col-lg-4 p {
-  margin-right: 10px;
-  margin-left: 10px;
-}
-
-
-/* Featurettes
-------------------------- */
-
-.featurette-divider {
-  margin: 80px 0; /* Space out the Bootstrap <hr> more */
-}
-
-/* Thin out the marketing headings */
-.featurette-heading {
-  font-weight: 300;
-  line-height: 1;
-  letter-spacing: -1px;
-}
-
-
-
-/* RESPONSIVE CSS
--------------------------------------------------- */
-
-@media (min-width: 768px) {
-
-  /* Navbar positioning foo */
-  .navbar-wrapper {
-    margin-top: 20px;
-  }
-  .navbar-wrapper .container {
-    padding-right: 15px;
-    padding-left: 15px;
-  }
-  .navbar-wrapper .navbar {
-    padding-right: 0;
-    padding-left: 0;
-  }
-
-  /* The navbar becomes detached from the top, so we round the corners */
-  .navbar-wrapper .navbar {
-    border-radius: 4px;
-  }
-
-  /* Bump up size of carousel content */
-  .carousel-caption p {
-    margin-bottom: 20px;
-    font-size: 18px;
-    line-height: 1.4;
-  }
-
-  .featurette-heading {
-    font-size: 50px;
-  }
-}
-
-@media (min-width: 992px) {
-  .featurette-heading {
-    margin-top: 120px;
-  }
-}
-.carousel-indicators > li{
-  border: 0px solid #fff;
-  margin-left:10px;
-  margin-right:10px;
-  background-color: #fff;
-  box-shadow: 0 0 5px rgba(255,255,255,0.5);
-}
-.carousel-indicators > li.active{
-  margin-left:10px;
-  margin-right:10px;
-  background-color: #28BED6;
-  box-shadow: 0 0 10px rgba(72,222,246,1);
-}
-
-
 /*!
  * Bootstrap v3.2.0 (http://getbootstrap.com)
  * Copyright 2011-2014 Twitter, Inc.
@@ -6784,4 +6172,625 @@ button.close {
   .hidden-print {
     display: none !important;
   }
+}
+
+/*
+*
+*
+*
+* BOOTSTRAP END
+*
+*
+*
+*
+*/
+/* Hides unused jumbotron */
+/*
+#team, #docs, #proj, #dash{
+  display:none;
+} 
+*/
+a{
+  cursor: pointer;
+}
+.navbar-inverse .navbar-nav>li>a:hover,
+.navbar-inverse .navbar-nav>li>a:focus,
+.navbar-inverse .navbar-nav>li>a.active {
+    outline: 0;
+    background-color: rgba(255,255,255,.1);
+}
+/* Formats container */
+.container-padded{
+  margin-top: 100px;
+}
+
+/* Formats jumbotron */
+.jumbotron{
+  border: solid 1px rgba(0,0,0,0.3);
+  min-width:715px;
+  background-color:transparent !important;
+  margin: 0 !important;
+}
+
+/* Rids header top margin */
+h1, h2, h3 {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* Align table detail */
+td {
+  vertical-align:middle !important;
+}
+
+.table td {
+  padding: 5px !important;
+}
+
+/* For dashboard's profile */
+td.profile-title {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 80%;
+  vertical-align: bottom !important;
+  padding-left: 5%;
+}
+
+/* For word wrapping */
+.longtext {
+  white-space: nowrap !important; 
+  overflow: hidden !important; 
+  text-overflow: ellipsis !important;
+}
+
+/* For comment boxes */
+.comment-box {
+  resize: vertical; 
+  width: 100% !important; 
+  padding-left: 3px; 
+  padding-right: 3px; 
+  margin-bottom:5px
+}
+
+/* For project's user table header */
+.project-user-header {
+  text-transform: uppercase !important;
+  font-weight: bold !important;
+  font-size: 85% !important;
+  padding: 9px !important;
+}
+
+.project-header-like {
+  font-weight: bold !important;
+  font-size: 85% !important;
+  color: lightgray;
+}
+
+/* For project's error table header */
+.project-error-header {
+  text-transform: uppercase !important;
+  font-weight: bold !important;
+  font-size: 85% !important;
+  padding: 9px !important;
+}
+
+/* Formats navbar */
+.navbar {
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+/* Sign in/up dropdown */
+.sign-dd {
+  padding:10px 20px 20px 20px;
+}
+
+.marketing{
+  background:url(/team/images/9v4.png) no-repeat center;
+  -webkit-background-size: auto;
+  -moz-background-size: auto;
+  -o-background-size: auto;
+  background-size: 100% auto;
+  
+  position:relative;
+  border-radius: 7px;
+  width:100%;
+  height:650px;
+  
+  margin-bottom: 15px;
+}
+
+#team{
+  min-height:462px;
+}
+
+#about{
+  min-height:462px;
+}
+
+article.members > img{
+  max-width:175px;
+  height:auto;
+  cursor:pointer;
+  transition: all .4s ease;
+}
+div.members{
+  transition: all .4s ease;
+}
+div.members:hover{
+  opacity: 1;
+}
+article.members > img:hover{
+  box-shadow: 1px 2px 20px rgba(0,0,0,0.5);
+  height:auto;
+}
+img.face-selected{
+  box-shadow: 1px 2px 20px rgba(0,0,0,0.5);
+}
+div.face-unselected{
+  opacity:0.5;
+}
+div.face-selected{
+  opacity:1;
+}
+header.members{
+  text-align:center;
+}
+div.members{
+  max-width:175px;
+  min-width:175px;
+  margin:12px;
+  display: inline-block;
+  vertical-align:top;
+}
+section.members{
+  width:100%;
+  margin:auto;
+  text-align:center;
+}
+footer.members{
+  margin-top:8px;
+  text-align:center;
+}
+.data{
+  display:none;
+}
+
+div.members{
+  position:relative;
+}
+
+ul.nav li:hover{
+  cursor:pointer;
+  /*background-color:#444;*/
+}
+ul.nav li a{
+  transition:none;
+}
+.navbar-brand-def {
+  cursor:default;
+  float: left;
+  padding: 15px 15px 15px 0;
+  font-size: 18px;
+  line-height: 20px;
+  height: 50px;
+  color:white;
+}
+.navbar-brand-white{
+  color:white;
+}
+
+ul.signin li:hover{
+  background-color:transparent !important;
+}
+li a.admin-link{
+  color:#d9534f !important;
+}
+li a.admin-link:hover {
+  color:white !important;
+  background-color: #d9534f !important;
+}
+.welcome-link *{
+  color:white !important;
+}
+li a.signup-link, li.welcome-link{
+  color:white !important;
+  background-color: #28BED6 !important;
+}
+li a.signup-link:hover, li.welcome-link:hover {
+  background-color: #48DEF6 !important;
+}
+li.nohover:hover{
+  cursor:auto !important;
+  background-color:transparent !important;
+}
+.label{
+  font-size:14px;
+  margin-left:10px;
+  border-radius:15px;
+}
+.admin-acct, .des-acct, .dev-acct, .user-acct{
+  cursor:pointer;
+}
+.admin-acct{
+  background-color: #d9534f;
+}
+.dev-acct{
+  background-color: #5cb85c;
+}
+.des-acct{
+  background-color: #5bc0de;
+}
+.user-acct{
+  background-color: #428bca;
+}
+.admin-acct:hover, .des-acct:hover, .dev-acct:hover, .user-acct:hover{
+  background-color: #777;
+}
+.highcharts-container{
+  border-radius:15px;
+}
+#adduser-container{
+  display:none;
+}
+#adduser-btn{
+  cursor:pointer;
+}
+.form-adduser{
+  display:table;
+  width:100%;
+  table-layout: fixed;
+}
+
+.form-adduser > div{
+  display:table-cell;
+  vertical-align:top;
+  padding: 0 15px 0 15px;
+
+}
+
+div.alert > strong{
+  font-size: 15px;
+  margin-left:-3px;
+  margin-right:20px;
+}
+
+input[name^=S]:invalid:focus, input[name^=F]:invalid:focus, input[name^=P]:invalid:focus, input.invalid {
+   box-shadow: 0 0 10px rgba(242,0,0, 0.4) !important;
+  color:#A94442 !important;}
+input[name^=S]:valid, input[name^=P]:valid, input[name^=F]:valid{
+  box-shadow: 0 0 10px rgba(0,240,0, 0.4) !important;
+  background: rgba(223,240,216, 0.4) url('/team/images/valid.png') no-repeat right 10px center;
+  color:black/*#3C763D*/;
+}
+
+.module{
+  position:relative;
+  top:15%;    
+  display:block;
+  width:450px;
+  margin-left:auto;
+  margin-right:auto;
+  border-radius:6px;
+  border: 1px solid rgba(0,0,0,.2);
+  background:RGBA(255,255,255,1);
+    
+  -webkit-box-shadow: 0 5px 15px rgba(0,0,0,.5);       
+  box-shadow: 0 5px 15px rgba(0,0,0,.5);
+  
+}
+
+.module ul, ul.tabbed-list{
+  list-style-type:none;
+  margin:0;
+  padding:0;
+  table-layout: fixed;
+  display:table;
+  width:100%;
+  float:left;
+}
+.tab-container{
+  background-color:#e8e8e8;
+  width:100%;
+  height:56px;
+  display:inline-block;
+}
+.tab-jumbo{
+  margin:0 -60px 0 -60px;background-color:transparent;
+}
+.tab-jumbo ul{
+  margin: -48px 0 0;
+  width: calc(100% + 120px) ;
+ 
+}
+.tab-jumbo ul li.activeTab > .icon{
+  color:#28BED6;
+  text-shadow: 0 0 8px rgba(40,190,214,0.4);
+}
+.tab-jumbo ul li.activeTab {
+  color:#28BED6;
+  text-shadow: 0 0 8px rgba(40,190,214,0.4);
+}
+.tab{
+  display:table-cell;
+  height:56px;
+  font-size:24px;
+  color: rgba(0,0,0,0.3);
+  padding-top:13px;
+  vertical-align:top;
+  box-sizing:border-box;
+  background:#d8d8d8;  
+  text-align:center;
+  cursor:pointer;
+  transition:background .4s;
+}
+.activeTab > .icon{
+  text-shadow: 0 0 8px rgba(40,190,214,0.4);
+}
+
+.tab:first-child{  
+  -webkit-border-radius: 5px 0px 0px 0px;
+  border-radius: 5px 0px 0px 0px;
+  
+}
+
+.tab:last-child{  
+  -webkit-border-radius: 0px 5px 0px 0px;
+  border-radius: 0px 5px 0px 0px;
+}
+
+.tab:hover{  
+  background-color:rgba(40,190,214,0.1);
+}
+
+.activeTab{
+  background:#fff;
+  color: black;
+}
+    
+.activeTab .icon{
+  opacity:1;
+  color:#28BED6;
+}
+
+.icon{
+  font-size:24px;
+  margin-top:2px;
+  margin-right:10px;
+  margin-left:10px;
+  color:black;
+  opacity:.2;
+}
+
+.form{
+  height:86%;
+  width:100%;
+  box-sizing:border-box;
+  padding:2px 40px 40px 40px;
+}
+
+.textbox{
+  height:50px;
+  width:100%;
+  border-radius:3px;
+  border:rgba(0,0,0,.3) 2px solid;
+  box-sizing:border-box;
+  padding:10px;
+  margin-bottom:30px;
+}
+
+.textbox:focus{
+  outline:none;
+  border:rgba(24,149,215,1) 2px solid;
+  color:rgba(24,149,215,1);
+}
+
+.btn-valid{
+  box-shadow: 0 0 12px rgba(40,190,214,0.4) !important;
+  background: #28BED6 !important;
+  color:#FFF !important;
+  font-weight:bold !important;
+  transition:background .4s !important;
+  cursor:pointer !important;
+}
+
+.btn-valid:hover{
+  background: #48DEF6 !important;
+}
+.input-large {
+  height:40px !important;
+}
+.btn-large{
+  height:45px !important;
+}
+.Srepassword, .Prepassword {
+  background-color: rgba(91,192,222, 0.1);
+  box-shadow:  0 0 10px rgba(91,192,222, 0.5);
+}
+.form-heading{
+  margin:7px;
+  text-align:center;
+}
+.form-msg{
+  margin: 0 7px 0 7px;
+  text-align:center;
+}
+#proj-signup-container{
+  display:none;
+}
+#signup-response{
+  margin: 5px 40px 5px 40px;
+}
+
+.modal-body{
+  margin-left:40px;
+  margin-right:40px;
+}
+.modal-footer{
+  padding-left:40px;
+  padding-bottom:20px;
+  padding-right:40px;
+}
+
+.dropdown-toggle{
+  cursor:pointer;
+}
+.footer{
+  margin-top:20px;
+}
+
+.project-title{
+  width:100%;
+  padding: 2px 5px 2px 5px;
+  margin: 3px 0 3px 0;
+  /* border-top: 1px solid rgba(0,0,0,0.2); */
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+  background-color: rgba(0,0,0, 0.05);
+}
+.project-title a:hover {
+  text-decoration:none;
+}
+.proj-resp {
+  max-width:550px;
+}
+.proj-invite {
+ padding-left:15px;
+ padding-right:15px;
+}
+
+
+/* GLOBAL STYLES
+-------------------------------------------------- */
+/* Padding below the footer and lighter body text */
+
+
+/* CUSTOMIZE THE NAVBAR
+-------------------------------------------------- */
+
+
+/* CUSTOMIZE THE CAROUSEL
+-------------------------------------------------- */
+
+/* Carousel base class */
+.carousel {
+  height: 600px;
+  margin-bottom: 60px;
+  
+}
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+  z-index: 10;
+  
+  background-color: rgba(0,0,0,0.5);
+  left:0;
+  height:223px;
+  margin-bottom:-20px;
+  padding-top:35px;
+  width:100%;
+  padding-left:100px;
+}
+.carousel-inner{
+  border-radius:7px;
+}
+/* Declare heights because of positioning of img element */
+.carousel .item {
+  height: 600px;
+  background-color: #777;
+  
+}
+.carousel-inner > .item > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  height: auto;
+  
+}
+
+
+
+/* MARKETING CONTENT
+-------------------------------------------------- */
+
+/* Center align the text within the three columns below the carousel */
+.marketing .col-lg-4 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+.marketing h2 {
+  font-weight: normal;
+}
+.marketing .col-lg-4 p {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+
+/* Featurettes
+------------------------- */
+
+.featurette-divider {
+  margin: 80px 0; /* Space out the Bootstrap <hr> more */
+}
+
+/* Thin out the marketing headings */
+.featurette-heading {
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+
+@media (min-width: 768px) {
+
+  /* Navbar positioning foo */
+  .navbar-wrapper {
+    margin-top: 20px;
+  }
+  .navbar-wrapper .container {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  .navbar-wrapper .navbar {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  /* The navbar becomes detached from the top, so we round the corners */
+  .navbar-wrapper .navbar {
+    border-radius: 4px;
+  }
+
+  /* Bump up size of carousel content */
+  .carousel-caption p {
+    margin-bottom: 20px;
+    font-size: 18px;
+    line-height: 1.4;
+  }
+
+  .featurette-heading {
+    font-size: 50px;
+  }
+}
+
+@media (min-width: 992px) {
+  .featurette-heading {
+    margin-top: 120px;
+  }
+}
+.carousel-indicators > li{
+  border: 0px solid #fff;
+  margin-left:10px;
+  margin-right:10px;
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(255,255,255,0.5);
+}
+.carousel-indicators > li.active{
+  margin-left:10px;
+  margin-right:10px;
+  background-color: #28BED6;
+  box-shadow: 0 0 10px rgba(72,222,246,1);
 }

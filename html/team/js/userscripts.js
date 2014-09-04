@@ -1,6 +1,7 @@
 /*Projects Scripts */
-function resolveError(formPrefix, errorid, caller) {
+function resolveError(formPrefix, errorid, caller, e) {
         // Fill our request with data from our form
+  
         var formData = {
           'Rrescmnt' 	: $('textarea[name=Rcomment-' + formPrefix + ']').val(),
           'Rresusr' 	: caller,
@@ -23,14 +24,46 @@ function resolveError(formPrefix, errorid, caller) {
         })
         
         .fail(function(xhr, status, error){
+          
         });
+  e.preventDefault();
 }
 
 //['Mid','Msever', 'Musrid', 'Mcmnt', 'token', 'MOD'])
-function modifyError(formPrefix, errorid, severity, myid) {
+function modifyErrorComment(formPrefix, errorid, myid, e) {
         // Fill our request with data from our form
         var formData = {
           'Mcmnt' 	: $('textarea[name=Mcomment-' + formPrefix + ']').val(),
+          'Musrid' 	: myid,
+          'Mid' 	: errorid,
+          'Msever' : null,
+          'token'  : $('input[name=modtoken]').val(),
+          'MOD' : null
+        };
+        
+        // Create our ajax requests
+        var request = $.ajax({
+          url: "/team/php/moderror.php",
+          type: "POST", // Simple HTTP protocol
+          data: formData, // Filling in our POSTDATA
+          dataType: "html"
+        })
+
+        //If we're done & successful we print out any messages the php code echos out
+        .done(function( msg ) {
+           window.location.reload(true);
+        })
+        
+        .fail(function(xhr, status, error){
+          
+        });
+  e.preventDefault();
+}
+
+function modifySeverity(formPrefix, errorid, severity, myid, e) {
+        // Fill our request with data from our form
+        var formData = {
+          'Mcmnt' 	: null,
           'Musrid' 	: myid,
           'Mid' 	: errorid,
           'Msever' : severity,
@@ -54,7 +87,37 @@ function modifyError(formPrefix, errorid, severity, myid) {
         .fail(function(xhr, status, error){
           
         });
+  e.preventDefault();
 }
+
+function dismissError(errorid, myid, itemToHide) {
+        // Fill our request with data from our form
+        var formData = {
+          'Dusrid' 	: myid,
+          'Did' 	: errorid,
+          'token'  : $('input[name=modtoken]').val(),
+          'DIS' : null
+        };
+        
+        // Create our ajax requests
+        var request = $.ajax({
+          url: "/team/php/moderror.php",
+          type: "POST", // Simple HTTP protocol
+          data: formData, // Filling in our POSTDATA
+          dataType: "html"
+        })
+
+        //If we're done & successful we print out any messages the php code echos out
+        .done(function( msg ) {
+           $(itemToHide).hide('fast');
+        })
+        
+        .fail(function(xhr, status, error){
+          
+        });
+  
+}
+
 
 function deployableScript(myId, projId){
   var user = null;

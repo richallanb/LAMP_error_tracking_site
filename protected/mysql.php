@@ -393,7 +393,7 @@ class mysqliInterface {
       $query = "SELECT uu.user, uu.email, uu.idhash, uu.created, uu.lastlogin, p.name, p.project_idhash, p.owner=uu.user FROM Projects p INNER JOIN Project_Users u ON u.project_idhash = p.project_idhash INNER JOIN Users uu ON uu.user=u.user WHERE p.project_idhash = ? AND ? IN (SELECT user FROM Project_Users WHERE project_idhash=p.project_idhash) ORDER BY uu.user=? DESC;";
     }
     
-    $errQuery = "SELECT err.id, err.idhash, err.created, err.error, err.line, err.source, pu.user, err.user_idhash, err.project_idhash, err.severity, err.comment, err.resolved, err.resolved_comment, err.resolved_date, err.resolved_user, COUNT(*) FROM `Errors` err INNER JOIN Project_Users pu ON pu.user_idhash = err.user_idhash WHERE pu.project_idhash = err.project_idhash AND ? IN (SELECT user FROM Project_Users WHERE project_idhash=pu.project_idhash) GROUP BY err.line, err.error, err.source, err.user ORDER BY err.user=? DESC, err.created DESC;";
+    $errQuery = "SELECT err.id, err.idhash, err.created, err.error, err.line, err.source, pu.user, err.user_idhash, err.project_idhash, err.severity, err.comment, err.resolved, err.resolved_comment, err.resolved_date, err.resolved_user, COUNT(*) FROM `Errors` err INNER JOIN Project_Users pu ON pu.user_idhash = err.user_idhash WHERE pu.project_idhash = err.project_idhash AND ? IN (SELECT user FROM Project_Users WHERE project_idhash=pu.project_idhash) GROUP BY err.line, err.error, err.source, err.user, err.resolved ORDER BY err.user=? DESC, err.created DESC;";
       
     if ($stmt = $this->con->prepare($query)){ // Project Users query
       if ($projId == null) {
@@ -427,7 +427,7 @@ class mysqliInterface {
                               $errSeverity, $errComment, $errResolved, $errResolvedComment, $errResolvedDate, $errResolvedUser, $errCount);
         while($stmt1->fetch()){
           // public function __construct($i, $count, $n, $cd, $sl, $l, $s, $c = NULL, $rc = NULL, $rd = NULL, $ru = NULL){
-          $error_object = new Error($errId, $errCount, $errName, $errCreated, $errSeverity, $errLine, $errSource, $errComment,
+          $error_object = new Error($errId, $errIdHash, $errCount, $errName, $errCreated, $errSeverity, $errLine, $errSource, $errComment,
                                     $errResolved, $errResolvedComment, $errResolvedDate, $errResolvedUser); 
           //echo "$errUser\n";
           if(!array_key_exists($errUserIdHash, $results[$errProjIdHash]->getUsers())){ // Method is always going to be GET since it's JS
@@ -680,16 +680,30 @@ class mysqliInterface {
     return -1;
   }
   function modifyError($errorIdHash, $callerIdHash, $comment, $severity){
+    //UPDATE `Errors` err0 INNER JOIN `Errors` err1 ON err1.idhash = ? SET err0.`comment` = ?, err0.`severity` = ? WHERE err0.`error` = err1.`error` AND err0.`line` = err1.`line` AND err0.`source` = err1.`source` AND ? IN (SELECT user_idhash FROM Project_Users WHERE project_idhash=err1.project_idhash);
+    if ($comment == null)
+      $query = "UPDATE `Errors` err0 INNER JOIN `Errors` err1 ON err1.idhash = ? SET err0.`severity` = ? WHERE err0.`error` = err1.`error` AND err0.`line` = err1.`line` AND err0.`source` = err1.`source` AND err0.`resolved`= err1.`resolved` AND ? IN (SELECT user_idhash FROM Project_Users WHERE project_idhash=err1.project_idhash);";
+    else if ($severity == null)
+      $query = "UPDATE `Errors` err0 INNER JOIN `Errors` err1 ON err1.idhash = ? SET err0.`comment` = ? WHERE err0.`error` = err1.`error` AND err0.`line` = err1.`line` AND err0.`resolved`= err1.`resolved` AND err0.`source` = err1.`source` AND ? IN (SELECT user_idhash FROM Project_Users WHERE project_idhash=err1.project_idhash);";
+    else if ($severity != null && $comment != null){
+      $query = "UPDATE `Errors` err0 INNER JOIN `Errors` err1 ON err1.idhash = ? SET err0.`comment` = ?, err0.`severity` = ? WHERE err0.`error` = err1.`error` AND err0.`line` = err1.`line` AND err0.`source` = err1.`source` AND err0.`resolved`= err1.`resolved` AND ? IN (SELECT user_idhash FROM Project_Users WHERE project_idhash=err1.project_idhash);";
+    }
     $comment = filter_var($comment, FILTER_SANITIZE_STRING);
-    if($stmt = $this->con->prepare("UPDATE `Errors` err0 INNER JOIN `Errors` err1 ON err1.idhash = ? AND err1.user_idhash = ? SET err0.`comment` = ?, err0.`severity` = ? WHERE err0.`error` = err1.`error` AND err0.`line` = err1.`line` AND err0.`source` = err1.`source`;")){
-          $stmt->bind_param("sssi", $errorIdHash, $callerIdHash, $comment, $severity);
+    if($stmt = $this->con->prepare($query)){
+          if ($comment == null)
+            $stmt->bind_param("sis", $errorIdHash, $severity, $callerIdHash);
+          else if ($severity == null)
+            $stmt->bind_param("sss", $errorIdHash, $comment, $callerIdHash);
+          else if ($severity != null && $comment != null){
+            $stmt->bind_param("ssi", $errorIdHash, $comment, $severity,$callerIdHash);
+          }
           if ($stmt->execute()) {
             $worked = ($stmt->affected_rows > 0);
             $stmt->close();
             if ($worked)
               return 0;
             else
-              return -1;
+              return -2;
           } else {
             $stmt->close();
             return -1;
@@ -730,7 +744,24 @@ class mysqliInterface {
     // Errors returned sorted with caller as first entries, and errors of the same type are grouped & counted. Errors sorted by time.
     
   }
-  
+  function dismissError($erroridHash, $caller_id) {
+    if($stmt = $this->con->prepare("DELETE err0.* FROM `Errors` err0 INNER JOIN `Errors` err1 ON err1.idhash = ? WHERE err0.`error` = err1.`error` AND err0.`line` = err1.`line` AND err0.`source` = err1.`source` AND err0.`resolved`= err1.`resolved` AND ? IN (SELECT user_idhash FROM Project_Users WHERE project_idhash=err1.project_idhash);")){
+          $stmt->bind_param("ss", $erroridHash,  $caller_id);
+          if ($stmt->execute()) {
+            $worked = ($stmt->affected_rows > 0);
+            $stmt->close();
+            if ($worked)
+              return 0;
+            else
+              return -1;
+          } else {
+            $stmt->close();
+            return -1;
+          }
+        } else {
+          return -1;
+        }
+  }
   function getUserErrors($caller) {
     // Gets all errors belonging to a user (regardless of project). Errors of the same time are grouped (if they belong to the same project)
     // Sorted by time

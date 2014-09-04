@@ -95,6 +95,7 @@
   class Error{
     // For ajax identification
     private $id;
+    private $idhash;
     
     // Information variables
     private $name;
@@ -114,8 +115,9 @@
     
     private $occurrence;
     
-    public function __construct($i, $o, $n, $cd, $sl, $l, $s, $c = NULL, $r = FALSE, $rc = NULL, $rd = NULL, $ru = NULL){
+    public function __construct($i, $ih, $o, $n, $cd, $sl, $l, $s, $c = NULL, $r = FALSE, $rc = NULL, $rd = NULL, $ru = NULL){
       $this->id = $i;
+      $this->idhash = $ih;
       $this->occurrence = $o;
       $this->name = $n;
       $this->create_date = $cd;
@@ -133,6 +135,10 @@
     
     public function getId(){
       return $this->id;
+    }
+    
+    public function getIdHash(){
+      return $this->idhash;
     }
     
     public function getName(){

@@ -40,8 +40,9 @@
 
     <title>Team Nine</title>
 
-    <!-- Bootstrap/TeamNine core CSS -->
+    <!-- Bootstrap core CSS -->
     <link href="/team/bootstrap/css/style.min.css" rel="stylesheet">
+
   </head>
 
   <body>
@@ -215,7 +216,7 @@
             <div class="col-lg-4">
               <h4><b>Favorite Quotes</b></h4>
               <!--1. <a class="ignoreme" style="cursor:pointer;" onclick="$('#team-container').hide();$('#curly').toggle(300);">"Strike 3 Curly"</a>
-              <br><br-->1. "Security through obscurity only works if you're absolutely certain everyone is as dumb as you"<br><em>- Me</em>
+              <br><br-->1. "I am God's vessel. But my greatest pain in life is that I will never be able to see myself perform live."<br><em>- Kanye West</em>
 
             </div>
             <div class="col-lg-4">
@@ -415,10 +416,6 @@
     <?php include("$_SERVER[DOCUMENT_ROOT]/jrrrs/javascripts.php"); ?> 
     <script>
            
-
-      
-      
-      
       /* Doesn't work. Fix.
       $('#login').submit(function(event) {
         logIn();
@@ -460,6 +457,7 @@
       // activate tab on click
       navbox.on('click', 'a', function (e) {
         var $this = $(this);
+        
         // prevent the Default behavior
         e.preventDefault();
         // send the hash to the address bar
@@ -484,7 +482,6 @@
       }
     
     });
-
     </script>
 
 
