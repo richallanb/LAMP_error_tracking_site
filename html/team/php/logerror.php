@@ -18,16 +18,19 @@ if (!empty($_POST)){
   } else if (isset($_POST['RES']) && validateResPost()) {
     // Sanitize input
     $error_id = filter_var($_POST['Rid'], FILTER_SANITIZE_STRING);
-    $resolved = filter_var($_POST['Rres'], FILTER_SANITIZE_STRING);
     $resolved_comment = filter_var($_POST['Rrescmnt'], FILTER_SANITIZE_STRING);
-    $resolved_date = filter_var($_POST['Rresdate'], FILTER_SANITIZE_STRING);
     $resolved_user = filter_var($_POST['Rresusr'], FILTER_SANITIZE_STRING);
+    $myCon = new mysqliInterface;
+    $myCon->resolveError($error_id, $resolved_user, $resolved_comment);
     
   } else if (isset($_POST['MOD']) && validateModPost()) {
     // Sanitize input
     $error_id = filter_var($_POST['Mid'], FILTER_SANITIZE_STRING);
+    $user_id = filter_var($_POST['Musrid'], FILTER_SANITIZE_STRING);
     $severity = filter_var($_POST['Msever'], FILTER_SANITIZE_STRING);
     $comment = filter_var($_POST['Mcmnt'], FILTER_SANITIZE_STRING);
+    $myCon = new mysqliInterface;
+    $myCon->modifyError($error_id, $user_id, $comment, $severity);
   } else {
     echo 'failure';
   }
@@ -37,9 +40,9 @@ function validateAddPost(){
   return validateArray($_POST, ['Aerr', 'Aline', 'Asrc', 'Asever', 'Ameth', 'Ausr', 'Ausrid' ,'Aprj', 'ADD']);
 }
 function validateResPost(){
-  return validateArray($_POST, ['Rid','Rres', 'Rrescmnt', 'Rresdate', 'Rresusr', 'RES']);
+  return validateArray($_POST, ['Rid', 'Rrescmnt', 'Rresusr', 'RES']);
 }
 function validateModPost(){
-  return validateArray($_POST, ['Mid','Msever', 'Mcmnt', 'MOD']);
+  return validateArray($_POST, ['Mid','Msever', 'Musrid', 'Mcmnt', 'MOD']);
 }
 ?>
