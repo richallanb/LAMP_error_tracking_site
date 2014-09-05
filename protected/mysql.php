@@ -432,7 +432,7 @@ class mysqliInterface {
           //echo "$errUser\n";
           if(!array_key_exists($errUserIdHash, $results[$errProjIdHash]->getUsers())){ // Method is always going to be GET since it's JS
             // TODO reminder: delete
-            echo "DEBUG Something seriously wrong";
+            //echo "DEBUG Something seriously wrong";
             return 0;
           }
           $results[$errProjIdHash]->getUsers()[$errUserIdHash]->addError($error_object);
