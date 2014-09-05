@@ -109,16 +109,18 @@ function modifySeverity(formPrefix, errorid, severity, myid, itemToChange, e) {
 
         //If we're done & successful we print out any messages the php code echos out
         .done(function( msg ) {
-           alert(severity);
-          $(itemToChange).removeClass("info warning danger");
+          $(itemToChange).removeClass("default info warning danger");
           switch (severity){
-            case 1:
+            case '0':
+              $(itemToChange).addClass("default");
+              break;
+            case '1':
               $(itemToChange).addClass("info");
               break;
-            case 2:
+            case '2':
               $(itemToChange).addClass("warning");
               break;
-            case 3:
+            case '3':
               $(itemToChange).addClass("danger");
               break;
           }
