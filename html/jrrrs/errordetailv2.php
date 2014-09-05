@@ -269,7 +269,7 @@ HTML;
           <li role="presentation" class="dropdown-header">Drop a Comment</li>
           <li role="presentation" class="nohover">
             <div style="padding: 0 20px 0 20px">
-              <form method="post" onsubmit="modifyErrorComment('$form_id', '$error_idHash', '$my_id', '$info_id', event)">
+              <form method="post" onsubmit="modifyErrorComment('$form_id', '$error_idHash', '$my_id', '$view_id', event)">
                 <textarea name="$text_id" class="form-control comment-box" rows="5" placeholder="Leave a Comment" required>$comment</textarea>
                 <button class="btn btn-default btn-block" style="text-align:left;" type="submit"><span style="margin-top:2px;margin-right:10px;" class="glyphicon glyphicon-pencil pull-left"></span>                       Comment
                 </button>

@@ -56,7 +56,7 @@ function resolveError(formPrefix, errorid, caller, itemToChange, e) {
 }
 
 function jsComment(item, comment){
-  $('#' + item).find('td.comment').html(comment);
+  $('#more-info-' + item).find('td.comment').html(comment);
   var pencil =$('#' + item).find('a.comment-btn-link');
   pencil.html("<span style=\"font-size:80%; font-weight:bold\">COMMENTED</span>");
 }
