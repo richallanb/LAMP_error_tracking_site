@@ -13,7 +13,7 @@
       header("Location: /team/resp/activation");
     }
     else {
-      echo 'Account does not exist, or is already activated!'; // remove later!
+      //echo 'Account does not exist, or is already activated!'; // remove later!
     }
     
     exit;
