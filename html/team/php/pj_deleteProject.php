@@ -6,7 +6,7 @@
   require_once('header.php');
 
   // Checks for session
-  if( isset($_SESSION['admin']) && isset($_SESSION['logged']) && $_SESSION['logged'] && isset($_SESSION['user']) && $_SESSION['user'] ){
+  if( isset($_SESSION['admin']) && isset($_SESSION['logged']) && $_SESSION['logged'] && isset($_SESSION['user']) && $_SESSION['user']  && isset($_SESSION['idhash']) && $_SESSION['idhash']){
     
     // Checks for POST validity
     if( !empty($_POST) && empty($_GET) && validatePost() ){
@@ -17,8 +17,13 @@
       
       // Sends corresponding idhash for one last check
       action($session_id, $connection);
+    } else {
+      header('HTTP/1.1 400 Bad Request');
     }
+  } else {
+    header('HTTP/1.1 400 Bad Request');
   }
+exit;
 
   function validatePost(){
     return validateArray($_POST, ['DPFmyid', 'DPFprojectid']);
@@ -39,16 +44,16 @@
         header('HTTP/1.1 400 Bad Request');
       }else{ 
         header('HTTP/1.1 200 OK');
-        exit;
+
       }
     }
     
     // Session does not match!?
-    header('HTTP/1.1 400 Bad Request');
+    
     
     // Add something drastic
     
-    exit;
+
   }
 
 ?>

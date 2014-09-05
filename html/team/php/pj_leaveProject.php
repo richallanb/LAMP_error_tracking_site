@@ -6,7 +6,7 @@
   require_once('header.php');
 
   // Checks for session
-  if( isset($_SESSION['admin']) && isset($_SESSION['logged']) && $_SESSION['logged'] && isset($_SESSION['user']) && $_SESSION['user'] ){
+  if(isset($_SESSION['admin']) && isset($_SESSION['logged']) && $_SESSION['logged'] && isset($_SESSION['user']) && $_SESSION['user']  && isset($_SESSION['idhash']) && $_SESSION['idhash']){
     
     // Checks for POST validity
     if( !empty($_POST) && empty($_GET) && validatePost() ){
