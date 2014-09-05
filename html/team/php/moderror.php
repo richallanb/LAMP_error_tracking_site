@@ -6,7 +6,7 @@ if (isset($_POST['RES']) && validateResPost() && verifyFormToken("resolve-err"))
     // Sanitize input
     $error_id = $_POST['Rid'];
     $resolved_comment = filter_var($_POST['Rrescmnt'], FILTER_SANITIZE_STRING);
-    $resolved_user = $_POST['Rresusr'];
+    $resolved_user = $_SESSION['user']
     $myCon = new mysqliInterface;
     $myCon->resolveError($error_id, $resolved_user, $resolved_comment);
     
