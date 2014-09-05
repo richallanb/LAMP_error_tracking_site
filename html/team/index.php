@@ -68,9 +68,6 @@
           $Myself = getProfile();
           $Projects_list = getProjects();
           
-          // ERROR DETAIL, used in dashboard and site management
-          $errordetail = include("$_SERVER[DOCUMENT_ROOT]/jrrrs/errordetail.php"); 
-          
           // ERROR DETAIL function library
           include("$_SERVER[DOCUMENT_ROOT]/jrrrs/errordetailv2.php"); 
           

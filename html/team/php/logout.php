@@ -3,11 +3,12 @@ session_name ("b_y6fcPbVeYEmN^NNfW+A*myn8SsXxAuw9!3?LawN8Np^5tDdXe3EzVMFC9k=dwuH
 session_start();
 
   unset($_SESSION['logged']);
-  unset($_SESSION['name']);
-  unset($_SESSION['error']);
+  unset($_SESSION['user']);
+  unset($_SESSION['idhash']);
 
   if (isset($_SESSION['admin']))
      unset($_SESSION['admin']);
+  session_destroy();
   header("Location: /"); 
   exit;
 ?>
