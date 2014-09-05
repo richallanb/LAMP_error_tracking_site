@@ -16,7 +16,7 @@
       <form name="forgotpw" id="forgotpw" role="form">
       <div style="margin: 0 40px 30px 40px;">
               <div>Account Username:</div>
-              <input name="Fuser" type="text" class="form-control" placeholder="Username" pattern="^[A-Za-z][A-Za-z0-9]*(?:_[A-Za-z0-9]+)*$" required style="margin-bottom: 20px">
+              <input name="Fuser" type="text" class="form-control" placeholder="Username" pattern="^[a-zA-Z][\w\d]{5,20}$" required style="margin-bottom: 20px">
               <div>Account E-mail:</div>
               <div class="input-group">
                 <div class="input-group-addon">@</div>
@@ -57,7 +57,7 @@ $signup = <<< HTML
     <form class="form-signup form" name="register" id="signup" role="form" method="post">
       <div class="input-group" style="margin-bottom: 15px;">
                 <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
-      <input name="Suser" type="text" class="form-control input-large" placeholder="Username" oninvalid="setCustomValidity('Username must begin with alphanumeric character. It can only contain alphanumeric characters or \'_\' and between 6 and 21 characters long');" onchange="try{setCustomValidity('')}catch(e){}" pattern="^[a-zA-Z](([a-zA-Z0-9]+)|_([a-zA-Z0-9]+)){5,21}$" required></div>
+      <input name="Suser" type="text" class="form-control input-large" placeholder="Username" oninvalid="setCustomValidity('Username must begin with alphanumeric character. It can only contain alphanumeric characters or \'_\' and between 6 and 21 characters long');" onchange="try{setCustomValidity('')}catch(e){}" pattern="^[a-zA-Z][\w\d]{5,20}$" required></div>
               <div class="input-group" style="margin-bottom: 15px;">
                 <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
                 <input class="form-control input-large" type="email" name="Semail" placeholder="Enter email" required>
@@ -80,7 +80,7 @@ $signup = <<< HTML
       <input name="Pprojid" type="text" class="form-control input-large" placeholder="Project ID" required style="margin-bottom: 15px;">
       <div class="input-group" style="margin-bottom: 15px;">
                 <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
-      <input name="Puser" type="text" class="form-control input-large" placeholder="Username" oninvalid="setCustomValidity('Username must begin with alphanumeric character. It can only contain alphanumeric characters or \'_\' and between 6 and 21 characters long');" onchange="try{setCustomValidity('')}catch(e){}" pattern="^[a-zA-Z](([a-zA-Z0-9]+)|_([a-zA-Z0-9]+)){5,21}$" required></div>
+      <input name="Puser" type="text" class="form-control input-large" placeholder="Username" oninvalid="setCustomValidity('Username must begin with alphanumeric character. It can only contain alphanumeric characters or \'_\' and between 6 and 21 characters long');" onchange="try{setCustomValidity('')}catch(e){}" pattern="^[a-zA-Z][\w\d]{5,20}$" required></div>
               <div class="input-group" style="margin-bottom: 15px;">
                 <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
                 <input class="form-control input-large" type="email" name="Pemail" placeholder="Enter email" required>

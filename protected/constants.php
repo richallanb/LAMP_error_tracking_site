@@ -6,7 +6,7 @@
   define ("ADMIN", 3); // NEEDED FOR LEGACY CODE!!!
   // For validation
   $pw_reg = "/.{8,}/";
-  $user_reg = "/^[a-zA-Z](([a-zA-Z0-9]+)|_([a-zA-Z0-9]+)){5,21}$/";
+  $user_reg = "/^[a-zA-Z][\w\d]{5,20}$/";
   $name_reg = "/^[\w ]+$/";
   $site_path = 'https://team.ninth.biz';
   define ('PASS_REGEX', $pw_reg);
