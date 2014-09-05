@@ -331,7 +331,7 @@ HTML;
     }
 
     $body = <<< HTML
-      <td class="dropdown" title="$name">
+      <td class="dropdown longtext" title="$name">
         
           
             <span class="badge">{$Error->getCount()}</span> <a class="dropdown-toggle" data-toggle="dropdown">$name</a>
