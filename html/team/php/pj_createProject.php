@@ -28,7 +28,7 @@
   function action($connection){
     
     // CPF - Create Project Form
-    $project = preg_filter('/((?![\w\d ]).)+/','', $_POST['CPFprojectname']);
+    $project = preg_filter("/((?![\w\d ]).)+/",'', $_POST['CPFprojectname']);
     $caller = $_POST['CPFmyname'];
     $caller_id = $_SESSION['idhash'];
       
@@ -38,7 +38,7 @@
       // connection variable should've been defined by pj_validator
       if($connection->createProject($project, $caller, $caller_id) != 0){
         // Error happened
-        echo $project;
+        echo $_POST['CPFprojectname'];
         header('HTTP/1.1 400 Bad Request');
         exit;
         
