@@ -33,12 +33,6 @@
 
 
   static $level = -1;
-  /* FOR VALIDATION! DO NOT DELETE!! 
-  $level = 3;
-  $_SESSION['user'] = "testing123";
-  $_SESSION['logged'] = TRUE;
-  */
-  ///*
   if( isset($_SESSION["admin"]) && isset($_SESSION["logged"]) && $_SESSION["logged"] ){
     $level = $_SESSION["admin"];
     header("Location: /");
