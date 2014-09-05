@@ -38,6 +38,7 @@
         // Error happened
         header('HTTP/1.1 400 Bad Request');
       }else{ 
+        header('HTTP/1.1 200 OK');
         exit;
       }
     }
