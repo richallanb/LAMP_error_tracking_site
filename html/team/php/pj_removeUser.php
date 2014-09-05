@@ -11,7 +11,7 @@
     echo "SET";
     
     // Checks for POST validity
-    if( !empty($_POST) && empty($_GET) && validatePost() ){
+    if( !empty($_POST) && empty($_GET) && validatePost() && verifyFormToken("projtoken")){
       
       echo "VALID";
       
@@ -25,7 +25,7 @@
   }
 
   function validatePost(){
-    return validateArray($_POST, ['RPUFmyid', 'RPUFuserid', 'RPUFprojectid']);
+    return validateArray($_POST, ['RPUFmyid', 'RPUFuserid', 'RPUFprojectid', 'token']);
   }
 
   // Main 

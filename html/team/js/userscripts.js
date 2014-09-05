@@ -231,7 +231,7 @@ function displayScript (userid, projid) {
         formData["RPUFmyid"] = myId;
         formData["RPUFuserid"] = userId;
         formData["RPUFprojectid"] = projId;
-        
+        formData['token'] = $('input[name=projtoken]').val();
         // Create our ajax request
          return ($.ajax({
           url: "/team/php/pj_removeUser.php",
@@ -267,7 +267,7 @@ function displayScript (userid, projid) {
         var formData = {};
         formData["DPFmyid"] = myId;
         formData["DPFprojectid"] = projId;
-        
+        formData['token'] = $('input[name=projtoken]').val();
         // Create our ajax request
          return ($.ajax({
           url: "/team/php/pj_deleteProject.php",
@@ -301,7 +301,7 @@ function displayScript (userid, projid) {
         var formData = {};
         formData["LPFmyid"] = myId;
         formData["LPFprojectid"] = projId;
-        
+        formData['token'] = $('input[name=projtoken]').val();
         // Create our ajax request
          return ($.ajax({
           url: "/team/php/pj_leaveProject.php",

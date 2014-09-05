@@ -302,7 +302,7 @@ class mysqliInterface {
                  -1 on failure
                  -2 on unknown credentials
                  -3 on admin deletion attempt
-  */
+  
   function deleteUser($invoking_user, $tobedeleted_user){
     
     $idHash='';
@@ -332,7 +332,7 @@ class mysqliInterface {
      }
     
     return -1;
-  }
+  }*/
   
   // Updates last login
   function lastLogin($user){

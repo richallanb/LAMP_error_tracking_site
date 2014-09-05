@@ -9,7 +9,7 @@
   if( isset($_SESSION['admin']) && isset($_SESSION['logged']) && $_SESSION['logged'] && isset($_SESSION['user']) && $_SESSION['user']  && isset($_SESSION['idhash']) && $_SESSION['idhash']){
     
     // Checks for POST validity
-    if( !empty($_POST) && empty($_GET) && validatePost() ){
+    if( !empty($_POST) && empty($_GET) && validatePost()  && verifyFormToken("projtoken")){
       
       // Connection is defined only here
       $connection = new mysqliInterface;
@@ -26,7 +26,7 @@
 exit;
 
   function validatePost(){
-    return validateArray($_POST, ['DPFmyid', 'DPFprojectid']);
+    return validateArray($_POST, ['DPFmyid', 'DPFprojectid', 'token']);
   }
 
   // Main 

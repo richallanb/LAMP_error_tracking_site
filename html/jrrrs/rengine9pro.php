@@ -11,9 +11,12 @@
   $refToken = generateFormToken('referral');
   $modToken = generateFormToken('modify-err');
   $resToken = generateFormToken('resolve-err');
+  $projToken = generateFormToken('projtoken');
+  $projCPFToken = generateFormToken('CPF');
   echo "<input type=\"hidden\" name=\"restoken\" value=$resToken>";
   echo "<input type=\"hidden\" name=\"modtoken\" value=$modToken>"; 
   echo "<input type=\"hidden\" name=\"reftoken\" value=$refToken>";
+  echo "<input type=\"hidden\" name=\"projtoken\" value=$projToken>";
   // Put up here for easier maintenance 
   function table_header(){
     $body = <<< HTML
@@ -249,7 +252,7 @@ HTML;
                 <input class="form-control" name="CPFprojectname" placeholder="Project Name" required></div>
                 <input type="hidden" name="CPFmyname" value="{$_SESSION['user']}">
                 <input type="hidden" name="CPFmyid" value="{$Myself->getIdHash()}">
-
+                <input type="hidden" name="token" value="$projCPFToken">
               <div style="vertical-align:middle !important">
                 Create a project with <strong>REngine <span style="color:lightseagreen">9</span> PRO</strong>
                 <button class="btn btn-default btn-block" style="max-width:200px;float:right;" type="submit">Create</button>
