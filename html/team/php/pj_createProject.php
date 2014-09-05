@@ -13,10 +13,10 @@
       
       // Connection is defined only here
       $connection = new mysqliInterface;
-      $session_id = $connection->getIdHash($_SESSION['user']);
+      //$session_id = $connection->getIdHash($_SESSION['user']);
       
       // Sends corresponding idhash for one last check
-      action($session_id, $connection);
+      action($connection);
     }
   }
 
@@ -25,7 +25,7 @@
   }
 
   // Main 
-  function action($session_id, $connection){
+  function action($connection){
     
     // CPF - Create Project Form
     $project = preg_filter('/((?![\w\d ]).)+/','', $_POST['CPFprojectname']);
@@ -33,7 +33,7 @@
     $caller_id = $_SESSION['idhash'];
       
     // One last check!
-    if( ($session_id == $caller_id) ){
+   // if( ($session_id == $caller_id) ){
       
       // connection variable should've been defined by pj_validator
       if($connection->createProject($project, $caller, $caller_id) != 0){
@@ -45,7 +45,7 @@
         header('Location: ' . $_SERVER['HTTP_REFERER'] . '#projects');
         exit;
       }
-    }
+   // }
     
     // Session does not match!?
     header('HTTP/1.1 400 Bad Request');
