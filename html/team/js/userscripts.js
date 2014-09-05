@@ -56,7 +56,9 @@ function resolveError(formPrefix, errorid, caller, itemToChange, e) {
 }
 
 function jsComment(item, comment){
-  $(item).find('td.comment').html(comment);
+  $('#' + item).find('td.comment').html(comment);
+  var pencil =$('#' + item).find('td.comment-btn');
+  pencil.html("<span style=\"font-size:80%; font-weight:bold\">COMMENTED</span>");
 }
 
 //['Mid','Msever', 'Musrid', 'Mcmnt', 'token', 'MOD'])
