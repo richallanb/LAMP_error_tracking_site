@@ -38,7 +38,7 @@
       // connection variable should've been defined by pj_validator
       if($connection->createProject($project, $caller, $caller_id) != 0){
         // Error happened
-        echo $_POST['CPFprojectname'];
+        echo $project;
         header('HTTP/1.1 400 Bad Request');
         exit;
         
