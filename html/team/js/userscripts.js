@@ -1,7 +1,29 @@
 /*Projects Scripts */
-function resolveError(formPrefix, errorid, caller, e) {
+function jsResolve(item, comment, user){
+  var pencil =$('#' + item).find('td.comment-btn');
+  pencil.html("RESOLVED");
+  pencil.addClass('project-header-like')
+  pencil.removeClass('comment-btn');
+  var date = new Date();
+  var options = {month: "short", day: "2-digit", hour12:false};
+  options.timeZone = "UTC";
+  var dateString = "<span style=\"font-weight:bold; text-transform:uppercase; font-size:85%\">"  + 
+      date.toLocaleDateString("en-US", options) + "</span> ";
+  dateString += date.toLocaleTimeString("en-US", {hour12:false});
+  var resolveBuild = "<tr>\
+          <td class=\"details-title\">RESOLVED BY</td>\
+          <td class=\"resolved-authordate\">" + user + " <span style=\"margin-right:10px;\">&nbsp;</span>" + dateString + "</td>\
+        </tr>\
+        <tr>\
+          <td class=\"details-title\">MESSAGE</td>\
+         <td class=\"resolved-comment\">"+comment+"</td></tr>";
+  var moreinfo = $('#more-info-' + item + " tbody");
+  moreinfo.html(moreinfo.html() + resolveBuild);
+}
+
+function resolveError(formPrefix, errorid, caller, itemToChange, e) {
         // Fill our request with data from our form
-  
+        var cmnt = $('textarea[name=Rcomment-' + formPrefix + ']').val();
         var formData = {
           'Rrescmnt' 	: $('textarea[name=Rcomment-' + formPrefix + ']').val(),
           'Rresusr' 	: caller,
@@ -20,7 +42,8 @@ function resolveError(formPrefix, errorid, caller, e) {
 
         //If we're done & successful we print out any messages the php code echos out
         .done(function( msg ) {
-           window.location.reload(true);
+           jsResolve(itemToChange, cmnt, caller);
+           //window.location.reload(true);
         })
         
         .fail(function(xhr, status, error){
@@ -29,9 +52,14 @@ function resolveError(formPrefix, errorid, caller, e) {
   e.preventDefault();
 }
 
+function jsComment(item, comment){
+  $(item).find('td.comment').html(comment);
+}
+
 //['Mid','Msever', 'Musrid', 'Mcmnt', 'token', 'MOD'])
-function modifyErrorComment(formPrefix, errorid, myid, e) {
+function modifyErrorComment(formPrefix, errorid, myid, itemToChange, e) {
         // Fill our request with data from our form
+        var cmnt = $('textarea[name=Mcomment-' + formPrefix + ']').val();
         var formData = {
           'Mcmnt' 	: $('textarea[name=Mcomment-' + formPrefix + ']').val(),
           'Musrid' 	: myid,
@@ -51,7 +79,8 @@ function modifyErrorComment(formPrefix, errorid, myid, e) {
 
         //If we're done & successful we print out any messages the php code echos out
         .done(function( msg ) {
-           window.location.reload(true);
+          jsComment(itemToChange, cmnt);
+           //window.location.reload(true);
         })
         
         .fail(function(xhr, status, error){
@@ -59,8 +88,7 @@ function modifyErrorComment(formPrefix, errorid, myid, e) {
         });
   e.preventDefault();
 }
-
-function modifySeverity(formPrefix, errorid, severity, myid, e) {
+function modifySeverity(formPrefix, errorid, severity, myid, itemToChange, e) {
         // Fill our request with data from our form
         var formData = {
           'Mcmnt' 	: null,
@@ -81,7 +109,18 @@ function modifySeverity(formPrefix, errorid, severity, myid, e) {
 
         //If we're done & successful we print out any messages the php code echos out
         .done(function( msg ) {
-           window.location.reload(true);
+          $(itemToChange).removeClass("info warning danger");
+          switch (severity){
+            case 1:
+              $(itemToChange).addClass("info");
+              break;
+            case 2:
+              $(itemToChange).addClass("warning");
+              break;
+            case 3:
+              $(itemToChange).addClass("danger");
+              break;
+          }
         })
         
         .fail(function(xhr, status, error){

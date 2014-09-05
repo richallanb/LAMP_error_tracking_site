@@ -76,11 +76,11 @@ HTML;
       $resolved_tr = <<< HTML
         <tr>
           <td class="details-title">RESOLVED BY</td>
-          <td>{$Error->getResolvedUser()} <span style="margin-right:10px;">&nbsp;</span>$resolved_date</td>
+          <td class="resolved-authordate">{$Error->getResolvedUser()} <span style="margin-right:10px;">&nbsp;</span>$resolved_date</td>
         </tr>
         <tr>
           <td class="details-title">MESSAGE</td>
-          <td>{$Error->getResolvedComment()}</td>
+          <td class="resolved-comment">{$Error->getResolvedComment()}</td>
         </tr>
 HTML;
     }
@@ -102,7 +102,7 @@ HTML;
           </tr>
           <tr>
             <td class="details-title">Comment</td>
-            <td>$comment</td>
+            <td class="comment">$comment</td>
           </tr>
           $resolved_tr
         </tbody>
@@ -191,10 +191,11 @@ HTML;
     $error_idHash = $Error->getIdHash();
     $error_id = $Error->getId();
     $form_id = "$type-$error_id";
+    $tr_id = $type.$error_id;
     $disabled = $Error->isResolved()?"disabled":"";
     $body = <<< HTML
       <td>
-        <select class="form-control" style="padding: 0 0 0 3px;cursor:default;" onchange="modifySeverity('$form_id', '$error_idHash', $(this).val(), '$my_id', event)" $disabled>
+        <select class="form-control" style="padding: 0 0 0 3px;cursor:default;" onchange="modifySeverity('$form_id', '$error_idHash', $(this).val(), '$my_id', '#$tr_id', event)" $disabled>
           $options
         </select>
       </td>
@@ -245,6 +246,8 @@ HTML;
     $error_id = $Error->getId();
     $error_idHash = $Error->getIdHash();
     $my_id = $_SESSION['idhash'];
+    $view_id = $type . $error_id;
+    $info_id = "more-info-$view_id";
     $form_id = "$type-$error_id";
     $text_id = "Mcomment-$form_id";
     
@@ -260,13 +263,13 @@ HTML;
     }
     
     $body = <<< HTML
-      <td class="dropdown text-center">
+      <td class="dropdown text-center comment-btn">
         <a class="dropdown-toggle longtext" data-toggle="dropdown">$dropdown_message</a>
         <ul class="dropdown-menu" role="menu" style="width: 350px">
           <li role="presentation" class="dropdown-header">Drop a Comment</li>
           <li role="presentation" class="nohover">
             <div style="padding: 0 20px 0 20px">
-              <form method="post" onsubmit="modifyErrorComment('$form_id', '$error_idHash', '$my_id', event)">
+              <form method="post" onsubmit="modifyErrorComment('$form_id', '$error_idHash', '$my_id', '#$info_id' event)">
                 <textarea name="$text_id" class="form-control comment-box" rows="5" placeholder="Leave a Comment" required>$comment</textarea>
                 <button class="btn btn-default btn-block" style="text-align:left;" type="submit"><span style="margin-top:2px;margin-right:10px;" class="glyphicon glyphicon-pencil pull-left"></span>                       Comment
                 </button>
@@ -317,7 +320,7 @@ HTML;
         <li role="presentation" class="dropdown-header">Resolve & Comment</li>
         <li role="presentation" class="nohover">
           <div style="padding: 0 20px 0 20px">
-            <form method="post" onsubmit="resolveError('$form_id', '{$Error->getIdHash()}', '{$_SESSION['user']}', event)">
+            <form method="post" onsubmit="resolveError('$form_id', '{$Error->getIdHash()}', '{$_SESSION['user']}', '$view_id', event)">
               <textarea class="form-control comment-box" name="$text_id" rows="5" placeholder="Leave a Resolution Comment" required></textarea>
               <button class="btn btn-default btn-block" style="text-align:left;" type="submit"><span style="margin-top:2px;margin-right:10px;" class="glyphicon glyphicon-check pull-left"></span>                         Resolve
               </button>
