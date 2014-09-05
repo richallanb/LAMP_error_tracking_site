@@ -642,11 +642,9 @@ class mysqliInterface {
             $stmt->bind_param("ss", $caller_id, $project_id);
             if ($stmt->execute()) {
               $worked = ($stmt->affected_rows > 0);
-              $stmt->close();
-              if ($worked)
-                return 0;
-              else
-                return -1;
+              $stmt->close(); 
+              return 0;
+ 
             } else {
               $stmt->close();
               return -1;

@@ -34,10 +34,10 @@
     // One last check!
     if( $session_id == $caller_id ){
       
-      if($connection->deleteProject($caller_id, $project_id)){
+      if($connection->deleteProject($caller_id, $project_id) != 0){
         // Error happened
         header('HTTP/1.1 400 Bad Request');
-      }else{
+      }else{ 
         exit;
       }
     }
