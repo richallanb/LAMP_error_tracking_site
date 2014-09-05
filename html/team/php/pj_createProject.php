@@ -26,9 +26,8 @@
 
   // Main 
   function action($connection){
-    $shit = $_POST['CPFprojectname'];
     // CPF - Create Project Form
-    $project = preg_filter("/((?![\w\d ]).)+/",'', $shit);
+    $project = $_POST['CPFprojectname'];
     $caller = $_POST['CPFmyname'];
     $caller_id = $_SESSION['idhash'];
       
