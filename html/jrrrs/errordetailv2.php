@@ -333,9 +333,9 @@ HTML;
     $body = <<< HTML
       <td class="dropdown" title="$name">
         
-          <p class="longtext" style="font-size: inherit; margin:0">
+          
             <span class="badge">{$Error->getCount()}</span> <a class="dropdown-toggle" data-toggle="dropdown">$name</a>
-          </p>
+         
         <ul class="dropdown-menu" role="menu" style="width: 350px">
           $resolution_li
           <li role="presentation" class="divider"></li>
