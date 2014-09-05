@@ -1,5 +1,6 @@
 /*Projects Scripts */
 function jsResolve(item, comment, user){
+  $('#' + item).find('td.dropdown').removeClass('open');
   var pencil =$('#' + item).find('td.comment-btn');
   pencil.html("RESOLVED");
   pencil.addClass('project-header-like')
@@ -22,6 +23,7 @@ function jsResolve(item, comment, user){
          <td class=\"resolved-comment\">"+comment+"</td></tr>";
   var moreinfo = $('#more-info-' + item + " tbody");
   moreinfo.html(moreinfo.html() + resolveBuild);
+  
 }
 
 function resolveError(formPrefix, errorid, caller, itemToChange, e) {
@@ -56,6 +58,7 @@ function resolveError(formPrefix, errorid, caller, itemToChange, e) {
 }
 
 function jsComment(item, comment){
+  $('#' + item).find('td.dropdown').removeClass('open');
   $('#more-info-' + item).find('td.comment').html(comment);
   var pencil =$('#' + item).find('a.comment-btn-link');
   pencil.html("<span style=\"font-size:80%; font-weight:bold\">COMMENTED</span>");
