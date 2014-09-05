@@ -7,7 +7,7 @@
   // For validation
   $pw_reg = "/.{8,}/";
   $user_reg = "/^[a-zA-Z][\w\d]{5,20}$/";
-  $name_reg = "/^[\w ]+$/";
+  $name_reg = "/^[\w\d ]+$/";
   $site_path = 'https://team.ninth.biz';
   define ('PASS_REGEX', $pw_reg);
   define ('USER_REGEX', $user_reg);
