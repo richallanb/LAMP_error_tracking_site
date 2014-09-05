@@ -5,8 +5,8 @@ function jsResolve(item, comment, user){
   pencil.addClass('project-header-like')
   pencil.removeClass('comment-btn');
   $('#' + item + ' select').attr('disabled', true);
-  $('#' + item + ' select').removeClass("default info warning danger");
-  $('#' + item + ' select').addClass("success");
+  $('#' + item).removeClass("default info warning danger");
+  $('#' + item).addClass("success");
   var date = new Date();
   var options = {month: "short", day: "2-digit", hour12:false};
   options.timeZone = "UTC";
