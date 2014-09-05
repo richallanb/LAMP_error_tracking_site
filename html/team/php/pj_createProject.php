@@ -27,7 +27,7 @@
   // Main 
   function action($connection){
     // CPF - Create Project Form
-    $project = $_POST['CPFprojectname'];
+    $project = filter_var($_POST['CPFprojectname'], FILTER_SANITIZE_STRING);
     $caller = $_POST['CPFmyname'];
     $caller_id = $_SESSION['idhash'];
       

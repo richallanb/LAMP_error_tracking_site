@@ -562,7 +562,7 @@ class mysqliInterface {
   function createProject($name, $caller, $idHash){
        
     // Bad project name alphanumeric + spaces only
-    $name = preg_filter('/((?![\w\d ]).)+/','', $name);
+    $name = filter_var($name, FILTER_SANITIZE_STRING);
     if (!($this->checkIdHash($idHash))) {
       return -2;
     }
