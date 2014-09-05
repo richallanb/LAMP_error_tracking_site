@@ -786,7 +786,7 @@ class mysqliInterface {
   function queryUser($user){
     // Mother fucking prepared statements. Suck it SQL injection.
     //SELECT hash, admin FROM Users WHERE user=? and activated=1;
-    if ($stmt = $this->con->prepare("SELECT u.hash, u.admin, u.idhash, CASE WHEN p.user = ? THEN 1 ELSE 0 END AS proj_member FROM Users u INNER JOIN Project_Users p WHERE u.user = ? AND activated=1 ORDER BY proj_member DESC LIMIT 1;")) {
+    if ($stmt = $this->con->prepare("SELECT u.hash, u.admin, u.idhash, CASE WHEN p.user = ? THEN 1 ELSE 0 END AS proj_member FROM Users u INNER JOIN Project_Users p WHERE u.user = ? AND activated=1 AND banned <> 1 ORDER BY proj_member DESC LIMIT 1;")) {
 
       /* bind parameters for markers */
       /* Bind parameters

@@ -3,6 +3,7 @@
 
   // List not made, not logged in
   if(!$Myself || $level == -1){
+    header("Location: /errors/error9");
     return;
   }
 
