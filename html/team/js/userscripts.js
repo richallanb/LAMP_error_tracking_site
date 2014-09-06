@@ -1,3 +1,7 @@
+function htmlEntities(str) {
+    return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
 /*Projects Scripts */
 function jsResolve(item, comment, user){
   //$('#' + item).find('.open').removeClass('open');
@@ -16,11 +20,11 @@ function jsResolve(item, comment, user){
   dateString += date.toLocaleTimeString("en-US", {hour12:false});
   var resolveBuild = "<tr>\
           <td class=\"details-title\">RESOLVED BY</td>\
-          <td class=\"resolved-authordate\">" + user + " <span style=\"margin-right:10px;\">&nbsp;</span>" + dateString + "</td>\
+          <td class=\"resolved-authordate\">" +htmlEntities(user) + " <span style=\"margin-right:10px;\">&nbsp;</span>" + dateString + "</td>\
         </tr>\
         <tr>\
           <td class=\"details-title\">MESSAGE</td>\
-         <td class=\"resolved-comment\">"+comment+"</td></tr>";
+         <td class=\"resolved-comment\">"+htmlEntities(comment)+"</td></tr>";
   var moreinfo = $('#more-info-' + item + " tbody");
   moreinfo.html(moreinfo.html() + resolveBuild);
   
@@ -59,7 +63,7 @@ function resolveError(formPrefix, errorid, caller, itemToChange, e) {
 
 function jsComment(item, comment){
   //$('#' + item).find('.open').removeClass('open');
-  $('#more-info-' + item).find('td.comment').html(comment);
+  $('#more-info-' + item).find('td.comment').text(comment).html();
   var pencil =$('#' + item).find('a.comment-btn-link');
   pencil.html("<span style=\"font-size:80%; font-weight:bold\">COMMENTED</span>");
 }
