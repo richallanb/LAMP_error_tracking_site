@@ -4,7 +4,7 @@ session_start();
 require_once('header.php');
 
 
-if(!empty($_POST) && verifyFormToken("signup")){  
+if(!empty($_POST) && verifyFormToken("signup") && validatePost()){  
 //    $user = filter_var($_POST['Suser'], FILTER_SANITIZE_STRING);
   
     $user = filter_var($_POST['Suser'], FILTER_SANITIZE_STRING); 
@@ -17,11 +17,12 @@ if(!empty($_POST) && verifyFormToken("signup")){
       $projid = $_POST['Sprojectid'];
     if (isset($_POST['Sreferal']))
       $refer = $_POST['Sreferal'];
+  if (validateInput($user, $email, $pw, $samepw)) {
   
     $myCon = new mysqliInterface;
   
     $err = printError($myCon, $user, $email, $pw, $samepw, $refer, $projid);
-    if (!(strlen($err) > 0) && validateInput($user, $email, $pw, $samepw) && validatePost()) {
+    if (!(strlen($err) > 0)) {
    
       $pwhash = passwordToHash($pw);
       if (strlen($idhash = $myCon->signUp($user, $pwhash, $email, null)) > 0) {
@@ -46,7 +47,7 @@ if(!empty($_POST) && verifyFormToken("signup")){
       header('HTTP/1.1 400 Bad Request');
       echo $err;
     }
-  
+  }
     exit;
 }
 

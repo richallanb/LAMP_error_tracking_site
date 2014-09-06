@@ -2,14 +2,15 @@
 session_name ("b_y6fcPbVeYEmN^NNfW+A*myn8SsXxAuw9!3?LawN8Np^5tDdXe3EzVMFC9k=dwuHTuLeE5CG5@?-KfZLhzF+L+wqqGB*#6LQsFF=uATu_N9P@!JpzFegDE2ZQtndRrT");
 session_start();
 require_once('header.php');
-if (!empty($_POST)  && verifyFormToken("forgotpw")){
+if (!empty($_POST)  && verifyFormToken("forgotpw") && validatePost()){
   $user = filter_var($_POST['Fuser'], FILTER_SANITIZE_STRING);
   $email = filter_var($_POST['Femail'], FILTER_SANITIZE_STRING);
+  if (validateInput($user, $email)) {
   $myCon = new mysqliInterface;
   
   $err = printError($myCon, $user, $email);
   
-  if (!(strlen($err) > 0) && validateInput($user, $email) && validatePost()) {
+  if (!(strlen($err) > 0)) {
    
       if (strlen($recHash = $myCon->passwordRecoveryGen($user, $email)) > 0) {
 
@@ -24,7 +25,7 @@ if (!empty($_POST)  && verifyFormToken("forgotpw")){
       header('HTTP/1.1 400 Bad Request');
       echo $err;
     }
-  
+  }
     exit;
   
 }
