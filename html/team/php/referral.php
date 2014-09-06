@@ -22,7 +22,6 @@ if(!empty($_POST)){
   } else if (isset($_POST['PROJREF']) && validatePost() && verifyFormToken("referral")) {
 
     $myCon = new mysqliInterface;
-    $email = $_POST['RIemail'];
     $email = filter_var($_POST['RIemail'], FILTER_SANITIZE_STRING);
     $projectid = $_POST['RIprojid'];
     $referralid = $_POST['RImyid']; 
