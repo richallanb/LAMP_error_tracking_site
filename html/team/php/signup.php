@@ -4,7 +4,7 @@ session_start();
 require_once('header.php');
 
 
-if(!empty($_POST)){  
+if(!empty($_POST) && verifyFormToken("signup")){  
 //    $user = filter_var($_POST['Suser'], FILTER_SANITIZE_STRING);
   
     $user = filter_var($_POST['Suser'], FILTER_SANITIZE_STRING); 
@@ -21,7 +21,7 @@ if(!empty($_POST)){
     $myCon = new mysqliInterface;
   
     $err = printError($myCon, $user, $email, $pw, $samepw, $refer, $projid);
-    if (!(strlen($err) > 0) && validateInput($user, $email, $pw, $samepw) && verifyFormToken("signup") && validatePost()) {
+    if (!(strlen($err) > 0) && validateInput($user, $email, $pw, $samepw) && validatePost()) {
    
       $pwhash = passwordToHash($pw);
       if (strlen($idhash = $myCon->signUp($user, $pwhash, $email, null)) > 0) {
