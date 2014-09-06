@@ -8,12 +8,11 @@
   // Checks for session
   if(isset($_SESSION['admin']) && isset($_SESSION['logged']) && $_SESSION['logged'] && isset($_SESSION['user']) && $_SESSION['user']  && isset($_SESSION['idhash']) && $_SESSION['idhash']){
     
-    echo "SET";
     
     // Checks for POST validity
     if( !empty($_POST) && empty($_GET) && validatePost() && verifyFormToken("projtoken")){
       
-      echo "VALID";
+
       
       // Connection is defined only here
       $connection = new mysqliInterface;
