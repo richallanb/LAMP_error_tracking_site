@@ -159,7 +159,9 @@ function dismissError(errorid, myid, itemToHide) {
 
         //If we're done & successful we print out any messages the php code echos out
         .done(function( msg ) {
-           $(itemToHide).hide('fast');
+          $('#more-info-' + itemToHide).hide();
+           $('#' + itemToHide).hide('fast');
+           
         })
         
         .fail(function(xhr, status, error){

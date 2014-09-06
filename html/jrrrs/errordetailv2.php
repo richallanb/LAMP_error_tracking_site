@@ -341,7 +341,7 @@ HTML;
           <li role="presentation" class="divider"></li>
           <li role="presentation" class="dropdown-header">Dismiss or Ignore Error</li>
           <li>
-            <a style="cursor:pointer" onclick="dismissError('{$Error->getIdHash()}', '$my_id', '#$view_id')">
+            <a style="cursor:pointer" onclick="dismissError('{$Error->getIdHash()}', '$my_id', '$view_id')">
               <span style="margin-top:2px;margin-right:10px;margin-left:14px;" class="glyphicon glyphicon-eye-close pull-left"></span>Dismiss
             </a>
           </li>
