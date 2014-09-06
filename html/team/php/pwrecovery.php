@@ -3,8 +3,8 @@ session_name ("b_y6fcPbVeYEmN^NNfW+A*myn8SsXxAuw9!3?LawN8Np^5tDdXe3EzVMFC9k=dwuH
 session_start();
 require_once('header.php');
 if (!empty($_POST)){
-  $user = $_POST['Fuser']; 
-  $email = $_POST['Femail'];
+  $user = filter_var($_POST['Fuser'], FILTER_SANITIZE_STRING);
+  $email = filter_var($_POST['Femail'], FILTER_SANITIZE_STRING);
   $myCon = new mysqliInterface;
   
   $err = printError($myCon, $user, $email);

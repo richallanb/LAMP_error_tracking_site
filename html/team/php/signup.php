@@ -7,8 +7,8 @@ require_once('header.php');
 if(!empty($_POST)){  
 //    $user = filter_var($_POST['Suser'], FILTER_SANITIZE_STRING);
   
-    $user = $_POST['Suser']; 
-    $email = $_POST['Semail'];
+    $user = filter_var($_POST['Suser'], FILTER_SANITIZE_STRING); 
+    $email = filter_var($_POST['Semail'], FILTER_SANITIZE_STRING);
     $pw = $_POST['Spassword'];
     $samepw = $_POST['Srepassword'];
     $refer = null;

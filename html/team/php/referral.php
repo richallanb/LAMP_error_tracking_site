@@ -5,7 +5,7 @@ session_start();
 if(!empty($_POST)){  
   // Invite request
   if (isset($_POST['INV']) && validatePost() && verifyFormToken("referral")){
-    $email = $_POST['RFemail'];
+    $email = filter_var($_POST['RFemail'], FILTER_SANITIZE_STRING);
     if (validateInput($email)){
       $myCon = new mysqliInterface;
       if($myCon->checkEmail($email)) {
@@ -23,6 +23,7 @@ if(!empty($_POST)){
 
     $myCon = new mysqliInterface;
     $email = $_POST['RIemail'];
+    $email = filter_var($_POST['RIemail'], FILTER_SANITIZE_STRING);
     $projectid = $_POST['RIprojid'];
     $referralid = $_POST['RImyid']; 
     if (validateInput($email)){
