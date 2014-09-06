@@ -6,7 +6,7 @@ session_start();
 		header("Location: /");
 		exit;
 	}
-	else if (!isset($_SESSION['admin']) || ($_SESSION['admin'] != 3)) {
+	else if (!isset($_SESSION['admin']) || ($_SESSION['admin'] != 3) || ($_SESSION['admin'] != 2)) {
 		header("Location: /");
 		exit;
 	}
