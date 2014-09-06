@@ -6,7 +6,7 @@ session_start();
 		header("Location: /team");
 		exit;
 	}
-	else if (!isset($_SESSION['admin']) || !($_SESSION['admin'] != 3)) {
+	else if (!isset($_SESSION['admin']) || ($_SESSION['admin'] != 3)) {
 		header("Location: /team/dash");
 		exit;
 	}
