@@ -20,8 +20,8 @@ if(!empty($_POST)){
   
     $myCon = new mysqliInterface;
   
-    $err = printError($myCon, $user, $email, $pw, $samepw, $refer, $projid);
-    if (!(strlen($err) > 0) && validateInput($user, $email, $pw, $samepw) && verifyFormToken("signup") && validatePost()) {
+    
+    if (validateInput($user, $email, $pw, $samepw) && verifyFormToken("signup") && validatePost()) {
    
       $pwhash = passwordToHash($pw);
       if (strlen($idhash = $myCon->signUp($user, $pwhash, $email, null)) > 0) {
@@ -40,11 +40,13 @@ if(!empty($_POST)){
         
       } else{
         header('HTTP/1.1 400 Bad Request');
+        $err = printError($myCon, $user, $email, $pw, $samepw, $refer, $projid);
+        echo $err;
       }
     }
     else {
       header('HTTP/1.1 400 Bad Request');
-      echo $err;
+      
     }
   
     exit;
