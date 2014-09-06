@@ -13,11 +13,11 @@ session_start();
 
 	if (!isset($_SESSION['logged'])) {
 		
-		header("Location: /team");
+		header("Location: /");
 		exit;
 	}
 	else if (!isset($_SESSION['admin']) || ($_SESSION['admin'] != 3)) {
-		header("Location: /team/dash");
+		header("Location: /");
 		exit;
 	}
 

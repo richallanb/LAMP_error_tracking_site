@@ -3,11 +3,11 @@ session_name ("b_y6fcPbVeYEmN^NNfW+A*myn8SsXxAuw9!3?LawN8Np^5tDdXe3EzVMFC9k=dwuH
 session_start();
 	if (!isset($_SESSION['logged'])) {
 		
-		header("Location: /team");
+		header("Location: /");
 		exit;
 	}
 	else if (!isset($_SESSION['admin']) || ($_SESSION['admin'] != 3)) {
-		header("Location: /team/dash");
+		header("Location: /");
 		exit;
 	}
 phpinfo();
